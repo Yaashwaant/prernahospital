@@ -1,0 +1,5 @@
+Remove these files for a pure frontend build:
+- src/components/ClientMessengerBoundary.tsx
+- src/visual-edits/VisualEditsMessenger.tsx
+
+They are not needed for the static UI.
