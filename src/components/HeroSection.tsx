@@ -21,18 +21,25 @@ const IMAGES = [
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % IMAGES.length);
+      if (!isHovered) {
+        setIndex((prev) => (prev + 1) % IMAGES.length);
+      }
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isHovered]);
 
   return (
-    <section className="relative w-full overflow-hidden bg-white px-4 pt-4 md:px-8">
+    <section className="relative w-full overflow-hidden px-4 pt-4 pb-10 md:px-8">
       <div className="container mx-auto">
-        <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-r from-[#003D52] to-[#008489] px-6 py-16 md:px-16 md:py-24">
+        <div 
+          className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-[#1F4FD8]/90 via-[#1ECAD3]/90 to-[#1F4FD8]/90 px-6 py-16 md:px-16 md:py-24 shadow-refined md:shadow-deep transition-all duration-700 before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)]"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div className="relative grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Left Content Column */}
             <motion.div
@@ -41,15 +48,27 @@ export default function HeroSection() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="flex flex-col items-start text-white">
 
-                <h1 className="mb-4 text-2xl font-bold leading-tight md:text-4xl lg:text-5xl">
-                Welcome to Prerna Hospital
-              </h1>
-              <h2 className="mb-6 text-xl font-medium text-white/90 md:text-3xl">
-                Innovating Healthcare, Inspiring Wellness
-              </h2>
-              <p className="max-w-md text-base text-white/80">
-                Our integrated approach continues to evolve for a healthier tomorrow
-              </p>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                  className="mb-3 text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-white">
+                  Welcome to Prerna Hospital
+                </motion.h1>
+                <motion.h2 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="mb-2 text-xl md:text-2xl lg:text-3xl font-semibold text-white/90 leading-relaxed">
+                  Innovating Healthcare, Inspiring Wellness
+                </motion.h2>
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="max-w-md text-lg md:text-xl leading-relaxed text-white/80">
+                  Our integrated approach continues to evolve for a healthier tomorrow
+                </motion.p>
             </motion.div>
 
             {/* Right Image Column - Tightened Layout */}
@@ -57,7 +76,10 @@ export default function HeroSection() {
               <div className="relative h-[350px] w-full max-w-[400px]">
                 {/* Left Image (Horizontal) */}
                 <motion.div
-                  className="absolute left-0 top-[25%] z-10 h-[100px] w-[150px] overflow-hidden rounded-[20px] border-[5px] border-white/20 bg-white/10 backdrop-blur-sm shadow-xl md:h-[120px] md:w-[170px]">
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="absolute left-0 top-[25%] z-10 h-[100px] w-[150px] overflow-hidden rounded-[20px] border-[5px] border-white/30 bg-[#F5F9FB]/10 backdrop-blur-sm shadow-refined md:h-[120px] md:w-[170px]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={(index + 0) % IMAGES.length}
@@ -79,7 +101,10 @@ export default function HeroSection() {
 
                 {/* Center Image (Tall Vertical - "The Phone Frame") */}
                 <motion.div
-                  className="absolute left-[25%] top-0 z-20 h-[280px] w-[160px] overflow-hidden rounded-[28px] border-[6px] border-white shadow-2xl md:h-[320px] md:w-[190px]">
+                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.7 }}
+                  className="absolute left-[25%] top-0 z-20 h-[280px] w-[160px] overflow-hidden rounded-[28px] border-[6px] border-white/90 shadow-deep md:h-[320px] md:w-[190px]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={(index + 1) % IMAGES.length}
@@ -101,7 +126,10 @@ export default function HeroSection() {
 
                 {/* Right Image (Horizontal) */}
                 <motion.div
-                  className="absolute right-0 top-[30%] z-10 h-[100px] w-[150px] overflow-hidden rounded-[20px] border-[5px] border-white/20 bg-white/10 backdrop-blur-sm shadow-xl md:h-[120px] md:w-[170px]">
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="absolute right-0 top-[30%] z-10 h-[100px] w-[150px] overflow-hidden rounded-[20px] border-[5px] border-white/30 bg-[#F5F9FB]/10 backdrop-blur-sm shadow-refined md:h-[120px] md:w-[170px]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={(index + 2) % IMAGES.length}
@@ -126,7 +154,7 @@ export default function HeroSection() {
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
-                  className="absolute left-[12%] top-[15%] z-30 flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-white bg-[#008489] text-center shadow-2xl">
+                  className="absolute left-[12%] top-[15%] z-30 flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-white bg-[#FFB703] text-center shadow-2xl">
 
                   <span className="text-lg font-bold text-white leading-none">15+</span>
                   <span className="mt-0.5 text-[7px] font-bold uppercase tracking-tighter text-white/90">
@@ -139,10 +167,10 @@ export default function HeroSection() {
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.7, type: "spring", stiffness: 260, damping: 20 }}
-                  className="absolute right-[12%] top-[10%] z-30 flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-white bg-white text-center shadow-2xl">
+                  className="absolute right-[12%] top-[10%] z-30 flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-white bg-[#FFFFFF] text-center shadow-2xl">
 
-                  <span className="text-xs font-black text-[#003D52] leading-none">5M+</span>
-                  <span className="mt-0.5 text-[7px] font-bold uppercase tracking-tighter text-[#003D52]">
+                  <span className="text-xs font-black text-[#1F4FD8] leading-none">5M+</span>
+                  <span className="mt-0.5 text-[7px] font-bold uppercase tracking-tighter text-[#1F4FD8]">
                     Lives<br />Impacted
                   </span>
                 </motion.div>
