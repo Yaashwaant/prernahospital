@@ -1,12 +1,34 @@
-node_modules/
+# Build outputs
 .next/
-.DS_Store
-public/.DS_Store
-.localstorage*
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime cache
+.localstorage
+
+# Dependencies
+node_modules/
+
+# Environment
 .env
 .env.local
-out/
-coverage/
-.vercel/
-*.log
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Misc
+dist/
+build/
 tmp/

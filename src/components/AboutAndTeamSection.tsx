@@ -37,7 +37,7 @@ export default function AboutAndTeamSection() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16">
+    <section className="bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16" id="about">
       <div className="container mx-auto px-4 md:px-8 space-y-16">
         <div className="grid items-center gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <motion.div
@@ -99,7 +99,7 @@ export default function AboutAndTeamSection() {
           </motion.div>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6" id="team">
           <div className="flex items-center justify-between gap-4">
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">

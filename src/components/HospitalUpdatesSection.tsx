@@ -130,7 +130,7 @@ export default function HospitalUpdatesSection() {
             <div className="text-center py-12">
               <p className="text-gray-500 mb-4">No updates available yet.</p>
               <p className="text-sm text-gray-400">
-                Visit <a href="/admin" className="text-[#1F4FD8] hover:underline">admin dashboard</a> to add updates.
+                Visit <a href="/admin/dashboard" className="text-[#1F4FD8] hover:underline">admin dashboard</a> to add updates.
               </p>
               <p className="text-xs text-gray-400 mt-2">
                 Login: admin / admin@prerna2026

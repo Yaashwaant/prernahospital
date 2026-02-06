@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function HospitalFooter() {
   return (
-    <footer className="w-full border-t border-gray-100 bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16">
+    <footer className="w-full border-t border-gray-100 bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16" id="contact">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3 lg:grid-cols-4">
           <motion.div 
@@ -97,6 +97,26 @@ export default function HospitalFooter() {
             </ul>
           </motion.div>
         </div>
+        
+        <motion.div 
+          className="mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}>
+          <div className="w-full overflow-hidden rounded-2xl border border-gray-200 shadow-refined">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3007.5!2d72.88!3d19.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdba29ba5450bd9%3A0x8ebe71ef487e11c!2sPRERNA%20HOSPITAL%20Inspiring%20Minds....!5e0!3m2!1sen!2sin!4v1770401595854!5m2!1sen!2sin&zoom=17"
+              width="100%"
+              height="380"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Prerna Hospital Location Map"
+            />
+          </div>
+        </motion.div>
         
         <motion.div 
           className="mt-16 border-t border-gray-200 pt-8 text-center"
