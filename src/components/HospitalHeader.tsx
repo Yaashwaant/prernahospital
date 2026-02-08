@@ -16,6 +16,50 @@ const NAV_ITEMS = [
   { id: "contact", label: "Contact Us", href: "#contact" }
 ] as const;
 
+const MobileQuickActions = () => {
+  return (
+    <div className="border-b border-gray-100 bg-white md:hidden">
+      <div className="container mx-auto px-4 py-2">
+        <div className="grid grid-cols-3 gap-2">
+          <motion.a
+            href="https://www.google.com/maps/dir/?api=1&destination=PRERNA%20HOSPITAL%20Inspiring%20Minds...."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 rounded-full bg-[#F4F7FB] px-3 py-2 text-[11px] font-semibold text-[#1F4FD8] shadow-sm ring-1 ring-gray-200"
+            whileTap={{ scale: 0.98 }}
+            aria-label="Directions"
+          >
+            <MapPin className="h-4 w-4" />
+            Directions
+          </motion.a>
+
+          <motion.a
+            href="tel:07887888865"
+            className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#EAF4FF] to-[#d0e4ff] px-3 py-2 text-[11px] font-semibold text-[#1F4FD8] shadow-sm ring-1 ring-[#1F4FD8]/10"
+            whileTap={{ scale: 0.98 }}
+            aria-label="Call"
+          >
+            <Phone className="h-4 w-4" />
+            Call
+          </motion.a>
+
+          <motion.a
+            href="https://wa.me/917887888865?text=Hello%20Prerna%20Hospital"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#E9FBEF] to-[#D4F7E0] px-3 py-2 text-[11px] font-semibold text-[#008489] shadow-sm ring-1 ring-[#008489]/15"
+            whileTap={{ scale: 0.98 }}
+            aria-label="WhatsApp"
+          >
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp
+          </motion.a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 /**
  * Reusable logo component
  */
@@ -57,12 +101,12 @@ const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
 const NavItem = ({ item, isActive }: { item: typeof NAV_ITEMS[number]; isActive: boolean }) => {
   return (
     <motion.li
-      className={`flex items-center gap-1 transition-colors ${
+      className={`flex w-full items-center justify-center gap-1 transition-colors md:w-auto md:justify-start ${
         isActive ? "text-[#FFB703]" : "text-[#1F4FD8] hover:text-[#FFB703]"
       }`}
       variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}
     >
-      <Link href={item.href} className="relative">
+      <Link href={item.href} className="relative block w-full py-1 text-center md:w-auto md:text-left">
         {item.label}
         {isActive && (
           <motion.div
@@ -85,7 +129,7 @@ const TopBar = () => (
     initial={{ opacity: 0, y: -10 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
-    className="container mx-auto flex items-center justify-between px-4 py-3 md:px-8"
+    className="container mx-auto flex items-center justify-center px-4 py-3 md:justify-between md:px-8"
   >
     <HospitalLogo animated />
 
@@ -155,7 +199,7 @@ const NavigationBar = () => {
     <nav className="border-t border-gray-100 bg-[#F4F7FB] shadow-sm">
       <div className="container mx-auto flex items-center justify-center px-4 py-3 md:px-8">
         <motion.ul
-          className="flex flex-wrap items-center gap-10 text-[11px] font-bold uppercase tracking-wider"
+          className="grid w-full grid-cols-2 justify-items-center gap-x-6 gap-y-3 text-[11px] font-bold uppercase tracking-wider md:flex md:w-auto md:flex-wrap md:items-center md:gap-10"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -172,6 +216,7 @@ const NavigationBar = () => {
 export default function HospitalHeader() {
   return (
     <header className="w-full bg-[#F4F7FB] font-sans shadow-sm">
+      <MobileQuickActions />
       <TopBar />
       <NavigationBar />
     </header>
