@@ -44,14 +44,14 @@ export default function HeroSection() {
   }, [isHovered]);
 
   return (
-    <section className="relative w-full overflow-hidden px-4 pt-4 pb-10 md:px-8">
+    <section className="relative w-full overflow-hidden px-4 pt-4 pb-4 md:px-8">
       <div className="container mx-auto">
         <div 
-          className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#1F4FD8]/90 via-[#1ECAD3]/90 to-[#1F4FD8]/90 px-5 py-8 shadow-refined transition-all duration-700 before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] sm:rounded-[34px] sm:px-6 sm:py-12 md:rounded-[40px] md:px-16 md:py-24 md:shadow-deep"
+          className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#1F4FD8]/90 via-[#1ECAD3]/90 to-[#1F4FD8]/90 px-5 pt-8 pb-6 shadow-refined transition-all duration-700 before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] sm:rounded-[34px] sm:px-6 sm:pt-12 sm:pb-8 md:rounded-[40px] md:px-16 md:pt-24 md:pb-16 md:shadow-deep"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+          <div className="relative grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
             {/* Left Content Column */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -89,13 +89,13 @@ export default function HeroSection() {
               </motion.p>
             </motion.div>
 
-            <div className="relative flex min-h-[280px] items-center justify-center sm:min-h-[320px] lg:justify-end">
-              <div className="relative h-[270px] w-full max-w-[380px] sm:h-[300px] sm:max-w-[410px] md:h-[320px] md:max-w-[440px]">
+            <div className="relative flex min-h-[320px] items-center justify-center sm:min-h-[360px] lg:justify-end sm:mt-6 lg:mt-10 lg:-ml-8">
+              <div className="relative h-[340px] w-full max-w-[480px] sm:h-[370px] sm:max-w-[520px] md:h-[400px] md:max-w-[560px]">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="absolute top-[22%] left-0 z-10 h-[96px] w-[132px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[104px] sm:w-[144px] md:h-[112px] md:w-[156px]"
+                  className="absolute top-[30%] -left-3 z-10 h-[120px] w-[168px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[132px] sm:w-[184px] md:h-[144px] md:w-[200px]"
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -120,7 +120,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0, y: -15, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  className="absolute left-1/2 top-0 z-20 h-[190px] w-[260px] -translate-x-1/2 overflow-hidden rounded-[22px] border-[8px] border-white bg-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] sm:h-[208px] sm:w-[284px] md:h-[220px] md:w-[300px]"
+                  className="absolute left-1/2 top-0 z-20 h-[240px] w-[320px] -translate-x-1/2 overflow-hidden rounded-[22px] border-[8px] border-white bg-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] sm:h-[260px] sm:w-[350px] md:h-[280px] md:w-[370px]"
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -145,7 +145,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="absolute top-[26%] right-0 z-10 h-[96px] w-[132px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[104px] sm:w-[144px] md:h-[112px] md:w-[156px]"
+                  className="absolute top-[34%] -right-3 z-10 h-[120px] w-[168px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[132px] sm:w-[184px] md:h-[144px] md:w-[200px]"
                 >
                   <AnimatePresence mode="wait">
                     <motion.div

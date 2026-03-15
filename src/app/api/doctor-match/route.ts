@@ -1,19 +1,28 @@
 import { NextResponse } from "next/server";
+import { DOCTORS } from "@/data/doctors";
 
-const doctors = [
-  { name: "Dr. Aanya Mehta", specialty: "Anxiety & Mood Disorders" },
-  { name: "Dr. Rohan Kapoor", specialty: "PTSD & Trauma" },
-  { name: "Dr. Kavya Iyer", specialty: "Child & Adolescent Psychiatry" },
-  { name: "Dr. Arjun Sethi", specialty: "Addiction & Dual Diagnosis" }
-];
+// Build the active doctors list from our source of truth (doctors.ts)
+const doctors = DOCTORS.map((d) => ({
+  name: d.name,
+  specialty: d.specialties.join(" & ") || d.title || d.role
+}));
+
+const ROUTING_HINTS = [
+  "If symptoms mention child, school, adolescent, ADHD, autism, behavior: prefer Child & Adolescent Psychiatry.",
+  "If symptoms mention alcohol, tobacco, drugs, craving, withdrawal, relapse: prefer De-addiction.",
+  "If symptoms mention sexual, libido, performance, erectile: prefer Sexual Medicine.",
+  "Otherwise prefer Neuropsychiatry for mood, anxiety, psychosis, sleep or unclear cases."
+].join("\n");
 
 const SYSTEM = [
-  "You choose a single psychiatrist from the list based on the user’s symptoms.",
-  "Never provide cures, diagnoses, or medical advice.",
-  "Output only: \"I recommend {Doctor} ({Specialty}).\"",
-  "If unclear: \"I suggest scheduling with any of our psychiatrists; they’ll assess and guide you further.\"",
+  "Choose exactly one psychiatrist from the list based on the user’s symptoms.",
+  "Do NOT diagnose or give medical advice.",
+  'Respond only in this format: "I recommend {Doctor} ({Specialty})."',
+  'If unclear, respond: "I suggest scheduling with any of our psychiatrists; they’ll assess and guide you further."',
+  "Routing rules:",
+  ROUTING_HINTS,
   "Doctors:",
-  ...doctors.map(d => `- ${d.name}: ${d.specialty}`)
+  ...doctors.map((d) => `- ${d.name}: ${d.specialty}`)
 ].join("\n");
 
 export async function POST(req: Request) {

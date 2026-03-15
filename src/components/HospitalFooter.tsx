@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { SOCIAL } from "@/data/social";
 
 export default function HospitalFooter() {
   return (
@@ -48,10 +49,15 @@ export default function HospitalFooter() {
             transition={{ duration: 0.5, delay: 0.1 }}>
             <h5 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Quick Links</h5>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
-              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}><Link href="#" className="hover:text-[#5D2CB3] transition-colors">Specialities</Link></motion.li>
-              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}><Link href="#" className="hover:text-[#5D2CB3] transition-colors">Our Doctors</Link></motion.li>
-              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}><Link href="#" className="hover:text-[#5D2CB3] transition-colors">Patient Portal</Link></motion.li>
-              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}><Link href="#" className="hover:text-[#5D2CB3] transition-colors">Health Packages</Link></motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                <Link href="#about" className="hover:text-[#5D2CB3] transition-colors">About Us</Link>
+              </motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                <Link href="#team" className="hover:text-[#5D2CB3] transition-colors">Our Doctors</Link>
+              </motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                <Link href="#contact" className="hover:text-[#5D2CB3] transition-colors">Contact</Link>
+              </motion.li>
             </ul>
           </motion.div>
 
@@ -62,10 +68,19 @@ export default function HospitalFooter() {
             transition={{ duration: 0.5, delay: 0.2 }}>
             <h5 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Support</h5>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
-              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}><Link href="#" className="hover:text-[#5D2CB3] transition-colors">Contact Us</Link></motion.li>
-              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}><Link href="#" className="hover:text-[#5D2CB3] transition-colors">Emergency Services</Link></motion.li>
-              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}><Link href="#" className="hover:text-[#5D2CB3] transition-colors">News & Updates</Link></motion.li>
-              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}><Link href="#" className="hover:text-[#5D2CB3] transition-colors">Privacy Policy</Link></motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                <Link href="#contact" className="hover:text-[#5D2CB3] transition-colors">Contact Us</Link>
+              </motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                <a href={`tel:${SOCIAL.emergencyHelpline}`} className="hover:text-[#5D2CB3] transition-colors">
+                  Emergency Helpline ({SOCIAL.opdTimings ? "24/7" : "Call Now"})
+                </a>
+              </motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                <a href={SOCIAL.googleMaps} target="_blank" rel="noopener noreferrer" className="hover:text-[#5D2CB3] transition-colors">
+                  Directions (Google Maps)
+                </a>
+              </motion.li>
             </ul>
           </motion.div>
 
@@ -80,19 +95,31 @@ export default function HospitalFooter() {
                 className="flex items-center gap-2"
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300 }}>
-                <span className="font-semibold text-[#1F4FD8]">Phone:</span> 88888 7777
+                <span className="font-semibold text-[#1F4FD8]">Emergency:</span> <a href={`tel:${SOCIAL.emergencyHelpline}`} className="hover:text-[#5D2CB3]">{SOCIAL.emergencyHelpline} (24/7)</a>
               </motion.li>
               <motion.li 
                 className="flex items-center gap-2"
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300 }}>
-                <span className="font-semibold text-[#1F4FD8]">Email:</span> info@prernahospital.com
+                <span className="font-semibold text-[#1F4FD8]">OPD:</span> {SOCIAL.opdTimings}
               </motion.li>
               <motion.li 
                 className="flex items-start gap-2"
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300 }}>
-                <span className="font-semibold text-[#1F4FD8]">Address:</span> 123 Health Avenue, Medical District
+                <span className="font-semibold text-[#1F4FD8]">Phone:</span> {SOCIAL.phones.join(", ")}
+              </motion.li>
+              <motion.li 
+                className="flex items-center gap-2"
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 300 }}>
+                <span className="font-semibold text-[#1F4FD8]">Email:</span> <a href={`mailto:${SOCIAL.email}`} className="hover:text-[#5D2CB3]">{SOCIAL.email}</a>
+              </motion.li>
+              <motion.li 
+                className="flex items-start gap-2"
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 300 }}>
+                <span className="font-semibold text-[#1F4FD8]">Address:</span> {SOCIAL.address}
               </motion.li>
             </ul>
           </motion.div>
