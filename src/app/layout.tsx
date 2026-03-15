@@ -5,6 +5,11 @@ import DoctorChatbot from "@/components/DoctorChatbot";
 export const metadata: Metadata = {
   title: "Prerna Hospital",
   description: "Inspiring Minds – Advanced brain and spine care",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg"
+  }
 };
 
 export default function RootLayout({

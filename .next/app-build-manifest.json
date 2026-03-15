@@ -16,6 +16,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/api/updates/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/updates/route.js"
+    ],
     "/doctors/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

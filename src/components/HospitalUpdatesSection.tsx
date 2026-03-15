@@ -25,22 +25,21 @@ export default function HospitalUpdatesSection() {
   const DISPLAY_LIMIT = 8;
 
   useEffect(() => {
-    // Load updates from localStorage
-    const savedUpdates = localStorage.getItem("prernaUpdates");
-    if (savedUpdates) {
-      const allUpdates = JSON.parse(savedUpdates);
-      setUpdates(allUpdates.slice(0, DISPLAY_LIMIT));
-    } else {
-      // Create a demo update if none exist
-      const demoUpdate: Update = {
-        id: 'demo-1',
-        title: 'Welcome to Prerna Hospital Updates',
-        description: 'This is a demo update to show how the updates section works. Visit the admin dashboard to add your own updates.',
-        image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMUY0RkQ4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5VcGRhdGUgSW1hZ2U8L3RleHQ+PC9zdmc+',
-        date: new Date().toISOString()
-      };
-      setUpdates([demoUpdate]);
-    }
+    const load = async () => {
+      try {
+        const res = await fetch("/api/updates", { cache: "no-store" });
+        const json = await res.json();
+        const data = Array.isArray(json.updates) ? json.updates : [];
+        setUpdates(data.slice(0, DISPLAY_LIMIT));
+      } catch {
+        const saved = localStorage.getItem("prernaUpdates");
+        if (saved) {
+          const all = JSON.parse(saved);
+          setUpdates(all.slice(0, DISPLAY_LIMIT));
+        }
+      }
+    };
+    load();
   }, []);
 
   const hasUpdates = updates.length > 0;

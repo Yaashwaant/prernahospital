@@ -18,13 +18,21 @@ export default function UpdatesSection() {
   const [updates, setUpdates] = useState<Update[]>([]);
 
   useEffect(() => {
-    // Load updates from localStorage
-    const savedUpdates = localStorage.getItem("prernaUpdates");
-    if (savedUpdates) {
-      const allUpdates = JSON.parse(savedUpdates);
-      // Show only the 5 most recent updates
-      setUpdates(allUpdates.slice(0, 5));
-    }
+    const load = async () => {
+      try {
+        const res = await fetch("/api/updates", { cache: "no-store" });
+        const json = await res.json();
+        const list: Update[] = Array.isArray(json.updates) ? json.updates : [];
+        setUpdates(list.slice(0, 5));
+      } catch {
+        const saved = localStorage.getItem("prernaUpdates");
+        if (saved) {
+          const all = JSON.parse(saved);
+          setUpdates(all.slice(0, 5));
+        }
+      }
+    };
+    load();
   }, []);
 
   const scroll = (direction: "left" | "right") => {

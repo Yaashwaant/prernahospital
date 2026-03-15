@@ -71,7 +71,7 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="mb-6 text-lg font-semibold leading-relaxed text-white/90 sm:text-xl md:text-2xl lg:text-3xl">
-                Innovating Healthcare, Inspiring Wellness
+                Inspiring Minds, Transforming Mental Wellness
               </motion.h2>
 
               <div className="mb-5 h-px w-16 rounded-full bg-white/55" />
@@ -84,7 +84,7 @@ export default function HeroSection() {
               >
                 <Hospital className="mt-1 h-5 w-5 shrink-0 text-[#FFB703]" />
                 <span>
-                  Our integrated approach continues to evolve for a healthier tomorrow
+                  Compassionate, evidence‑based care across neuropsychiatry, child & adolescent guidance, and de‑addiction—personalized treatment in a safe, supportive setting. Open 24×7.
                 </span>
               </motion.p>
             </motion.div>

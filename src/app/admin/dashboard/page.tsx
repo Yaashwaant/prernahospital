@@ -26,27 +26,46 @@ export default function AdminDashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    // Check authentication
     const isAuthenticated = localStorage.getItem("isAdminAuthenticated");
     if (!isAuthenticated) {
       router.push("/admin/login");
       return;
     }
-
-    // Load existing updates from localStorage
-    const savedUpdates = localStorage.getItem("prernaUpdates");
-    if (savedUpdates) {
-      setUpdates(JSON.parse(savedUpdates));
-    }
-    setIsLoading(false);
+    const load = async () => {
+      try {
+        const res = await fetch("/api/updates", { cache: "no-store" });
+        const json = await res.json();
+        const list: Update[] = Array.isArray(json.updates) ? json.updates : [];
+        setUpdates(list);
+      } catch {
+        const saved = localStorage.getItem("prernaUpdates");
+        if (saved) setUpdates(JSON.parse(saved));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    load();
   }, [router]);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
+    if (!file) return;
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/updates/upload", { method: "POST", body: fd });
+      const json = await res.json();
+      if (res.ok && json.url) {
+        setImagePreview(json.url);
+        setFormData({ ...formData, image: json.url });
+        return;
+      }
+      throw new Error("Upload failed");
+    } catch {
+      // Fallback to data URL for local dev without Supabase
       const reader = new FileReader();
-      reader.onload = (e) => {
-        const result = e.target?.result as string;
+      reader.onload = (evt) => {
+        const result = evt.target?.result as string;
         setImagePreview(result);
         setFormData({ ...formData, image: result });
       };
@@ -54,24 +73,40 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.title || !formData.description || !formData.image) {
       alert("Please fill in all fields and upload an image");
       return;
     }
 
-    const newUpdate: Update = {
-      id: Date.now().toString(),
+    const payload = {
       title: formData.title,
       description: formData.description,
       image: formData.image,
       date: formData.date
     };
-
-    const updatedUpdates = [newUpdate, ...updates].slice(0, 10); // Keep only 10 most recent
-    setUpdates(updatedUpdates);
-    localStorage.setItem("prernaUpdates", JSON.stringify(updatedUpdates));
+    try {
+      const res = await fetch("/api/updates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error("Failed");
+      const { id } = await res.json();
+      const newUpdate: Update = { id, ...payload };
+      const updated = [newUpdate, ...updates].slice(0, 10);
+      setUpdates(updated);
+      localStorage.setItem("prernaUpdates", JSON.stringify(updated));
+    } catch {
+      const newUpdate: Update = {
+        id: Date.now().toString(),
+        ...payload
+      };
+      const updated = [newUpdate, ...updates].slice(0, 10);
+      setUpdates(updated);
+      localStorage.setItem("prernaUpdates", JSON.stringify(updated));
+    }
 
     // Reset form
     setFormData({ title: "", description: "", image: "", date: new Date().toISOString().split("T")[0] });
@@ -80,12 +115,14 @@ export default function AdminDashboard() {
     alert("Update added successfully!");
   };
 
-  const handleDelete = (id: string) => {
-    if (confirm("Are you sure you want to delete this update?")) {
-      const updatedUpdates = updates.filter(update => update.id !== id);
-      setUpdates(updatedUpdates);
-      localStorage.setItem("prernaUpdates", JSON.stringify(updatedUpdates));
-    }
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this update?")) return;
+    try {
+      await fetch(`/api/updates/${id}`, { method: "DELETE" });
+    } catch {}
+    const updated = updates.filter((u) => u.id !== id);
+    setUpdates(updated);
+    localStorage.setItem("prernaUpdates", JSON.stringify(updated));
   };
 
   const handleLogout = () => {
