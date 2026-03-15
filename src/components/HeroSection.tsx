@@ -6,17 +6,27 @@ import { useState, useEffect } from "react";
 import { Hospital } from "lucide-react";
 
 const IMAGES = [
-  {
-    src: "/images/update1.jpg",
-    alt: "Prerna Hospital reception"
-  },
+  
   {
     src: "/IMG_2048.png",
     alt: "Prerna Hospital building"
   },
+  
   {
-    src: "/images/update2.jpg",
-    alt: "Prerna Hospital room"
+    src: "/IMG_2059.jpeg",
+    alt: "Doctor consultation room"
+  },
+  {
+    src: "/IMG_2114.jpeg",
+    alt: "In-patient ward with beds"
+  },
+  {
+    src: "/IMG_2132.jpeg",
+    alt: "Doctor counselling patient"
+  },
+  {
+    src: "/IMG_2284.jpeg",
+    alt: "Hospital corridor and artwork wall"
   }
 ];
 
@@ -29,7 +39,7 @@ export default function HeroSection() {
       if (!isHovered) {
         setIndex((prev) => (prev + 1) % IMAGES.length);
       }
-    }, 4000);
+    }, 2500);
     return () => clearInterval(timer);
   }, [isHovered]);
 
