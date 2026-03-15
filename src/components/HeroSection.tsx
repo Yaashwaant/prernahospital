@@ -39,7 +39,7 @@ export default function HeroSection() {
       if (!isHovered) {
         setIndex((prev) => (prev + 1) % IMAGES.length);
       }
-    }, 2500);
+    }, 4000);
     return () => clearInterval(timer);
   }, [isHovered]);
 

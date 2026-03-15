@@ -99,7 +99,7 @@ export default function AboutAndTeamSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-6 rounded-3xl bg-white shadow-refined border border-gray-100 px-6 py-6 md:px-8 md:py-7 space-y-4"
+          className="mt-6 rounded-3xl bg-white shadow-refined border border-gray-100 px-6 py-6 md:px-8 md:py-7 space-y-5"
         >
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <div>
@@ -117,32 +117,119 @@ export default function AboutAndTeamSection() {
             </div>
           </div>
 
-          <div className="grid gap-3 text-xs md:text-sm text-[#25324B] md:grid-cols-2">
-            <div className="flex items-start gap-2">
-              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
-              <p>24x7 emergency admission facility and round-the-clock psychiatric support.</p>
+          <div className="grid gap-4 text-xs md:text-sm text-[#25324B] md:grid-cols-3">
+            <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
+              <div className="relative h-10 w-10 flex-shrink-0">
+                <Image
+                  src="/24X7%20emergency%20admission.png"
+                  alt="24x7 Emergency Admission icon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#1A1A1A]">
+                  24x7 Emergency Admission
+                </p>
+                <p className="mt-1 text-xs text-gray-600">
+                  Round-the-clock psychiatric support.
+                </p>
+              </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
-              <p>9:00 AM to 9:00 PM OPD by consultant psychiatrists.</p>
+
+            <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
+              <div className="relative h-10 w-10 flex-shrink-0">
+                <Image
+                  src="/Greener%20city%20campus.png"
+                  alt="Greener City Campus icon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#1A1A1A]">
+                  Greener City Campus
+                </p>
+                <p className="mt-1 text-xs text-gray-600">
+                  Pleasant green open space within the heart of the city.
+                </p>
+              </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
-              <p>Spacious in‑patient admission facility with deluxe AC rooms, TV and Wi‑Fi.</p>
+
+            <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
+              <div className="relative h-10 w-10 flex-shrink-0">
+                <Image
+                  src="/Delux%20In-patient%20care.png"
+                  alt="Deluxe In-Patient Care icon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#1A1A1A]">
+                  Deluxe In-Patient Care
+                </p>
+                <p className="mt-1 text-xs text-gray-600">
+                  Spacious AC rooms with TV and Wi‑Fi.
+                </p>
+              </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
-              <p>Trained, dedicated nursing and support staff for continuous supervision.</p>
+
+            <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
+              <div className="relative h-10 w-10 flex-shrink-0">
+                <Image
+                  src="/expert%20opd%20acess.png"
+                  alt="Expert OPD Access icon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#1A1A1A]">
+                  Expert OPD Access
+                </p>
+                <p className="mt-1 text-xs text-gray-600">
+                  9:00 AM to 9:00 PM OPD by consultant psychiatrists.
+                </p>
+              </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
-              <p>Pleasant green campus with ample open space within the heart of the city.</p>
+
+            <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
+              <div className="relative h-10 w-10 flex-shrink-0">
+                <Image
+                  src="/Trained%20support%20staff.png"
+                  alt="Trained Support Staff icon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#1A1A1A]">
+                  Trained Support Staff
+                </p>
+                <p className="mt-1 text-xs text-gray-600">
+                  Dedicated nursing for continuous supervision.
+                </p>
+              </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
-              <p>
-                EEG, ultra‑brief pulse ECT, ECG and advanced pathology and laboratory services.
-              </p>
+
+            <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
+              <div className="relative h-10 w-10 flex-shrink-0">
+                <Image
+                  src="/Advanced%20diagnostics.png"
+                  alt="Advanced Diagnostics icon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#1A1A1A]">
+                  Advanced Diagnostics
+                </p>
+                <p className="mt-1 text-xs text-gray-600">
+                  EEG, Pulse ECT, ECG and complete pathology and lab services.
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
