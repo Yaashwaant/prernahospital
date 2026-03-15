@@ -71,7 +71,7 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="mb-6 text-lg font-semibold leading-relaxed text-white/90 sm:text-xl md:text-2xl lg:text-3xl">
-                Inspiring Minds, <br />Transforming Mental Wellness
+               Transforming Mental Illness to Mental Wellness
               </motion.h2>
 
               <div className="mb-5 h-px w-16 rounded-full bg-white/55" />

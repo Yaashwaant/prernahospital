@@ -703,6 +703,9 @@
   .h-\[260px\] {
     height: 260px;
   }
+  .h-\[320px\] {
+    height: 320px;
+  }
   .h-\[340px\] {
     height: 340px;
   }
@@ -4557,6 +4560,11 @@
   .sm\:h-\[280px\] {
     @media (width >= 40rem) {
       height: 280px;
+    }
+  }
+  .sm\:h-\[360px\] {
+    @media (width >= 40rem) {
+      height: 360px;
     }
   }
   .sm\:h-\[370px\] {

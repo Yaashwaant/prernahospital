@@ -1,10 +1,10 @@
 export const SOCIAL = {
-  emergencyHelpline: "7887888854",
+  emergencyHelpline: "7887888865",
   opdTimings: "9:00 AM – 8:00 PM",
   phones: ["0240-3591167", "7887888865", "9325358630"],
-  email: "Prernahosputalllp@gmail.com",
+  email: "prernahospitalllp@gmail.com",
   address:
-    "G47, Town center N-6, Connaught, place, near Ganesh Temple and Varsha Inn Hotel, Town Center, Cidco, Chhatrapati Sambhajinagar, Maharashtra 431003",
+    "G47, Town center N-6, Connaught, place, near Ganesh Temple and Varsha Palace Hotel, Town Center, Cidco, Chhatrapati Sambhajinagar, Maharashtra 431003",
   facebookPage: "https://www.facebook.com/PrernaHospital",
   facebookProfile: "https://www.facebook.com/share/1GDiE2YsZY/",
   instagram: "https://www.instagram.com/prernahospital?igsh=a2JjOTMwenlnbmNq",

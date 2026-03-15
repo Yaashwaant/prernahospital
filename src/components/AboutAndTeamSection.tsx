@@ -82,10 +82,10 @@ export default function AboutAndTeamSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="rounded-2xl bg-white shadow-refined border border-gray-100 overflow-hidden"
           >
-            <div className="relative w-full h-[260px] sm:h-[280px] md:h-[300px]">
+            <div className="relative w-full h-[320px] sm:h-[360px] md:h-[400px]">
               <Image
-                src="/IMG_2058.png"
-                alt="Prerana Hospital inspiring minds statistics card"
+                src="/IMG_2048.png"
+                alt="Prerna Hospital building"
                 fill
                 className="object-cover"
                 priority
