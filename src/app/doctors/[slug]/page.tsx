@@ -111,34 +111,34 @@ export default function DoctorPage({ params }: DoctorPageProps) {
         <div className="rounded-3xl bg-white shadow-refined border border-gray-100">
           <div className="border-b border-gray-100 px-4 pt-4 md:px-8 md:pt-6">
             <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="bg-transparent flex flex-wrap gap-2 rounded-none p-0">
+              <TabsList className="bg-transparent flex flex-wrap gap-2 rounded-none p-0 h-auto items-start">
                 <TabsTrigger
                   value="overview"
-                  className="data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
+                  className="flex-none data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
                 >
                   Overview
                 </TabsTrigger>
                 <TabsTrigger
                   value="membership"
-                  className="data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
+                  className="flex-none data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
                 >
                   Fellowship Membership
                 </TabsTrigger>
                 <TabsTrigger
                   value="expertise"
-                  className="data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
+                  className="flex-none data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
                 >
                   Field of Expertise
                 </TabsTrigger>
                 <TabsTrigger
                   value="languages"
-                  className="data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
+                  className="flex-none data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
                 >
                   Languages Spoken
                 </TabsTrigger>
                 <TabsTrigger
                   value="awards"
-                  className="data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
+                  className="flex-none data-[state=active]:bg-[#003D52] data-[state=active]:text-white rounded-full px-4 py-2 text-xs md:text-sm"
                 >
                   Awards & Achievements
                 </TabsTrigger>
