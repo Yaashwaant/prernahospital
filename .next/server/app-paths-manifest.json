@@ -1,5 +1,6 @@
 {
-  "/doctors/[slug]/page": "app/doctors/[slug]/page.js",
-  "/updates/[id]/page": "app/updates/[id]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/updates/route": "app/api/updates/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js"
 }

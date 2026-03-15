@@ -95,7 +95,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="absolute top-[30%] -left-3 z-10 h-[120px] w-[168px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[132px] sm:w-[184px] md:h-[144px] md:w-[200px]"
+                  className="hidden sm:block absolute top-[30%] -left-3 z-10 h-[120px] w-[168px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[132px] sm:w-[184px] md:h-[144px] md:w-[200px]"
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -145,7 +145,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="absolute top-[34%] -right-3 z-10 h-[120px] w-[168px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[132px] sm:w-[184px] md:h-[144px] md:w-[200px]"
+                  className="hidden sm:block absolute top-[34%] -right-3 z-10 h-[120px] w-[168px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[132px] sm:w-[184px] md:h-[144px] md:w-[200px]"
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
