@@ -1,16 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { createAdminClient } from "@/lib/supabase";
 
 async function getUpdate(id: string) {
-  const base =
-    process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/+$/, "") ||
-    "http://localhost:3000";
-  const res = await fetch(`${base}/api/updates/${id}`, {
-    cache: "no-store",
-  });
-  if (!res.ok) return null;
-  const json = await res.json();
-  return json.update ?? null;
+  const admin = createAdminClient();
+  if (!admin) return null;
+  const { data } = await admin.from("updates").select("*").eq("id", id).single();
+  return data ?? null;
 }
 
 export default async function UpdateDetailPage({ params }: { params: { id: string } }) {
