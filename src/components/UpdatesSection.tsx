@@ -95,7 +95,8 @@ export default function UpdatesSection() {
               className="flex gap-6 overflow-x-auto pb-4"
             >
               {updates.map((update) => (
-                <motion.div
+                <motion.a
+                  href={`/updates/${update.id}`}
                   key={update.id}
                   className="min-w-[320px] sm:min-w-[340px] flex-shrink-0 rounded-3xl bg-white overflow-hidden shadow-refined border border-gray-100"
                   whileHover={{
@@ -127,7 +128,7 @@ export default function UpdatesSection() {
                       {update.description}
                     </p>
                   </div>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </div>

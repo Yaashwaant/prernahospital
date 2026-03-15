@@ -77,7 +77,8 @@ export default function HospitalUpdatesSection() {
           {hasUpdates ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {updates.map((update) => (
-                <motion.div
+                <motion.a
+                  href={`/updates/${update.id}`}
                   key={update.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +134,7 @@ export default function HospitalUpdatesSection() {
                       {update.title?.trim() ? update.title : "Hospital Update"}
                     </h4>
                   </div>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           ) : (
