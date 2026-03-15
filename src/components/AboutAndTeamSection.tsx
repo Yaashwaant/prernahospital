@@ -300,6 +300,9 @@ export default function AboutAndTeamSection() {
                       <p className="text-sm md:text-base font-semibold text-[#00A8B5]">
                         {doctor.name}
                       </p>
+                      <p className="mt-1 text-xs md:text-sm font-medium text-[#003D52]">
+                        {doctor.qualifications}
+                      </p>
                       <p className="mt-1 text-sm text-[#25324B]">
                         {doctor.role}
                       </p>
@@ -308,6 +311,11 @@ export default function AboutAndTeamSection() {
                           {doctor.specialties.join(" • ")}
                         </p>
                       )}
+                      <div className="mt-3">
+                        <span className="inline-flex items-center rounded-full bg-[#003D52] px-3 py-1 text-[11px] font-semibold text-white shadow-sm hover:bg-[#1F4FD8] transition-colors">
+                          More Details
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 </Link>
