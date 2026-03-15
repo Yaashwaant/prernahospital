@@ -64,14 +64,14 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
                 className="mb-1 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-                Welcome to Prerna Hospital
+               Prerna Hospital
               </motion.h1>
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="mb-6 text-lg font-semibold leading-relaxed text-white/90 sm:text-xl md:text-2xl lg:text-3xl">
-                Inspiring Minds, Transforming Mental Wellness
+                ...Inspiring Minds, <br />Transforming Mental Wellness
               </motion.h2>
 
               <div className="mb-5 h-px w-16 rounded-full bg-white/55" />

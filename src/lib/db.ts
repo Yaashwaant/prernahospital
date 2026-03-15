@@ -13,8 +13,12 @@ export function getDb() {
   if (!connectionString) {
     throw new Error("POSTGRES_URL is not set");
   }
-  pool = new Pool({ connectionString, max: 1, keepAlive: true });
+  const isSupabase = /supabase\.co/i.test(connectionString);
+  const poolConfig: any = { connectionString, max: 1, keepAlive: true };
+  if (isSupabase) {
+    poolConfig.ssl = { rejectUnauthorized: false };
+  }
+  pool = new Pool(poolConfig);
   dbSingleton = drizzle(pool);
   return dbSingleton;
 }
-

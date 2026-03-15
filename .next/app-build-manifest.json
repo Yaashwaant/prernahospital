@@ -1,5 +1,10 @@
 {
   "pages": {
+    "/api/updates/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/updates/route.js"
+    ],
     "/global-error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -16,15 +21,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/api/updates/route": [
+    "/api/updates/[id]/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/updates/route.js"
+      "static/chunks/app/api/updates/[id]/route.js"
     ],
-    "/doctors/[slug]/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/doctors/[slug]/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

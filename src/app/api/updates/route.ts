@@ -1,14 +1,9 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
-import { updates } from "@/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { createAdminClient } from "@/lib/supabase";
 
 export async function GET() {
-  try {
-    const db = getDb();
-    const rows = await db.select().from(updates).orderBy(desc(updates.date)).limit(12);
-    return NextResponse.json({ updates: rows });
-  } catch {
+  const admin = createAdminClient();
+  if (!admin) {
     const demo = [
       {
         id: "demo-1",
@@ -21,27 +16,52 @@ export async function GET() {
     ];
     return NextResponse.json({ updates: demo });
   }
+  const { data, error } = await admin
+    .from("updates")
+    .select("*")
+    .order("date", { ascending: false })
+    .limit(12);
+  if (error) {
+    const demo = [
+      {
+        id: "demo-1",
+        title: "Welcome to Prerna Hospital Updates",
+        description: "",
+        image:
+          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMUY0RkQ4Ii8+PC9zdmc+",
+        date: new Date().toISOString(),
+      },
+    ];
+    return NextResponse.json({ updates: demo });
+  }
+  return NextResponse.json({ updates: data || [] });
 }
 
 export async function POST(req: Request) {
+  const body = await req.json();
+  const admin = createAdminClient();
+  if (!admin) {
+    return NextResponse.json({ ok: false, error: "Supabase not configured" }, { status: 500 });
+  }
   try {
-    const body = await req.json();
-    const db = getDb();
     const id = body.id || crypto.randomUUID();
     const row = {
       id,
       title: body.title || "",
       description: body.description || "",
       image: body.image || "",
-      date: new Date(body.date || new Date().toISOString()),
+      date: new Date(body.date || new Date().toISOString()).toISOString(),
     };
-    // Upsert by id
-    await db
-      .insert(updates)
-      .values(row)
-      .onConflictDoUpdate({ target: updates.id, set: row });
+    const { error } = await admin.from("updates").upsert(row, { onConflict: "id" });
+    if (error) throw error;
     return NextResponse.json({ ok: true, id });
-  } catch {
-    return NextResponse.json({ ok: false }, { status: 500 });
+  } catch (e: any) {
+    const detail = {
+      message: e?.message ?? "unknown error",
+      code: e?.code ?? null,
+      name: e?.name ?? null,
+      cause: e?.cause?.message ?? null,
+    };
+    return NextResponse.json({ ok: false, error: detail }, { status: 500 });
   }
 }

@@ -23,7 +23,18 @@ export default function UpdatesSection() {
         const res = await fetch("/api/updates", { cache: "no-store" });
         const json = await res.json();
         const list: Update[] = Array.isArray(json.updates) ? json.updates : [];
-        setUpdates(list.slice(0, 5));
+        let next = list.slice(0, 5);
+        const looksLikeDemo =
+          next.length === 0 ||
+          next.every((u) => typeof u?.id === "string" && u.id.startsWith("demo-"));
+        if (looksLikeDemo) {
+          const saved = localStorage.getItem("prernaUpdates");
+          if (saved) {
+            const all = JSON.parse(saved);
+            next = Array.isArray(all) ? all.slice(0, 5) : next;
+          }
+        }
+        setUpdates(next);
       } catch {
         const saved = localStorage.getItem("prernaUpdates");
         if (saved) {

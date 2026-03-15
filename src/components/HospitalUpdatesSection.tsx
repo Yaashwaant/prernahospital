@@ -30,7 +30,18 @@ export default function HospitalUpdatesSection() {
         const res = await fetch("/api/updates", { cache: "no-store" });
         const json = await res.json();
         const data = Array.isArray(json.updates) ? json.updates : [];
-        setUpdates(data.slice(0, DISPLAY_LIMIT));
+        let list: Update[] = data.slice(0, DISPLAY_LIMIT);
+        const looksLikeDemo =
+          list.length === 0 ||
+          list.every((u) => typeof u?.id === "string" && u.id.startsWith("demo-"));
+        if (looksLikeDemo) {
+          const saved = localStorage.getItem("prernaUpdates");
+          if (saved) {
+            const all = JSON.parse(saved);
+            list = Array.isArray(all) ? all.slice(0, DISPLAY_LIMIT) : list;
+          }
+        }
+        setUpdates(list);
       } catch {
         const saved = localStorage.getItem("prernaUpdates");
         if (saved) {
