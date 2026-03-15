@@ -1,14 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Baby, Ribbon, Sparkles, PlusCircle, LucideIcon } from "lucide-react";
+import {
+  Brain,
+  Baby,
+  Sparkles,
+  PlusCircle,
+  MessageCircle,
+  CheckIcon,
+  SearchIcon,
+  LucideIcon
+} from "lucide-react";
 import { useMemo, memo, useState } from "react";
 import { fadeInUp, springBounce } from "@/lib/animations";
 
-/**
- * Service card configuration
- * Extracted to const for maintainability and type safety
- */
 interface ServiceItem {
   title: string;
   icon: LucideIcon;
@@ -17,29 +22,39 @@ interface ServiceItem {
 
 const SERVICES: ServiceItem[] = [
   {
-    title: "Neurology & Spine Care",
+    title: "Neuropsychiatry",
     icon: Brain,
-    description: "Expert neurological care"
+    description: "Brain-based care for complex psychiatric and neurological conditions"
   },
   {
-    title: "Pediatrics & Child Health",
-    icon: Baby,
-    description: "Specialized child healthcare"
-  },
-  {
-    title: "Oncology & Cancer Care",
-    icon: Ribbon,
-    description: "Advanced cancer treatment"
-  },
-  {
-    title: "Dermatology & Cosmetology",
-    icon: Sparkles,
-    description: "Skin and cosmetic services"
-  },
-  {
-    title: "Emergency & Trauma",
+    title: "De-Addiction Services",
     icon: PlusCircle,
-    description: "24/7 emergency services"
+    description: "Detoxification, rehabilitation and long-term relapse prevention"
+  },
+  {
+    title: "Child & Adolescent Psychiatry",
+    icon: Baby,
+    description: "Specialized mental healthcare for children and teenagers"
+  },
+  {
+    title: "Sexual Medicine",
+    icon: Sparkles,
+    description: "Clinical care for sexual health and relationship concerns"
+  },
+  {
+    title: "Psychological Therapy",
+    icon: MessageCircle,
+    description: "Evidence-based counselling and psychotherapy interventions"
+  },
+  {
+    title: "Psychological Testing & Assessment",
+    icon: CheckIcon,
+    description: "Comprehensive psychological and cognitive assessments"
+  },
+  {
+    title: "Pathology & Lab Services",
+    icon: SearchIcon,
+    description: "Advanced diagnostic pathology and laboratory investigations"
   }
 ];
 

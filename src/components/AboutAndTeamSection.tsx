@@ -3,29 +3,26 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { DOCTORS } from "@/data/doctors";
 
-const teamMembers = [
-  {
-    name: "Dr. Ananya Mehta",
-    role: "Senior Neurologist",
-    focus: "Brain & Spine Care"
-  },
-  {
-    name: "Dr. Rohan Kapoor",
-    role: "Neurosurgeon",
-    focus: "Minimal Invasive Surgery"
-  },
-  {
-    name: "Dr. Kavya Iyer",
-    role: "Pediatric Neurologist",
-    focus: "Child Neuro Care"
-  },
-  {
-    name: "Dr. Arjun Sethi",
-    role: "Consultant Psychiatrist",
-    focus: "Mental Wellness"
-  }
-];
+interface TeamMember {
+  name: string;
+  role: string;
+  title?: string;
+  specialty?: string;
+  location?: string;
+  image?: string;
+}
+
+const teamMembers: TeamMember[] = DOCTORS.map((doctor) => ({
+  name: doctor.name,
+  role: doctor.role,
+  title: doctor.title,
+  specialty: doctor.specialties.join(" • "),
+  image: doctor.image
+}));
 
 export default function AboutAndTeamSection() {
   const sliderRef = useRef<HTMLDivElement | null>(null);
@@ -51,14 +48,31 @@ export default function AboutAndTeamSection() {
               About Us
             </span>
             <h2 className="text-2xl md:text-3xl font-bold leading-snug text-[#1A1A1A]">
-              Advanced brain and spine care with a human touch
+              About Prerana Hospital
             </h2>
-            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl">
-              Prerna Hospital brings together experienced neurologists, neurosurgeons and
-              mental health specialists under one roof. With evidence-based protocols,
-              modern technology and a deeply compassionate team, we focus on complete
-              recovery and long-term wellness.
+            <p className="text-sm md:text-base font-semibold text-[#1F4FD8] leading-relaxed max-w-2xl">
+              Inspiring Minds, Restoring Hope
             </p>
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl">
+              At Prerana Hospital, we believe that mental wellness is the foundation of a
+              fulfilling life. Our facility is dedicated to providing compassionate,
+              evidence-based psychiatric care tailored to the unique needs of every
+              individual. From advanced neuropsychiatry to specialized child guidance and
+              de-addiction services, our multidisciplinary team works tirelessly to bridge
+              the gap between clinical excellence and empathetic support.
+            </p>
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl">
+              We don’t just treat symptoms; we empower our patients to rediscover their
+              potential and lead resilient lives. At Prerana, our mission is simple: to
+              provide a safe haven for healing and to live up to our name by inspiring
+              minds toward a brighter, healthier future.
+            </p>
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl">
+              We are here to listen and help, 24 hours a day, 7 days a week. Whether you
+              are seeking a routine consultation or urgent support, our doors are always
+              open.
+            </p>
+           
           </motion.div>
 
           <motion.div
@@ -66,38 +80,72 @@ export default function AboutAndTeamSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="rounded-2xl bg-white p-6 shadow-refined border border-gray-100 flex flex-col gap-4"
+            className="rounded-2xl bg-white shadow-refined border border-gray-100 overflow-hidden"
           >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#1F4FD8]">
-                  Inspiring Minds
-                </p>
-                <p className="text-sm text-gray-500">
-                  Neurology, neurosurgery and mental wellness
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4 text-center text-sm">
-              <div className="rounded-xl bg-[#F4F7FB] px-4 py-3">
-                <p className="text-xs text-gray-500">Years of Experience</p>
-                <p className="text-xl font-bold text-[#1F4FD8]">20+</p>
-              </div>
-              <div className="rounded-xl bg-[#F4F7FB] px-4 py-3">
-                <p className="text-xs text-gray-500">Specialist Doctors</p>
-                <p className="text-xl font-bold text-[#1F4FD8]">30+</p>
-              </div>
-              <div className="rounded-xl bg-[#F4F7FB] px-4 py-3">
-                <p className="text-xs text-gray-500">Patients Treated</p>
-                <p className="text-xl font-bold text-[#1F4FD8]">50K+</p>
-              </div>
-              <div className="rounded-xl bg-[#F4F7FB] px-4 py-3">
-                <p className="text-xs text-gray-500">Emergency Support</p>
-                <p className="text-xl font-bold text-[#1F4FD8]">24/7</p>
-              </div>
+            <div className="relative w-full h-[260px] sm:h-[280px] md:h-[300px]">
+              <Image
+                src="/IMG_2058.png"
+                alt="Prerana Hospital inspiring minds statistics card"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-6 rounded-3xl bg-white shadow-refined border border-gray-100 px-6 py-6 md:px-8 md:py-7 space-y-4"
+        >
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div>
+              <span className="inline-flex rounded-full bg-[#E6F2FF] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1F4FD8]">
+                Our Facilities
+              </span>
+              <h3 className="mt-2 text-lg md:text-xl font-bold text-[#1A1A1A]">
+                Comfortable, safe and comprehensive care environment
+              </h3>
+              <p className="mt-1 text-xs md:text-sm text-gray-600 max-w-2xl">
+                From 24x7 emergency admission to specialised therapy and diagnostic services,
+                Prerna Hospital is designed to support patients and families through every
+                step of their mental health journey.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-3 text-xs md:text-sm text-[#25324B] md:grid-cols-2">
+            <div className="flex items-start gap-2">
+              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
+              <p>24x7 emergency admission facility and round-the-clock psychiatric support.</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
+              <p>9:00 AM to 9:00 PM OPD by consultant psychiatrists.</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
+              <p>Spacious in‑patient admission facility with deluxe AC rooms, TV and Wi‑Fi.</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
+              <p>Trained, dedicated nursing and support staff for continuous supervision.</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
+              <p>Pleasant green campus with ample open space within the heart of the city.</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#1F4FD8]" />
+              <p>
+                EEG, ultra‑brief pulse ECT, ECG and advanced pathology and laboratory services.
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
         <div className="space-y-6" id="team">
           <div className="flex items-center justify-between gap-4">
@@ -134,32 +182,48 @@ export default function AboutAndTeamSection() {
               ref={sliderRef}
               className="flex gap-6 overflow-x-auto pb-4"
             >
-              {teamMembers.map((member) => (
-                <motion.div
-                  key={member.name}
-                  className="min-w-[260px] sm:min-w-[320px] flex-shrink-0 rounded-3xl bg-white px-6 py-6 shadow-refined border border-gray-100"
-                  whileHover={{
-                    y: -4,
-                    boxShadow: "0 14px 35px rgba(31,79,216,0.12)"
-                  }}
+              {DOCTORS.map((doctor) => (
+                <Link
+                  key={doctor.slug}
+                  href={`/doctors/${doctor.slug}`}
+                  className="outline-none"
                 >
-                  <div className="flex items-center gap-5">
-                    <div className="flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#1F4FD8] to-[#1ECAD3] text-white text-xl font-semibold shadow-md">
-                      {member.name.charAt(0)}
+                  <motion.div
+                    className="flex w-[260px] sm:w-[280px] flex-shrink-0 flex-col rounded-3xl bg-white shadow-refined border border-gray-100 overflow-hidden h-[440px]"
+                    whileHover={{
+                      y: -6,
+                      boxShadow: "0 16px 40px rgba(31,79,216,0.14)"
+                    }}
+                  >
+                    <div className="relative w-full h-[260px] sm:h-[280px] md:h-[300px] bg-white">
+                      {doctor.image ? (
+                        <Image
+                          src={doctor.image}
+                          alt={doctor.name}
+                          fill
+                          className="object-cover object-top"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-4xl font-semibold text-[#1F4FD8]">
+                          {doctor.name.charAt(0)}
+                        </div>
+                      )}
                     </div>
-                    <div className="flex flex-col">
-                      <span className="text-sm md:text-base font-semibold text-[#1A1A1A]">
-                        {member.name}
-                      </span>
-                      <span className="text-xs md:text-sm font-medium text-[#1F4FD8]">
-                        {member.role}
-                      </span>
+                    <div className="px-6 py-5 text-center">
+                      <p className="text-sm md:text-base font-semibold text-[#00A8B5]">
+                        {doctor.name}
+                      </p>
+                      <p className="mt-1 text-sm text-[#25324B]">
+                        {doctor.role}
+                      </p>
+                      {doctor.specialties.length > 0 && (
+                        <p className="mt-1 text-[11px] font-semibold tracking-[0.14em] text-[#1F4FD8] uppercase">
+                          {doctor.specialties.join(" • ")}
+                        </p>
+                      )}
                     </div>
-                  </div>
-                  <p className="mt-4 text-xs md:text-sm text-gray-600">
-                    {member.focus}
-                  </p>
-                </motion.div>
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>
