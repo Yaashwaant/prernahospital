@@ -21,16 +21,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/updates/route.js"
     ],
-    "/updates/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/updates/[id]/page.js"
-    ],
-    "/api/updates/[id]/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/updates/[id]/route.js"
-    ],
     "/doctors/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

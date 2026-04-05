@@ -38,10 +38,13 @@ export default function DoctorChatbot() {
       {/* Floating trigger */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1F4FD8] to-[#1ECAD3] text-white shadow-lg hover:scale-110 transition-transform"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1F4FD8] to-[#1ECAD3] text-white shadow-lg hover:scale-110 transition-transform"
+        style={{
+          boxShadow: "0 8px 30px rgba(30, 202, 211, 0.4)"
+        }}
         aria-label="Open symptom chatbot"
       >
-        <MessageCircle className="h-6 w-6" />
+        <BotIcon className="h-9 w-9 drop-shadow-md" />
       </button>
 
       {open && (
@@ -110,3 +113,38 @@ export default function DoctorChatbot() {
     </>
   );
 }
+
+const BotIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="-5 -5 110 120" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <defs>
+      <mask id="bot-mask">
+        {/* Antennas */}
+        <path d="M 35 25 L 35 12" stroke="white" strokeWidth="5" strokeLinecap="round" />
+        <circle cx="35" cy="7" r="6" stroke="white" strokeWidth="5" fill="none" />
+        <path d="M 65 25 L 65 12" stroke="white" strokeWidth="5" strokeLinecap="round" />
+        <circle cx="65" cy="7" r="6" stroke="white" strokeWidth="5" fill="none" />
+        
+        {/* Body */}
+        <path d="M 20 25 
+                 H 80 
+                 C 90 25 95 30 95 40 
+                 V 75 
+                 C 95 85 90 90 80 90 
+                 H 55 
+                 L 40 105 
+                 V 90 
+                 H 20 
+                 C 10 90 5 85 5 75 
+                 V 40 
+                 C 5 30 10 25 20 25 Z" fill="white" />
+        
+        {/* Black cutouts (Eyes and Smile) */}
+        <path d="M 30 55 Q 37.5 40 45 55" stroke="black" strokeWidth="7" strokeLinecap="round" fill="none" />
+        <path d="M 55 55 Q 62.5 40 70 55" stroke="black" strokeWidth="7" strokeLinecap="round" fill="none" />
+        <path d="M 35 70 Q 50 82 65 70" stroke="black" strokeWidth="6" strokeLinecap="round" fill="none" />
+      </mask>
+    </defs>
+    
+    <rect x="-10" y="-10" width="120" height="130" fill="currentColor" mask="url(#bot-mask)" />
+  </svg>
+);
