@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 interface Update {
@@ -20,17 +19,11 @@ export default function AdminDashboard() {
     title: "",
     description: "",
     image: "",
-    date: new Date().toISOString().split("T")[0]
+    date: new Date().toISOString().split("T")[0],
   });
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem("isAdminAuthenticated");
-    if (!isAuthenticated) {
-      router.push("/admin/login");
-      return;
-    }
     const load = async () => {
       try {
         const res = await fetch("/api/updates", { cache: "no-store" });
@@ -45,7 +38,7 @@ export default function AdminDashboard() {
       }
     };
     load();
-  }, [router]);
+  }, []);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -57,17 +50,16 @@ export default function AdminDashboard() {
       const json = await res.json();
       if (res.ok && json.url) {
         setImagePreview(json.url);
-        setFormData({ ...formData, image: json.url });
+        setFormData((prev) => ({ ...prev, image: json.url }));
         return;
       }
       throw new Error("Upload failed");
     } catch {
-      // Fallback to data URL for local dev without Supabase
       const reader = new FileReader();
       reader.onload = (evt) => {
         const result = evt.target?.result as string;
         setImagePreview(result);
-        setFormData({ ...formData, image: result });
+        setFormData((prev) => ({ ...prev, image: result }));
       };
       reader.readAsDataURL(file);
     }
@@ -79,18 +71,17 @@ export default function AdminDashboard() {
       alert("Please fill in all fields and upload an image");
       return;
     }
-
     const payload = {
       title: formData.title,
       description: formData.description,
       image: formData.image,
-      date: formData.date
+      date: formData.date,
     };
     try {
       const res = await fetch("/api/updates", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error("Failed");
       const { id } = await res.json();
@@ -99,16 +90,11 @@ export default function AdminDashboard() {
       setUpdates(updated);
       localStorage.setItem("prernaUpdates", JSON.stringify(updated));
     } catch {
-      const newUpdate: Update = {
-        id: Date.now().toString(),
-        ...payload
-      };
+      const newUpdate: Update = { id: Date.now().toString(), ...payload };
       const updated = [newUpdate, ...updates].slice(0, 10);
       setUpdates(updated);
       localStorage.setItem("prernaUpdates", JSON.stringify(updated));
     }
-
-    // Reset form
     setFormData({ title: "", description: "", image: "", date: new Date().toISOString().split("T")[0] });
     setImagePreview(null);
     setShowForm(false);
@@ -125,147 +111,113 @@ export default function AdminDashboard() {
     localStorage.setItem("prernaUpdates", JSON.stringify(updated));
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("isAdminAuthenticated");
-    router.push("/admin/login");
-  };
-
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#F4F7FB] to-[#E8F2F7] flex items-center justify-center">
-        <div className="text-[#1F4FD8] text-lg">Loading...</div>
+      <div className="flex h-64 items-center justify-center">
+        <div className="text-[#1F4FD8]">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F4F7FB] to-[#E8F2F7]">
-      <div className="container mx-auto px-4 md:px-8 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-[#1F4FD8]">Admin Dashboard</h1>
+    <div>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-[#1A1A1A]">Updates Management</h1>
+        <p className="mt-1 text-sm text-gray-500">Add and manage hospital news & announcements shown on the homepage.</p>
+      </div>
+
+      <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-[#1A1A1A]">All Updates</h2>
           <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors"
+            onClick={() => setShowForm(!showForm)}
+            className="rounded-xl bg-gradient-to-r from-[#1F4FD8] to-[#1ECAD3] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:shadow-md"
           >
-            Logout
+            {showForm ? "Cancel" : "+ Add New Update"}
           </button>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-refined border border-gray-100 p-6 mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-[#1A1A1A]">Updates Management</h2>
-            <button
-              onClick={() => setShowForm(!showForm)}
-              className="bg-gradient-to-r from-[#1F4FD8] to-[#1ECAD3] text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all"
-            >
-              {showForm ? "Cancel" : "Add New Update"}
-            </button>
-          </div>
-
-          {showForm && (
-            <form onSubmit={handleSubmit} className="mb-8 p-6 bg-[#F4F7FB] rounded-2xl">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="title" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Title *
-                  </label>
-                  <input
-                    type="text"
-                    id="title"
-                    value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1F4FD8] focus:border-transparent transition-all"
-                    placeholder="Enter update title"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="date" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Date *
-                  </label>
-                  <input
-                    type="date"
-                    id="date"
-                    value={formData.date}
-                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1F4FD8] focus:border-transparent transition-all"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="image" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Image *
-                  </label>
-                  <input
-                    type="file"
-                    id="image"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1F4FD8] focus:border-transparent transition-all"
-                    required
-                  />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Description *
-                  </label>
-                  <textarea
-                    id="description"
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    rows={4}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1F4FD8] focus:border-transparent transition-all"
-                    placeholder="Enter update description"
-                    required
-                  />
-                </div>
+        {showForm && (
+          <form onSubmit={handleSubmit} className="mb-8 rounded-2xl bg-[#F4F7FB] p-6">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div>
+                <label htmlFor="upd-title" className="mb-1.5 block text-sm font-semibold text-gray-700">Title *</label>
+                <input
+                  type="text"
+                  id="upd-title"
+                  value={formData.title}
+                  onChange={(e) => setFormData((p) => ({ ...p, title: e.target.value }))}
+                  className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:border-transparent focus:ring-2 focus:ring-[#1F4FD8]"
+                  placeholder="Enter update title"
+                  required
+                />
               </div>
-
-              {imagePreview && (
-                <div className="mt-4">
-                  <p className="text-sm font-semibold text-gray-700 mb-2">Image Preview:</p>
-                  <div className="relative w-32 h-32 rounded-xl overflow-hidden border border-gray-200">
-                    <Image
-                      src={imagePreview}
-                      alt="Preview"
-                      fill
-                      className="object-cover"
-                    />
+              <div>
+                <label htmlFor="upd-date" className="mb-1.5 block text-sm font-semibold text-gray-700">Date *</label>
+                <input
+                  type="date"
+                  id="upd-date"
+                  value={formData.date}
+                  onChange={(e) => setFormData((p) => ({ ...p, date: e.target.value }))}
+                  className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:border-transparent focus:ring-2 focus:ring-[#1F4FD8]"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="upd-image" className="mb-1.5 block text-sm font-semibold text-gray-700">Image *</label>
+                <input
+                  type="file"
+                  id="upd-image"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:border-transparent focus:ring-2 focus:ring-[#1F4FD8]"
+                  required
+                />
+                {imagePreview && (
+                  <div className="relative mt-3 h-24 w-36 overflow-hidden rounded-xl border border-gray-200">
+                    <Image src={imagePreview} alt="Preview" fill className="object-cover" />
                   </div>
-                </div>
-              )}
+                )}
+              </div>
+              <div>
+                <label htmlFor="upd-desc" className="mb-1.5 block text-sm font-semibold text-gray-700">Description *</label>
+                <textarea
+                  id="upd-desc"
+                  value={formData.description}
+                  onChange={(e) => setFormData((p) => ({ ...p, description: e.target.value }))}
+                  rows={3}
+                  className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:border-transparent focus:ring-2 focus:ring-[#1F4FD8]"
+                  placeholder="Enter update description"
+                  required
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="mt-5 rounded-xl bg-gradient-to-r from-[#1F4FD8] to-[#1ECAD3] px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:shadow-md"
+            >
+              Add Update
+            </button>
+          </form>
+        )}
 
-              <button
-                type="submit"
-                className="mt-6 bg-gradient-to-r from-[#1F4FD8] to-[#1ECAD3] text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all"
-              >
-                Add Update
-              </button>
-            </form>
-          )}
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {updates.length === 0 ? (
+          <div className="py-12 text-center text-gray-400">No updates yet. Add your first update!</div>
+        ) : (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {updates.map((update) => (
-              <div key={update.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="relative h-48 w-full">
-                  <Image
-                    src={update.image}
-                    alt={update.title}
-                    fill
-                    className="object-cover"
-                  />
+              <div key={update.id} className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+                <div className="relative h-44 w-full bg-gray-100">
+                  <Image src={update.image} alt={update.title} fill className="object-cover" />
                 </div>
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">{update.title}</h3>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-3">{update.description}</p>
+                  <h3 className="mb-1 text-sm font-semibold text-[#1A1A1A] line-clamp-2">{update.title}</h3>
+                  <p className="mb-3 text-xs text-gray-500 line-clamp-2">{update.description}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">{update.date}</span>
+                    <span className="text-xs text-gray-400">{update.date}</span>
                     <button
                       onClick={() => handleDelete(update.id)}
-                      className="text-red-500 hover:text-red-700 text-sm font-medium transition-colors"
+                      className="text-xs font-medium text-red-500 transition-colors hover:text-red-700"
                     >
                       Delete
                     </button>
@@ -274,13 +226,7 @@ export default function AdminDashboard() {
               </div>
             ))}
           </div>
-
-          {updates.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No updates yet. Add your first update!</p>
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

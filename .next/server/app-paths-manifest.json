@@ -1,4 +1,8 @@
 {
+  "/api/updates/route": "app/api/updates/route.js",
   "/page": "app/page.js",
-  "/doctors/[slug]/page": "app/doctors/[slug]/page.js"
+  "/admin/hero-slider/page": "app/admin/hero-slider/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/facilities-slider/page": "app/admin/facilities-slider/page.js"
 }

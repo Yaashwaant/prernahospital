@@ -1,11 +1,128 @@
 "use client";
 
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { DOCTORS } from "@/data/doctors";
+
+interface FacilitySlide {
+  id?: string;
+  src: string;
+  label: string;
+}
+
+const DEFAULT_FACILITY_SLIDES: FacilitySlide[] = [
+  { src: "/IMG_2114.jpeg", label: "In-Patient Ward" },
+  { src: "/IMG_2132.jpeg", label: "Doctor Consultation Room" },
+  { src: "/IMG_2059.jpeg", label: "OPD Consultation" },
+  { src: "/IMG_2099.jpeg", label: "Hospital Campus" },
+  { src: "/IMG_2284.jpeg", label: "Artwork & Therapy Corridor" },
+  { src: "/IMG_2053.jpeg", label: "Deluxe Room" },
+  { src: "/IMG_2048.png", label: "Prerna Hospital Exterior" },
+];
+
+function FacilitiesSlider() {
+  const [slides, setSlides] = useState<FacilitySlide[]>(DEFAULT_FACILITY_SLIDES);
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // Load from localStorage (managed via admin portal)
+  useEffect(() => {
+    const saved = localStorage.getItem("prernaFacilitySlides");
+    if (saved) {
+      try {
+        const parsed: FacilitySlide[] = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) setSlides(parsed);
+      } catch { /* keep defaults */ }
+    }
+  }, []);
+
+  const total = slides.length;
+  const prev = useCallback(() => setCurrent((c) => (c - 1 + total) % total), [total]);
+  const next = useCallback(() => setCurrent((c) => (c + 1) % total), [total]);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(next, 3500);
+    return () => clearInterval(t);
+  }, [paused, next]);
+
+  return (
+    <div
+      className="mt-6 w-full"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#1F4FD8]">
+          Facility Gallery
+        </p>
+        <div className="flex gap-1.5">
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Previous facility image"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 bg-white text-[#1F4FD8] shadow-sm hover:bg-[#F4F7FB] transition-colors"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Next facility image"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 bg-white text-[#1F4FD8] shadow-sm hover:bg-[#F4F7FB] transition-colors"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      <div className="relative w-full overflow-hidden rounded-2xl bg-gray-100 shadow-inner aspect-video">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={slides[current]?.src ?? DEFAULT_FACILITY_SLIDES[0].src}
+              alt={slides[current]?.label ?? "Hospital facility"}
+              fill
+              className="object-cover"
+            />
+            {/* Label overlay */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/55 to-transparent px-4 py-3">
+              <p className="text-sm font-semibold text-white">
+                {slides[current]?.label}
+              </p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="mt-3 flex items-center justify-center gap-1.5">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === current
+                ? "w-5 bg-[#1F4FD8]"
+                : "w-1.5 bg-gray-300 hover:bg-gray-400"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 interface TeamMember {
   name: string;
@@ -36,64 +153,6 @@ export default function AboutAndTeamSection() {
   return (
     <section className="bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16" id="about">
       <div className="container mx-auto px-4 md:px-8 space-y-16">
-        <div className="grid items-center gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-4"
-          >
-            <span className="inline-flex rounded-full bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#1F4FD8] shadow-sm">
-              About Us
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold leading-snug text-[#1A1A1A]">
-              About Prerana Hospital
-            </h2>
-            <p className="text-sm md:text-base font-semibold text-[#1F4FD8] leading-relaxed max-w-2xl">
-              Inspiring Minds, Restoring Hope
-            </p>
-            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl">
-              At Prerana Hospital, we believe that mental wellness is the foundation of a
-              fulfilling life. Our facility is dedicated to providing compassionate,
-              evidence-based psychiatric care tailored to the unique needs of every
-              individual. From advanced neuropsychiatry to specialized child guidance and
-              de-addiction services, our multidisciplinary team works tirelessly to bridge
-              the gap between clinical excellence and empathetic support.
-            </p>
-            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl">
-              We don’t just treat symptoms; we empower our patients to rediscover their
-              potential and lead resilient lives. At Prerana, our mission is simple: to
-              provide a safe haven for healing and to live up to our name by inspiring
-              minds toward a brighter, healthier future.
-            </p>
-            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl">
-              We are here to listen and help, 24 hours a day, 7 days a week. Whether you
-              are seeking a routine consultation or urgent support, our doors are always
-              open.
-            </p>
-           
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="rounded-2xl bg-white shadow-refined border border-gray-100 overflow-hidden"
-          >
-            <div className="relative w-full h-[320px] sm:h-[360px] md:h-[400px]">
-              <Image
-                src="/IMG_2048.png"
-                alt="Prerna Hospital building"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </motion.div>
-        </div>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -232,6 +291,7 @@ export default function AboutAndTeamSection() {
               </div>
             </div>
           </div>
+          <FacilitiesSlider />
         </motion.div>
 
         <div className="space-y-6" id="team">

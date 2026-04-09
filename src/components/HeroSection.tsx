@@ -5,171 +5,141 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Hospital } from "lucide-react";
 
-const IMAGES = [
-  
-  {
-    src: "/IMG_2048.png",
-    alt: "Prerna Hospital building"
-  },
-  
-  {
-    src: "/IMG_2059.jpeg",
-    alt: "Doctor consultation room"
-  },
-  {
-    src: "/IMG_2114.jpeg",
-    alt: "In-patient ward with beds"
-  },
-  {
-    src: "/IMG_2132.jpeg",
-    alt: "Doctor counselling patient"
-  },
-  {
-    src: "/IMG_2284.jpeg",
-    alt: "Hospital corridor and artwork wall"
-  }
+interface HeroSlide {
+  id: string;
+  src: string;
+  alt: string;
+}
+
+const DEFAULT_SLIDES: HeroSlide[] = [
+  { id: "d1", src: "/IMG_2059.jpeg", alt: "Doctor Consultation Room" },
+  { id: "d2", src: "/IMG_2048.png", alt: "Prerna Hospital Building" },
+  { id: "d3", src: "/IMG_2114.jpeg", alt: "In-Patient Ward" },
+  { id: "d4", src: "/IMG_2132.jpeg", alt: "Doctor Counselling Patient" },
+  { id: "d5", src: "/IMG_2284.jpeg", alt: "Hospital Corridor and Artwork Wall" },
 ];
 
 export default function HeroSection() {
+  const [slides, setSlides] = useState<HeroSlide[]>(DEFAULT_SLIDES);
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Load slides from localStorage (set by admin)
+  useEffect(() => {
+    const saved = localStorage.getItem("prernaHeroSlides");
+    if (saved) {
+      try {
+        const parsed: HeroSlide[] = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setSlides(parsed);
+        }
+      } catch {
+        // keep defaults
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
       if (!isHovered) {
-        setIndex((prev) => (prev + 1) % IMAGES.length);
+        setIndex((prev) => (prev + 1) % slides.length);
       }
     }, 4000);
     return () => clearInterval(timer);
-  }, [isHovered]);
+  }, [isHovered, slides.length]);
 
   return (
     <section className="relative w-full overflow-hidden px-4 pt-4 pb-4 md:px-8">
       <div className="container mx-auto">
-        <div 
-          className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#1F4FD8]/90 via-[#1ECAD3]/90 to-[#1F4FD8]/90 px-5 pt-8 pb-6 shadow-refined transition-all duration-700 before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] sm:rounded-[34px] sm:px-6 sm:pt-12 sm:pb-8 md:rounded-[40px] md:px-16 md:pt-24 md:pb-16 md:shadow-deep"
+        <div
+          className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#1F4FD8] via-[#1ECAD3] to-[#1F4FD8] px-6 pt-8 pb-8 shadow-2xl sm:rounded-[34px] sm:px-10 sm:pt-10 md:rounded-[40px] md:px-14 md:pt-12 md:pb-12"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-            {/* Left Content Column */}
+          {/* Subtle radial glow overlay */}
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(255,255,255,0.12)_0%,transparent_65%)]" />
+
+          <div className="relative flex flex-col gap-6 w-full">
+            {/* Text Block — left-aligned */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col items-start text-white">
-
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: -18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease: "easeOut" }}
+              className="flex flex-col items-start text-left text-white max-w-3xl"
+            >
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                className="mb-1 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-               Prerna Hospital
-              </motion.h1>
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-6 text-lg font-semibold leading-relaxed text-white/90 sm:text-xl md:text-2xl lg:text-3xl">
-               Transforming Mental Illness to <br/>Mental Wellness
-              </motion.h2>
-
-              <div className="mb-5 h-px w-16 rounded-full bg-white/55" />
-
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex max-w-md items-start gap-2 text-base leading-relaxed text-white/80 sm:text-lg md:text-xl"
+                transition={{ duration: 0.75, delay: 0.1 }}
+                className="mb-4 text-xl font-bold leading-tight tracking-tight text-white sm:text-xl md:text-2xl lg:text-2xl"
               >
-                <Hospital className="mt-1 h-5 w-5 shrink-0 text-[#FFB703]" />
-                <span>
-                  Compassionate, evidence‑based care across neuropsychiatry, child & adolescent guidance, and de‑addiction—personalized treatment in a safe, supportive setting. Open 24×7.
-                </span>
-              </motion.p>
+                Transforming Mental Illness to Mental Wellness
+              </motion.h1>
+
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.75, delay: 0.25 }}
+                className="flex flex-row items-start gap-2.5 text-sm leading-relaxed text-white/90 sm:text-base md:text-lg"
+              >
+                <Hospital className="mt-0.5 h-5 w-5 shrink-0 text-[#FFD166]" />
+                <p>
+                  Compassionate, evidence-based care across neuropsychiatry,
+                  child &amp; adolescent guidance, and de-addiction—personalized
+                  treatment in a safe, supportive setting. Open 24×7.
+                </p>
+              </motion.div>
             </motion.div>
 
-            <div className="relative flex min-h-[320px] items-center justify-center sm:min-h-[360px] lg:justify-end sm:mt-6 lg:mt-10 lg:-ml-8">
-              <div className="relative h-[340px] w-full max-w-[480px] sm:h-[370px] sm:max-w-[520px] md:h-[400px] md:max-w-[560px]">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="hidden sm:block absolute top-[30%] -left-3 z-10 h-[120px] w-[168px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[132px] sm:w-[184px] md:h-[144px] md:w-[200px]"
-                >
+            {/* Single Large Image Card — centered */}
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
+              className="relative mx-auto w-full max-w-[520px] sm:max-w-[560px] md:max-w-[600px]"
+            >
+              <div className="relative overflow-hidden rounded-[20px] border-[6px] border-white/90 bg-white/10 shadow-[0_24px_64px_rgba(0,0,0,0.35)] sm:rounded-[24px] md:rounded-[28px]">
+                <div className="relative h-[220px] w-full sm:h-[260px] md:h-[300px]">
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={(index + 0) % IMAGES.length}
+                      key={index}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.6 }}
-                      className="relative h-full w-full"
+                      transition={{ duration: 0.65 }}
+                      className="absolute inset-0"
                     >
                       <Image
-                        src={IMAGES[(index + 0) % IMAGES.length].src}
-                        alt={IMAGES[(index + 0) % IMAGES.length].alt}
+                        src={slides[index]?.src ?? DEFAULT_SLIDES[0].src}
+                        alt={slides[index]?.alt ?? "Hospital photo"}
                         fill
                         className="object-cover"
+                        priority
                       />
                     </motion.div>
                   </AnimatePresence>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: -15, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                  className="absolute left-1/2 top-0 z-20 h-[240px] w-[320px] -translate-x-1/2 overflow-hidden rounded-[22px] border-[8px] border-white bg-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] sm:h-[260px] sm:w-[350px] md:h-[280px] md:w-[370px]"
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={(index + 1) % IMAGES.length}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.7 }}
-                      className="relative h-full w-full"
-                    >
-                      <Image
-                        src={IMAGES[(index + 1) % IMAGES.length].src}
-                        alt={IMAGES[(index + 1) % IMAGES.length].alt}
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="hidden sm:block absolute top-[34%] -right-3 z-10 h-[120px] w-[168px] overflow-hidden rounded-[18px] border-[4px] border-white/40 bg-white/10 shadow-refined sm:h-[132px] sm:w-[184px] md:h-[144px] md:w-[200px]"
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={(index + 2) % IMAGES.length}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.6 }}
-                      className="relative h-full w-full"
-                    >
-                      <Image
-                        src={IMAGES[(index + 2) % IMAGES.length].src}
-                        alt={IMAGES[(index + 2) % IMAGES.length].alt}
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </motion.div>
+                </div>
               </div>
-            </div>
+
+              {/* Dot indicators */}
+              <div className="mt-3 flex items-center justify-center gap-1.5">
+                {slides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setIndex(i)}
+                    aria-label={`Go to image ${i + 1}`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === index
+                        ? "w-5 bg-white"
+                        : "w-1.5 bg-white/45 hover:bg-white/70"
+                    }`}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 }

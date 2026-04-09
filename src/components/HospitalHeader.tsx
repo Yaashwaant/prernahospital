@@ -12,7 +12,6 @@ import { motion } from "framer-motion";
  */
 const NAV_ITEMS = [
   { id: "home", label: "Home", href: "/" },
-  { id: "about", label: "About Us", href: "#about" },
   { id: "our-team", label: "Our Team", href: "#team" },
   { id: "contact", label: "Contact Us", href: "#contact" }
 ] as const;
