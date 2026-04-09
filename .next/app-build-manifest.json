@@ -55,6 +55,21 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/facilities-slider/page.js"
+    ],
+    "/api/hero-slides/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/hero-slides/route.js"
+    ],
+    "/api/facility-slides/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/facility-slides/route.js"
+    ],
+    "/api/updates/upload/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/updates/upload/route.js"
     ]
   }
 }

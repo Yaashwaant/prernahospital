@@ -24,19 +24,17 @@ export default function HeroSection() {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Load slides from localStorage (set by admin)
+  // Fetch slides from Supabase (via API). Fall back to defaults if empty/error.
   useEffect(() => {
-    const saved = localStorage.getItem("prernaHeroSlides");
-    if (saved) {
-      try {
-        const parsed: HeroSlide[] = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setSlides(parsed);
-        }
-      } catch {
-        // keep defaults
-      }
-    }
+    fetch("/api/hero-slides", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((json) => {
+        const data: HeroSlide[] = Array.isArray(json.slides) ? json.slides : [];
+        if (data.length > 0) setSlides(data);
+      })
+      .catch(() => {
+        // silently fall back to defaults
+      });
   }, []);
 
   useEffect(() => {
@@ -115,6 +113,7 @@ export default function HeroSection() {
                         fill
                         className="object-cover"
                         priority
+                        unoptimized
                       />
                     </motion.div>
                   </AnimatePresence>

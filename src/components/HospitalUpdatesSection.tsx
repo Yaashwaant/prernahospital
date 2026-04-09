@@ -25,32 +25,18 @@ export default function HospitalUpdatesSection() {
   const DISPLAY_LIMIT = 8;
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await fetch("/api/updates", { cache: "no-store" });
-        const json = await res.json();
-        const data = Array.isArray(json.updates) ? json.updates : [];
-        let list: Update[] = data.slice(0, DISPLAY_LIMIT);
-        const looksLikeDemo =
-          list.length === 0 ||
-          list.every((u) => typeof u?.id === "string" && u.id.startsWith("demo-"));
-        if (looksLikeDemo) {
-          const saved = localStorage.getItem("prernaUpdates");
-          if (saved) {
-            const all = JSON.parse(saved);
-            list = Array.isArray(all) ? all.slice(0, DISPLAY_LIMIT) : list;
-          }
-        }
-        setUpdates(list);
-      } catch {
-        const saved = localStorage.getItem("prernaUpdates");
-        if (saved) {
-          const all = JSON.parse(saved);
-          setUpdates(all.slice(0, DISPLAY_LIMIT));
-        }
-      }
-    };
-    load();
+    fetch("/api/updates", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((json) => {
+        const data: Update[] = Array.isArray(json.updates) ? json.updates : [];
+        // Filter out demo placeholders, take latest DISPLAY_LIMIT
+        const real = data.filter((u) => !u.id.startsWith("demo-")).slice(0, DISPLAY_LIMIT);
+        setUpdates(real);
+      })
+      .catch(() => {
+        // API error — show empty state
+        setUpdates([]);
+      });
   }, []);
 
   const hasUpdates = updates.length > 0;

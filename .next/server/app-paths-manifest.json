@@ -1,8 +1,12 @@
 {
+  "/api/hero-slides/route": "app/api/hero-slides/route.js",
   "/api/updates/route": "app/api/updates/route.js",
+  "/api/updates/upload/route": "app/api/updates/upload/route.js",
+  "/api/facility-slides/route": "app/api/facility-slides/route.js",
   "/page": "app/page.js",
-  "/admin/hero-slider/page": "app/admin/hero-slider/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/admin/login/page": "app/admin/login/page.js",
-  "/admin/facilities-slider/page": "app/admin/facilities-slider/page.js"
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/hero-slider/page": "app/admin/hero-slider/page.js",
+  "/admin/facilities-slider/page": "app/admin/facilities-slider/page.js",
+  "/admin/page": "app/admin/page.js"
 }

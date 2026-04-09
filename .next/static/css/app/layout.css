@@ -7,6 +7,7 @@
 @layer theme {
   :root, :host {
     --color-red-50: oklch(97.1% 0.013 17.38);
+    --color-red-100: oklch(93.6% 0.032 17.717);
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-700: oklch(50.5% 0.213 27.518);
@@ -514,6 +515,9 @@
   }
   .ml-1 {
     margin-left: calc(var(--spacing) * 1);
+  }
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
   }
   .ml-4 {
     margin-left: calc(var(--spacing) * 4);
@@ -1412,6 +1416,9 @@
   .border-\(--color-border\) {
     border-color: var(--color-border);
   }
+  .border-\[\#1F4FD8\] {
+    border-color: #1F4FD8;
+  }
   .border-\[\#1F4FD8\]\/40 {
     border-color: color-mix(in oklab, #1F4FD8 40%, transparent);
   }
@@ -1444,6 +1451,9 @@
   }
   .border-primary {
     border-color: var(--primary);
+  }
+  .border-red-100 {
+    border-color: var(--color-red-100);
   }
   .border-sidebar-border {
     border-color: var(--sidebar-border);
@@ -2181,6 +2191,9 @@
   }
   .text-red-500 {
     color: var(--color-red-500);
+  }
+  .text-red-600 {
+    color: var(--color-red-600);
   }
   .text-secondary-foreground {
     color: var(--secondary-foreground);

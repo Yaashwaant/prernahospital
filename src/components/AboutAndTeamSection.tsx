@@ -28,15 +28,15 @@ function FacilitiesSlider() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  // Load from localStorage (managed via admin portal)
+  // Fetch slides from Supabase via API; fall back to defaults if empty/error
   useEffect(() => {
-    const saved = localStorage.getItem("prernaFacilitySlides");
-    if (saved) {
-      try {
-        const parsed: FacilitySlide[] = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) setSlides(parsed);
-      } catch { /* keep defaults */ }
-    }
+    fetch("/api/facility-slides", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((json) => {
+        const data: FacilitySlide[] = Array.isArray(json.slides) ? json.slides : [];
+        if (data.length > 0) setSlides(data);
+      })
+      .catch(() => { /* keep defaults */ });
   }, []);
 
   const total = slides.length;
@@ -94,6 +94,7 @@ function FacilitiesSlider() {
               alt={slides[current]?.label ?? "Hospital facility"}
               fill
               className="object-cover"
+              unoptimized
             />
             {/* Label overlay */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/55 to-transparent px-4 py-3">
