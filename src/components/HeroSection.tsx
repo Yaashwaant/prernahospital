@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Hospital } from "lucide-react";
+
 
 interface HeroSlide {
   id: string;
@@ -47,7 +47,7 @@ export default function HeroSection() {
   }, [isHovered, slides.length]);
 
   return (
-    <section className="relative w-full overflow-hidden px-3 pt-3 pb-3 md:px-6" style={{ height: 'calc(100vh - 72px)' }}>
+    <section className="relative w-full overflow-hidden px-3 pt-3 pb-3 mb-6 md:mb-8 md:px-6" style={{ height: 'calc(100vh - 72px)' }}>
       <div className="container mx-auto h-full">
         <div
           className="relative flex h-full overflow-hidden rounded-[24px] bg-gradient-to-br from-[#1F4FD8] via-[#1ECAD3] to-[#1F4FD8] px-6 pt-6 pb-4 shadow-2xl sm:rounded-[30px] sm:px-10 sm:pt-8 md:rounded-[36px] md:px-14 md:pt-10"
@@ -69,20 +69,12 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.75, delay: 0.1 }}
-                className="mb-3 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl md:text-3xl lg:text-4xl"
+                className="mb-3 text-2xl font-semibold leading-[1.15] tracking-[-0.5px] text-white sm:text-3xl md:text-[2.25rem] lg:text-[2.75rem]"
               >
-                Transforming Mental Illness to Mental Wellness
+                Transforming Mental Illness to{" "}
+                <span className="italic text-[#FFD166] font-semibold">Mental Wellness.</span>
               </motion.h1>
 
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 0.25 }}
-                className="flex flex-row items-start justify-center gap-2.5 text-sm leading-relaxed text-white/90 sm:text-base md:text-lg max-w-2xl"
-              >
-                <Hospital className="mt-0.5 h-5 w-5 shrink-0 text-[#FFD166]" />
-
-              </motion.div>
             </motion.div>
 
             {/* Single Large Image Card — centered */}
