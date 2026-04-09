@@ -71,10 +71,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/updates/upload/route.js"
     ],
-    "/_not-found/page": [
+    "/api/facility-slides/[id]/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/api/facility-slides/[id]/route.js"
     ]
   }
 }

@@ -81,10 +81,7 @@ export default function HeroSection() {
                 className="flex flex-row items-start justify-center gap-2.5 text-sm leading-relaxed text-white/90 sm:text-base md:text-lg max-w-2xl"
               >
                 <Hospital className="mt-0.5 h-5 w-5 shrink-0 text-[#FFD166]" />
-                <p>
-                  Compassionate, evidence-based care across neuropsychiatry,
-                  child &amp; adolescent guidance, and de-addiction. Open 24×7.
-                </p>
+
               </motion.div>
             </motion.div>
 
@@ -127,8 +124,8 @@ export default function HeroSection() {
                     onClick={() => setIndex(i)}
                     aria-label={`Go to image ${i + 1}`}
                     className={`h-1.5 rounded-full transition-all duration-300 ${i === index
-                        ? "w-5 bg-white"
-                        : "w-1.5 bg-white/45 hover:bg-white/70"
+                      ? "w-5 bg-white"
+                      : "w-1.5 bg-white/45 hover:bg-white/70"
                       }`}
                   />
                 ))}
