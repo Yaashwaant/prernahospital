@@ -47,29 +47,29 @@ export default function HeroSection() {
   }, [isHovered, slides.length]);
 
   return (
-    <section className="relative w-full overflow-hidden px-4 pt-4 pb-4 md:px-8">
-      <div className="container mx-auto">
+    <section className="relative w-full overflow-hidden px-3 pt-3 pb-3 md:px-6" style={{ height: 'calc(100vh - 72px)' }}>
+      <div className="container mx-auto h-full">
         <div
-          className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#1F4FD8] via-[#1ECAD3] to-[#1F4FD8] px-6 pt-8 pb-8 shadow-2xl sm:rounded-[34px] sm:px-10 sm:pt-10 md:rounded-[40px] md:px-14 md:pt-12 md:pb-12"
+          className="relative flex h-full overflow-hidden rounded-[24px] bg-gradient-to-br from-[#1F4FD8] via-[#1ECAD3] to-[#1F4FD8] px-6 pt-6 pb-4 shadow-2xl sm:rounded-[30px] sm:px-10 sm:pt-8 md:rounded-[36px] md:px-14 md:pt-10"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Subtle radial glow overlay */}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(255,255,255,0.12)_0%,transparent_65%)]" />
 
-          <div className="relative flex flex-col gap-6 w-full">
-            {/* Text Block — left-aligned */}
+          <div className="relative flex flex-col gap-4 w-full h-full">
+            {/* Text Block — center-aligned */}
             <motion.div
               initial={{ opacity: 0, y: -18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: "easeOut" }}
-              className="flex flex-col items-start text-left text-white max-w-3xl"
+              className="flex flex-col items-center text-center text-white w-full"
             >
               <motion.h1
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.75, delay: 0.1 }}
-                className="mb-4 text-xl font-bold leading-tight tracking-tight text-white sm:text-xl md:text-2xl lg:text-2xl"
+                className="mb-3 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl md:text-3xl lg:text-4xl"
               >
                 Transforming Mental Illness to Mental Wellness
               </motion.h1>
@@ -78,13 +78,12 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.75, delay: 0.25 }}
-                className="flex flex-row items-start gap-2.5 text-sm leading-relaxed text-white/90 sm:text-base md:text-lg"
+                className="flex flex-row items-start justify-center gap-2.5 text-sm leading-relaxed text-white/90 sm:text-base md:text-lg max-w-2xl"
               >
                 <Hospital className="mt-0.5 h-5 w-5 shrink-0 text-[#FFD166]" />
                 <p>
                   Compassionate, evidence-based care across neuropsychiatry,
-                  child &amp; adolescent guidance, and de-addiction—personalized
-                  treatment in a safe, supportive setting. Open 24×7.
+                  child &amp; adolescent guidance, and de-addiction. Open 24×7.
                 </p>
               </motion.div>
             </motion.div>
@@ -94,10 +93,10 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 24, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-              className="relative mx-auto w-full max-w-[520px] sm:max-w-[560px] md:max-w-[600px]"
+              className="relative mx-auto w-full flex-1 min-h-0 max-w-[620px] sm:max-w-[700px] md:max-w-[820px] flex flex-col"
             >
-              <div className="relative overflow-hidden rounded-[20px] border-[6px] border-white/90 bg-white/10 shadow-[0_24px_64px_rgba(0,0,0,0.35)] sm:rounded-[24px] md:rounded-[28px]">
-                <div className="relative h-[220px] w-full sm:h-[260px] md:h-[300px]">
+              <div className="relative flex-1 min-h-0 overflow-hidden rounded-[16px] border-[5px] border-white/90 bg-white/10 shadow-[0_20px_56px_rgba(0,0,0,0.35)] sm:rounded-[20px] md:rounded-[24px]">
+                <div className="relative h-full w-full">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={index}
@@ -127,11 +126,10 @@ export default function HeroSection() {
                     key={i}
                     onClick={() => setIndex(i)}
                     aria-label={`Go to image ${i + 1}`}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      i === index
+                    className={`h-1.5 rounded-full transition-all duration-300 ${i === index
                         ? "w-5 bg-white"
                         : "w-1.5 bg-white/45 hover:bg-white/70"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
