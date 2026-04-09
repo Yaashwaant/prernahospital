@@ -295,6 +295,51 @@ export default function AboutAndTeamSection() {
           <FacilitiesSlider />
         </motion.div>
 
+        {/* ── Our Team Photo ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="space-y-4"
+        >
+          <div>
+            <h3 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">Our Team</h3>
+            <p className="mt-1 text-xs md:text-sm text-gray-600">
+              The passionate people behind compassionate care at Prerna Hospital.
+            </p>
+          </div>
+
+          {/* Landscape photo placeholder */}
+          <div className="relative w-full overflow-hidden rounded-2xl aspect-video bg-gradient-to-br from-[#1F4FD8]/10 via-[#1ECAD3]/10 to-[#003D52]/10 border border-gray-100 shadow-sm">
+            {/* Subtle grid pattern */}
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(31,79,216,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(31,79,216,0.15) 1px, transparent 1px)",
+                backgroundSize: "40px 40px",
+              }}
+            />
+            {/* Centre label */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#1F4FD8]/10 ring-1 ring-[#1F4FD8]/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-7 w-7 text-[#1F4FD8]/60"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-1a4 4 0 00-5.196-3.804M9 20H4v-1a4 4 0 015.196-3.804M15 7a4 4 0 11-8 0 4 4 0 018 0zm6 4a3 3 0 11-6 0 3 3 0 016 0zm-18 0a3 3 0 116 0 3 3 0 01-6 0z" />
+                </svg>
+              </div>
+              <p className="text-sm font-medium text-[#1F4FD8]/60">Team Photo — Coming Soon</p>
+            </div>
+          </div>
+        </motion.div>
+
         <div className="space-y-6" id="team">
           <div className="flex items-center justify-between gap-4">
             <div>
