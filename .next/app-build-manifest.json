@@ -75,6 +75,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/facility-slides/[id]/route.js"
+    ],
+    "/api/doctor-match/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/doctor-match/route.js"
     ]
   }
 }
