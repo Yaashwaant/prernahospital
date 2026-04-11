@@ -19,27 +19,27 @@ const NAV_ITEMS = [
 const MobileQuickActions = () => {
   return (
     <div className="border-b border-gray-100 bg-[#F4F7FB] md:hidden">
-      <div className="container mx-auto px-4 py-2">
-        <div className="grid grid-cols-3 gap-2">
+      <div className="container mx-auto px-3 py-1.5">
+        <div className="grid grid-cols-3 gap-1.5">
           <motion.a
             href="https://www.google.com/maps/dir/?api=1&destination=PRERNA%20HOSPITAL%20Inspiring%20Minds...."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#1ECAD3] to-[#1F4FD8] px-2 py-2 text-[11px] font-bold text-white shadow-[0_4px_14px_0_rgba(30,202,211,0.39)] transition-all"
+            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#1ECAD3] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(30,202,211,0.35)] transition-all"
             whileTap={{ scale: 0.95 }}
             aria-label="Directions"
           >
-            <MapPin className="h-3.5 w-3.5" />
+            <MapPin className="h-3 w-3" />
             Directions
           </motion.a>
 
           <motion.a
             href="tel:07887888865"
-            className="flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1F4FD8] px-2 py-2 text-[11px] font-bold text-white shadow-[0_4px_14px_0_rgba(31,79,216,0.39)] transition-all"
+            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(31,79,216,0.35)] transition-all"
             whileTap={{ scale: 0.95 }}
             aria-label="Call"
           >
-            <Phone className="h-3.5 w-3.5" />
+            <Phone className="h-3 w-3" />
             Call
           </motion.a>
 
@@ -47,11 +47,11 @@ const MobileQuickActions = () => {
             href="https://wa.me/917887888865?text=Hello%20Prerna%20Hospital"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#20CAD3] to-[#008489] px-2 py-2 text-[11px] font-bold text-white shadow-[0_4px_14px_0_rgba(0,132,137,0.39)] transition-all"
+            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#20CAD3] to-[#008489] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(0,132,137,0.35)] transition-all"
             whileTap={{ scale: 0.95 }}
             aria-label="WhatsApp"
           >
-            <FaWhatsapp className="h-4 w-4" />
+            <FaWhatsapp className="h-3.5 w-3.5" />
             WhatsApp
           </motion.a>
         </div>
@@ -65,8 +65,8 @@ const MobileQuickActions = () => {
  */
 const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
   const component = (
-    <div className="flex items-center gap-3">
-      <div className="relative h-16 w-16 md:h-20 md:w-20">
+    <div className="flex items-center gap-2">
+      <div className="relative h-10 w-10 md:h-16 md:w-16">
         <Image
           src="/logo.svg"
           alt="Prerna Hospital logo"
@@ -76,10 +76,10 @@ const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
         />
       </div>
       <div className="flex flex-col">
-        <span className="text-xl font-bold leading-none tracking-tight text-[#1F4FD8] md:text-2xl">
+        <span className="text-base font-bold leading-none tracking-tight text-[#1F4FD8] md:text-2xl">
           Prerna Hospital
         </span>
-        <span className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500 md:text-sm">
+        <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-gray-500 md:text-sm">
           Inspiring Minds
         </span>
       </div>
@@ -135,7 +135,7 @@ const MainHeaderContent = () => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-3 lg:flex-row md:px-8"
+      className="container mx-auto flex flex-col items-center justify-between gap-1 px-3 py-1.5 lg:flex-row md:px-8 lg:gap-4 lg:py-3"
     >
       <div className="flex w-full items-center justify-center lg:w-auto lg:justify-start">
         <HospitalLogo animated />
@@ -207,7 +207,7 @@ const MobileNavContent = () => {
   return (
     <nav className="w-full bg-[#F4F7FB] border-t border-gray-100 lg:hidden px-4">
       <motion.ul
-        className="container mx-auto grid w-full grid-cols-2 justify-items-center gap-x-2 gap-y-6 py-6 text-[13px] font-bold uppercase tracking-wider"
+        className="container mx-auto grid w-full grid-cols-3 justify-items-center gap-x-1 gap-y-1 py-2 text-[11px] font-bold uppercase tracking-wider"
         initial="hidden"
         animate="visible"
       >

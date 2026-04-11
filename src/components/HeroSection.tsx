@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-
 interface HeroSlide {
   id: string;
   src: string;
@@ -24,7 +23,6 @@ export default function HeroSection() {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Fetch slides from Supabase (via API). Fall back to defaults if empty/error.
   useEffect(() => {
     fetch("/api/hero-slides", { cache: "no-store" })
       .then((r) => r.json())
@@ -32,67 +30,70 @@ export default function HeroSection() {
         const data: HeroSlide[] = Array.isArray(json.slides) ? json.slides : [];
         if (data.length > 0) setSlides(data);
       })
-      .catch(() => {
-        // silently fall back to defaults
-      });
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (!isHovered) {
-        setIndex((prev) => (prev + 1) % slides.length);
-      }
+      if (!isHovered) setIndex((prev) => (prev + 1) % slides.length);
     }, 4000);
     return () => clearInterval(timer);
   }, [isHovered, slides.length]);
 
   return (
-    <section className="relative w-full overflow-hidden px-3 pt-3 pb-3 mb-6 md:mb-8 md:px-6" style={{ height: 'calc(100vh - 72px)' }}>
+    <section
+      className="relative w-full overflow-hidden px-3 pt-3 pb-3 mb-4 md:mb-8 md:px-6 md:h-[calc(100vh-72px)]"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="container mx-auto h-full">
-        <div
-          className="relative flex h-full overflow-hidden rounded-[24px] bg-gradient-to-br from-[#1F4FD8] via-[#1ECAD3] to-[#1F4FD8] px-6 pt-6 pb-4 shadow-2xl sm:rounded-[30px] sm:px-10 sm:pt-8 md:rounded-[36px] md:px-14 md:pt-10"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {/* Subtle radial glow overlay */}
+        <div className="relative flex h-full flex-col overflow-hidden rounded-[20px] bg-gradient-to-br from-[#1F4FD8] via-[#1ECAD3] to-[#1F4FD8] px-5 pt-5 pb-4 shadow-2xl sm:rounded-[28px] sm:px-8 sm:pt-7 md:rounded-[36px] md:px-14 md:pt-10">
+
+          {/* Glow overlay */}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(255,255,255,0.12)_0%,transparent_65%)]" />
 
+          {/* Content wrapper */}
           <div className="relative flex flex-col gap-4 w-full h-full">
-            {/* Text Block — center-aligned */}
+
+            {/* ── Heading ── left on mobile, center on desktop */}
             <motion.div
-              initial={{ opacity: 0, y: -18 }}
+              initial={{ opacity: 0, y: -14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, ease: "easeOut" }}
-              className="flex flex-col items-center text-center text-white w-full"
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="flex flex-col items-start text-left text-white w-full md:items-center md:text-center"
             >
               <motion.h1
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 0.1 }}
-                className="mb-3 text-2xl font-semibold leading-[1.15] tracking-[-0.5px] text-white sm:text-3xl md:text-[2.25rem] lg:text-[2.75rem]"
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="text-[1.35rem] font-semibold leading-snug tracking-[-0.3px] text-white sm:text-2xl md:text-[2.25rem] lg:text-[2.75rem] md:leading-[1.15] md:tracking-[-0.5px]"
               >
                 Transforming Mental Illness to{" "}
                 <span className="italic text-[#FFD166] font-semibold">Mental Wellness.</span>
               </motion.h1>
-
             </motion.div>
 
-            {/* Single Large Image Card — centered */}
+            {/* ── Image card ──
+                Mobile:  full-width, fixed aspect-video height
+                Desktop: centers with max-width, flex-1 fills remaining height
+            */}
             <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.95 }}
+              initial={{ opacity: 0, y: 20, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-              className="relative mx-auto w-full flex-1 min-h-0 max-w-[620px] sm:max-w-[700px] md:max-w-[820px] flex flex-col"
+              transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+              className="relative w-full md:mx-auto md:flex-1 md:min-h-0 md:max-w-[820px] md:flex md:flex-col"
             >
-              <div className="relative flex-1 min-h-0 overflow-hidden rounded-[16px] border-[5px] border-white/90 bg-white/10 shadow-[0_20px_56px_rgba(0,0,0,0.35)] sm:rounded-[20px] md:rounded-[24px]">
-                <div className="relative h-full w-full">
+              {/* Card frame */}
+              <div className="relative overflow-hidden rounded-[14px] border-[4px] border-white/90 bg-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.3)] sm:rounded-[18px] md:rounded-[22px] md:flex-1 md:min-h-0">
+                {/* Mobile: aspect-video | Desktop: h-full (flex-1 parent) */}
+                <div className="relative aspect-video w-full md:aspect-auto md:h-full">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={index}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.65 }}
+                      transition={{ duration: 0.6 }}
                       className="absolute inset-0"
                     >
                       <Image
@@ -109,20 +110,20 @@ export default function HeroSection() {
               </div>
 
               {/* Dot indicators */}
-              <div className="mt-3 flex items-center justify-center gap-1.5">
+              <div className="mt-2.5 flex items-center justify-center gap-1.5 md:mt-3">
                 {slides.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setIndex(i)}
                     aria-label={`Go to image ${i + 1}`}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${i === index
-                      ? "w-5 bg-white"
-                      : "w-1.5 bg-white/45 hover:bg-white/70"
-                      }`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === index ? "w-5 bg-white" : "w-1.5 bg-white/45 hover:bg-white/70"
+                    }`}
                   />
                 ))}
               </div>
             </motion.div>
+
           </div>
         </div>
       </div>
