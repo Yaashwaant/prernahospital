@@ -1,79 +1,65 @@
 "use client";
 
-import { MapPin, Phone } from "lucide-react";
+import { MapPin, Phone, ChevronDown } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 
-/**
- * Navigation menu items configuration
- * Extracted to separate constant for maintainability
- */
+// ─── Nav config ───────────────────────────────────────────────────────────────
 const NAV_ITEMS = [
-  { id: "home", label: "Home", href: "/" },
-  { id: "our-team", label: "Our Team", href: "#team" },
-  { id: "contact", label: "Contact Us", href: "#contact" }
+  { id: "home",       label: "Home",           href: "/" },
+  { id: "facilities", label: "Our Facilities",  href: "#about" },
+  { id: "our-team",   label: "Our Team",        href: "#team" },
 ] as const;
 
-const MobileQuickActions = () => {
-  return (
-    <div className="border-b border-gray-100 bg-[#F4F7FB] md:hidden">
-      <div className="container mx-auto px-3 py-1.5">
-        <div className="grid grid-cols-3 gap-1.5">
-          <motion.a
-            href="https://www.google.com/maps/dir/?api=1&destination=PRERNA%20HOSPITAL%20Inspiring%20Minds...."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#1ECAD3] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(30,202,211,0.35)] transition-all"
-            whileTap={{ scale: 0.95 }}
-            aria-label="Directions"
-          >
-            <MapPin className="h-3 w-3" />
-            Directions
-          </motion.a>
+const MORE_ITEMS = [
+  { id: "contact",   label: "Contact Us",   href: "#contact" },
+  { id: "updates",   label: "Updates",      href: "#updates" },
+] as const;
 
-          <motion.a
-            href="tel:07887888865"
-            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(31,79,216,0.35)] transition-all"
-            whileTap={{ scale: 0.95 }}
-            aria-label="Call"
-          >
-            <Phone className="h-3 w-3" />
-            Call
-          </motion.a>
+// ─── Mobile quick-action bar ───────────────────────────────────────────────────
+const MobileQuickActions = () => (
+  <div className="border-b border-gray-100 bg-[#F4F7FB] md:hidden">
+    <div className="container mx-auto px-3 py-1.5">
+      <div className="grid grid-cols-3 gap-1.5">
+        <motion.a
+          href="https://www.google.com/maps/dir/?api=1&destination=PRERNA%20HOSPITAL%20Inspiring%20Minds...."
+          target="_blank" rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#1ECAD3] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(30,202,211,0.35)]"
+          whileTap={{ scale: 0.95 }} aria-label="Directions"
+        >
+          <MapPin className="h-3 w-3" /> Directions
+        </motion.a>
 
-          <motion.a
-            href="https://wa.me/917887888865?text=Hello%20Prerna%20Hospital"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#20CAD3] to-[#008489] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(0,132,137,0.35)] transition-all"
-            whileTap={{ scale: 0.95 }}
-            aria-label="WhatsApp"
-          >
-            <FaWhatsapp className="h-3.5 w-3.5" />
-            WhatsApp
-          </motion.a>
-        </div>
+        <motion.a
+          href="tel:07887888865"
+          className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(31,79,216,0.35)]"
+          whileTap={{ scale: 0.95 }} aria-label="Call"
+        >
+          <Phone className="h-3 w-3" /> Call
+        </motion.a>
+
+        <motion.a
+          href="https://wa.me/917887888865?text=Hello%20Prerna%20Hospital"
+          target="_blank" rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#20CAD3] to-[#008489] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(0,132,137,0.35)]"
+          whileTap={{ scale: 0.95 }} aria-label="WhatsApp"
+        >
+          <FaWhatsapp className="h-3.5 w-3.5" /> WhatsApp
+        </motion.a>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
-/**
- * Reusable logo component
- */
+// ─── Logo ──────────────────────────────────────────────────────────────────────
 const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
   const component = (
     <div className="flex items-center gap-2">
       <div className="relative h-10 w-10 md:h-16 md:w-16">
-        <Image
-          src="/logo.svg"
-          alt="Prerna Hospital logo"
-          fill
-          className="object-contain"
-          priority
-        />
+        <Image src="/logo.svg" alt="Prerna Hospital logo" fill className="object-contain" priority />
       </div>
       <div className="flex flex-col">
         <span className="text-base font-bold leading-none tracking-tight text-[#1F4FD8] md:text-2xl">
@@ -85,49 +71,67 @@ const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
       </div>
     </div>
   );
-
-  if (!animated) return component;
-
-  return (
-    <motion.div whileHover={{ scale: 1.02 }}>
-      {component}
-    </motion.div>
-  );
+  return animated ? <motion.div whileHover={{ scale: 1.02 }}>{component}</motion.div> : component;
 };
 
-/**
- * Navigation menu item component
- */
-const NavItem = ({ item, isActive, layoutPrefix = "desktop" }: { item: typeof NAV_ITEMS[number]; isActive: boolean; layoutPrefix?: string }) => {
+// ─── Desktop "More" dropdown ───────────────────────────────────────────────────
+const MoreDropdown = () => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
   return (
-    <motion.li
-      className={`flex w-full items-center justify-center gap-1 transition-colors md:w-auto md:justify-start ${
-        isActive ? "text-[#FFB703]" : "text-[#1F4FD8] hover:text-[#FFB703]"
-      }`}
-      variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}
-    >
-      <Link href={item.href} className="relative block w-full py-2 text-center md:w-auto md:text-left md:py-1">
-        {item.label}
-        {isActive && (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-1 py-1 text-[11px] font-bold uppercase tracking-wider text-[#1F4FD8] hover:text-[#FFB703] transition-colors"
+        aria-expanded={open}
+      >
+        More
+        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+          <ChevronDown className="h-3.5 w-3.5" />
+        </motion.span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
           <motion.div
-            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#FFB703]"
-            layoutId={`activeTab-${layoutPrefix}`}
-            initial={false}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
-          />
+            initial={{ opacity: 0, y: 8, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.97 }}
+            transition={{ duration: 0.18 }}
+            className="absolute right-0 top-full mt-2 z-50 min-w-[160px] overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg"
+          >
+            {MORE_ITEMS.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="block px-4 py-2.5 text-[12px] font-semibold uppercase tracking-wider text-[#1F4FD8] hover:bg-[#F4F7FB] hover:text-[#FFB703] transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </motion.div>
         )}
-      </Link>
-    </motion.li>
+      </AnimatePresence>
+    </div>
   );
 };
 
-/**
- * Main Header Content with Logo, Nav Items, and CTAs inline
- */
+// ─── Desktop header row ────────────────────────────────────────────────────────
 const MainHeaderContent = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
   };
 
   return (
@@ -141,6 +145,7 @@ const MainHeaderContent = () => {
         <HospitalLogo animated />
       </div>
 
+      {/* Desktop nav links */}
       <motion.ul
         className="hidden items-center justify-center gap-x-4 gap-y-2 text-[11px] font-bold uppercase tracking-wider md:gap-8 lg:flex lg:flex-1 lg:justify-center"
         variants={containerVariants}
@@ -148,10 +153,36 @@ const MainHeaderContent = () => {
         animate="visible"
       >
         {NAV_ITEMS.map((item) => (
-          <NavItem key={item.id} item={item} isActive={item.id === "home"} layoutPrefix="desktop" />
+          <motion.li
+            key={item.id}
+            className={`flex items-center transition-colors ${
+              item.id === "home" ? "text-[#FFB703]" : "text-[#1F4FD8] hover:text-[#FFB703]"
+            }`}
+            variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}
+          >
+            <Link href={item.href} className="relative block py-1">
+              {item.label}
+              {item.id === "home" && (
+                <motion.div
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#FFB703]"
+                  layoutId="activeTab-desktop"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+              )}
+            </Link>
+          </motion.li>
         ))}
+
+        {/* More dropdown */}
+        <motion.li
+          variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}
+        >
+          <MoreDropdown />
+        </motion.li>
       </motion.ul>
 
+      {/* Desktop CTA buttons */}
       <motion.div
         className="hidden items-center gap-4 xl:flex lg:flex"
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
@@ -161,12 +192,10 @@ const MainHeaderContent = () => {
       >
         <motion.a
           href="https://www.google.com/maps/dir/?api=1&destination=PRERNA%20HOSPITAL%20Inspiring%20Minds...."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#1ECAD3] to-[#1F4FD8] px-6 py-2.5 text-[13px] font-bold text-white shadow-[0_4px_14px_0_rgba(30,202,211,0.39)] transition-all"
+          target="_blank" rel="noopener noreferrer"
+          className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#1ECAD3] to-[#1F4FD8] px-6 py-2.5 text-[13px] font-bold text-white shadow-[0_4px_14px_0_rgba(30,202,211,0.39)]"
           whileHover={{ scale: 1.05, boxShadow: "0 6px 20px rgba(30,202,211,0.6)" }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Directions to Prerna Hospital"
+          whileTap={{ scale: 0.95 }} aria-label="Directions to Prerna Hospital"
         >
           <MapPin className="h-4 w-4" />
           <span className="hidden xl:inline">Directions</span>
@@ -174,10 +203,9 @@ const MainHeaderContent = () => {
 
         <motion.a
           href="tel:07887888865"
-          className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1F4FD8] px-6 py-2.5 text-[13px] font-bold text-white shadow-[0_4px_14px_0_rgba(31,79,216,0.39)] transition-all"
+          className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1F4FD8] px-6 py-2.5 text-[13px] font-bold text-white shadow-[0_4px_14px_0_rgba(31,79,216,0.39)]"
           whileHover={{ scale: 1.05, boxShadow: "0 6px 20px rgba(31,79,216,0.6)" }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Call Prerna Hospital"
+          whileTap={{ scale: 0.95 }} aria-label="Call Prerna Hospital"
         >
           <Phone className="h-4 w-4" />
           <span className="hidden xl:inline">Call</span>
@@ -185,12 +213,10 @@ const MainHeaderContent = () => {
 
         <motion.a
           href="https://wa.me/917887888865?text=Hello%20Prerna%20Hospital"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#20CAD3] to-[#008489] px-6 py-2.5 text-[13px] font-bold text-white shadow-[0_4px_14px_0_rgba(0,132,137,0.39)] transition-all"
+          target="_blank" rel="noopener noreferrer"
+          className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#20CAD3] to-[#008489] px-6 py-2.5 text-[13px] font-bold text-white shadow-[0_4px_14px_0_rgba(0,132,137,0.39)]"
           whileHover={{ scale: 1.05, boxShadow: "0 6px 20px rgba(0,132,137,0.6)" }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Chat on WhatsApp"
+          whileTap={{ scale: 0.95 }} aria-label="Chat on WhatsApp"
         >
           <FaWhatsapp className="h-[18px] w-[18px]" />
           <span className="hidden xl:inline">WhatsApp</span>
@@ -200,25 +226,64 @@ const MainHeaderContent = () => {
   );
 };
 
-/**
- * Mobile Navigation Menu (Non-Sticky)
- */
+// ─── Mobile nav bar ────────────────────────────────────────────────────────────
 const MobileNavContent = () => {
+  const [moreOpen, setMoreOpen] = useState(false);
+  const allItems = [...NAV_ITEMS];
+
   return (
     <nav className="w-full bg-[#F4F7FB] border-t border-gray-100 lg:hidden px-4">
-      <motion.ul
-        className="container mx-auto grid w-full grid-cols-3 justify-items-center gap-x-1 gap-y-1 py-2 text-[11px] font-bold uppercase tracking-wider"
-        initial="hidden"
-        animate="visible"
-      >
-        {NAV_ITEMS.map((item) => (
-          <NavItem key={item.id} item={item} isActive={item.id === "home"} layoutPrefix="mobile" />
-        ))}
-      </motion.ul>
+      <div className="container mx-auto">
+        {/* Main nav row — 4 items */}
+        <ul className="grid w-full grid-cols-4 justify-items-center gap-x-1 py-2 text-[10px] font-bold uppercase tracking-wider">
+          {allItems.map((item) => (
+            <li key={item.id} className={`w-full text-center ${item.id === "home" ? "text-[#FFB703]" : "text-[#1F4FD8]"}`}>
+              <Link href={item.href} className="block py-1.5">
+                {item.label}
+              </Link>
+            </li>
+          ))}
+
+          {/* "More" toggle */}
+          <li className="w-full text-center text-[#1F4FD8]">
+            <button
+              onClick={() => setMoreOpen((v) => !v)}
+              className="flex w-full items-center justify-center gap-0.5 py-1.5"
+            >
+              More
+              <motion.span animate={{ rotate: moreOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                <ChevronDown className="h-3 w-3" />
+              </motion.span>
+            </button>
+          </li>
+        </ul>
+
+        {/* Expandable "More" section */}
+        <AnimatePresence>
+          {moreOpen && (
+            <motion.ul
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden border-t border-gray-100 grid grid-cols-2 gap-x-2 pb-2 pt-1 text-[10px] font-bold uppercase tracking-wider"
+            >
+              {MORE_ITEMS.map((item) => (
+                <li key={item.id} className="text-center text-[#1F4FD8]">
+                  <Link href={item.href} onClick={() => setMoreOpen(false)} className="block py-1.5">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </div>
     </nav>
   );
 };
 
+// ─── Root export ──────────────────────────────────────────────────────────────
 export default function HospitalHeader() {
   return (
     <>

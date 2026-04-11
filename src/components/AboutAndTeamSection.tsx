@@ -51,7 +51,7 @@ function FacilitiesSlider() {
 
   return (
     <div
-      className="mt-6 w-full"
+      className="mt-6 w-full md:max-w-[640px] md:mx-auto"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -152,7 +152,7 @@ export default function AboutAndTeamSection() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16" id="about">
+    <section className="bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] pt-8 pb-16" id="about">
       <div className="container mx-auto px-4 md:px-8 space-y-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -310,33 +310,16 @@ export default function AboutAndTeamSection() {
             </p>
           </div>
 
-          {/* Landscape photo placeholder */}
-          <div className="relative w-full overflow-hidden rounded-2xl aspect-video bg-gradient-to-br from-[#1F4FD8]/10 via-[#1ECAD3]/10 to-[#003D52]/10 border border-gray-100 shadow-sm">
-            {/* Subtle grid pattern */}
-            <div
-              className="absolute inset-0 opacity-20"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(31,79,216,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(31,79,216,0.15) 1px, transparent 1px)",
-                backgroundSize: "40px 40px",
-              }}
+          {/* Team photo */}
+          <div className="w-full overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+            <Image
+              src="/Team Prerna Hospital.JPG"
+              alt="Prerna Hospital Team"
+              width={1920}
+              height={1080}
+              className="w-full h-auto"
+              unoptimized
             />
-            {/* Centre label */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#1F4FD8]/10 ring-1 ring-[#1F4FD8]/20">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-7 w-7 text-[#1F4FD8]/60"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-1a4 4 0 00-5.196-3.804M9 20H4v-1a4 4 0 015.196-3.804M15 7a4 4 0 11-8 0 4 4 0 018 0zm6 4a3 3 0 11-6 0 3 3 0 016 0zm-18 0a3 3 0 116 0 3 3 0 01-6 0z" />
-                </svg>
-              </div>
-              <p className="text-sm font-medium text-[#1F4FD8]/60">Team Photo — Coming Soon</p>
-            </div>
           </div>
         </motion.div>
 

@@ -139,7 +139,7 @@ export default function ServiceCards() {
   const right = memoizedServices.slice(4, 7);
 
   return (
-    <section className="relative w-full -mt-12 pb-24 px-4 md:px-8">
+    <section className="relative w-full pt-2 pb-8 px-4 md:px-8">
       <div className="container mx-auto">
         <motion.div
           className="mx-auto grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-2"
