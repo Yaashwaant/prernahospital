@@ -1,7 +1,4 @@
 {
-  "/api/updates/route": "app/api/updates/route.js",
-  "/api/facility-slides/route": "app/api/facility-slides/route.js",
-  "/api/hero-slides/route": "app/api/hero-slides/route.js",
-  "/page": "app/page.js",
-  "/doctors/[slug]/page": "app/doctors/[slug]/page.js"
+  "/doctors/[slug]/page": "app/doctors/[slug]/page.js",
+  "/page": "app/page.js"
 }
