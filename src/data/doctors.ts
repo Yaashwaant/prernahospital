@@ -251,6 +251,86 @@ export const DOCTORS: Doctor[] = [
       "Organiser and speaker at multiple stress management and mental health awareness programs",
     ],
   },
+
+  {
+    slug: "anuradha-patil",
+    name: "Dr. Anuradha Patil",
+    role: "Consultant Pathologist",
+    title: "Specialist in Histopathology & Cytopathology",
+    specialties: ["Histopathology", "Cytopathology", "Hemato-oncology"],
+
+    // ── Chatbot routing ──────────────────────────────────────────────────────
+    keywords: [
+      // Lab / pathology
+      "pathology", "biopsy", "histopathology", "cytopathology", "cytology",
+      "tissue sample", "tissue test", "tissue biopsy", "lab test", "lab report",
+      "blood test", "blood count", "CBC", "complete blood count",
+      "blood disorder", "anemia", "anaemia", "low hemoglobin", "low haemoglobin",
+      "platelets", "white blood cells", "WBC", "RBC",
+      // Cancer / oncology
+      "cancer", "tumor", "tumour", "ovarian tumor", "ovarian tumour", "ovarian cancer",
+      "malignancy", "malignant", "oncology", "hemato-oncology", "haematology",
+      "lymphoma", "leukemia", "leukaemia", "bone marrow",
+      // Neuropathology
+      "neuropathology", "brain biopsy", "spinal", "nerve biopsy",
+      // Diagnostics / general
+      "diagnosis", "diagnostic", "report", "pathologist", "lab", "laboratory",
+      "FNAC", "fine needle", "smear", "pap smear",
+    ],
+    treatsConditions: [
+      "Histopathological examination and biopsy reporting",
+      "Cytopathology (FNAC, pap smear, fluid cytology)",
+      "Hematological disorders (anemia, blood count abnormalities)",
+      "Hemato-oncology (leukemia, lymphoma, bone marrow disorders)",
+      "Ovarian tumor pathology and reporting",
+      "Neuropathology (brain and nerve tissue examination)",
+      "Cancer diagnosis and staging through pathological analysis",
+      "General laboratory diagnostics and pathology reports",
+    ],
+    isGeneralist: false,
+    ageGroups: ["children", "adolescents", "adults", "elderly"],
+    chatbotProfile:
+      "Dr. Anuradha Patil is a Consultant Pathologist at Prerna Hospital with MBBS from JJM Medical College " +
+      "(with distinction) and MD Pathology from KIMS Hubballi (6th university rank). She received specialized " +
+      "training in Neuropathology at NIMHANS Bangalore. She is the go-to specialist for all pathology-related " +
+      "needs — biopsy and histopathology reports, cytopathology (FNAC, pap smears), blood disorders, " +
+      "hemato-oncology (leukemia, lymphoma), ovarian tumor diagnosis, and general lab investigations. " +
+      "She is a recognized researcher in ovarian tumor histopathology and a Scientific Committee member " +
+      "for MAPCON and MACYCON conferences.",
+
+    // ── Display ──────────────────────────────────────────────────────────────
+    image: "/Dr.%20Anuradha%20Patil.JPG",
+    location: "Prerna Hospital LLP, Chhatrapati Sambhajinagar",
+    qualifications: "MBBS, MD (Pathology)",
+    overview: [
+      "Dr. Anuradha Patil is a highly qualified Consultant Pathologist with expertise in histopathology, cytopathology, and hemato-oncology.",
+      "She completed her MBBS with distinction from JJM Medical College, Davanagere and her MD Pathology from Karnataka Institute of Medical Sciences, Hubballi, securing the 6th university rank.",
+      "She has undergone specialized neuropathology training at NIMHANS, Bangalore and has served as Assistant and Associate Professor, contributing to medical education and research.",
+    ],
+    fellowshipMembership: [
+      "Training in Neuropathology at NIMHANS, Bangalore (2013)",
+      "Assistant Professor at JIIU's Indian Institute of Medical Sciences, Badnapur, Jalna (2014–2015)",
+      "Associate Professor at MGM Medical College, Chhatrapati Sambhajinagar (2015 onwards)",
+      "Scientific Committee Member – MAPCON 2022 (Annual Conference of Maharashtra)",
+      "Scientific Committee Member – MACYCON 2026 (Annual Cytology Conference, Maharashtra)",
+    ],
+    fieldOfExpertise: [
+      "Histopathology and surgical pathology",
+      "Cytopathology (FNAC, pap smear, body fluid cytology)",
+      "Hemato-oncology and hematological disorders",
+      "Neuropathology (brain and nerve tissue)",
+      "Ovarian tumor pathology and research",
+    ],
+    languagesSpoken: ["Marathi", "Hindi", "English", "Kannada"],
+    awardsAchievements: [
+      "MBBS with distinction – JJM Medical College, Davanagere, Karnataka (2008)",
+      "MD Pathology with 6th University Rank – Karnataka Institute of Medical Sciences, Hubballi (2013)",
+      "Winner of Karnataka State Level Post Graduate Pathology Quiz (2013)",
+      "Presented 'Neuroenteric cyst of posterior mediastinum' at 38th Annual Conference, IAPM Karnataka Chapter, SDUMC Kolar (2011)",
+      "Presented 'Histopathological study of ovarian tumors' at 38th Annual Conference, IAPM Karnataka Chapter, Bangalore (2013)",
+      "Well-acclaimed research on histopathological study of ovarian tumors",
+    ],
+  },
 ];
 
 export function getDoctorBySlug(slug: string): Doctor | undefined {

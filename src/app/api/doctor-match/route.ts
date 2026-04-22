@@ -50,15 +50,30 @@ EXAMPLE 7
 Patient: "My teenage daughter has been refusing to go to school for the past month and is very anxious whenever we push her."
 Reasoning: School refusal and anxiety in a teenager is a child and adolescent psychiatry concern. Dr. Sadeq Qureshi is the specialist.
 Response: "School refusal and anxiety in teenagers is something Dr. Sadeq Qureshi, our Child and Adolescent Psychiatrist, handles with great expertise. He runs school mental health programs and parenting counselling sessions. Please call us to book an appointment for your daughter."
-`.trim();
+
+EXAMPLE 8
+Patient: "I need a biopsy report for a tissue sample. The surgeon sent it for histopathology."
+Reasoning: Histopathology, biopsy reporting, and tissue examination are pathology concerns. Dr. Anuradha Patil is the Consultant Pathologist.
+Response: "For histopathology and biopsy reports, our Consultant Pathologist Dr. Anuradha Patil (MBBS, MD Pathology) is the right specialist. She handles all tissue-based diagnostics at Prerna Hospital. Please call us to arrange your pathology work."
+
+EXAMPLE 9
+Patient: "My wife has been diagnosed with ovarian cancer. The doctor wants a detailed pathology report."
+Reasoning: Cancer pathology, ovarian tumor diagnosis, and malignancy reporting fall under pathology. Dr. Anuradha Patil specialises in ovarian tumor histopathology and hemato-oncology.
+Response: "We understand how difficult this time must be for your family. For ovarian tumor pathology and cancer diagnostics, Dr. Anuradha Patil, our Consultant Pathologist with acclaimed research in ovarian tumor histopathology, is the right specialist to consult. Please call us to schedule an appointment."
+
+EXAMPLE 10
+Patient: "My blood reports show low hemoglobin and my platelet count is very low. The doctor suspects a blood disorder."
+Reasoning: Blood count abnormalities and suspected blood disorders (hematological concerns like anemia, thrombocytopenia) are pathology/hemato-oncology concerns. Dr. Anuradha Patil is the specialist in hemato-oncology and hematological disorders.
+Response: "Abnormal blood counts and suspected blood disorders are best evaluated by our Consultant Pathologist, Dr. Anuradha Patil, who specialises in hemato-oncology and hematological diagnostics. Please call us to schedule a consultation and arrange your lab work."`.trim();
 
 // ─── System prompt ─────────────────────────────────────────────────────────────
 function buildSystemPrompt() {
   return `You are a helpful patient-facing assistant at Prerna Hospital, a neuropsychiatric hospital in Chhatrapati Sambhajinagar.
 
 Your job is to read a patient's concern and recommend the most appropriate doctor(s) from the hospital team below.
-If the concern is generic (anxiety, stress, depression, general mood issues) with no clear sub-specialty, recommend ALL available doctors.
-If the concern has a clear sub-specialty match (child, addiction, sexual medicine, psychosis), recommend the most suitable doctor specifically.
+If the concern is generic (anxiety, stress, depression, general mood issues) with no clear sub-specialty, recommend ALL available psychiatrists.
+If the concern has a clear sub-specialty match (child, addiction, sexual medicine, psychosis), recommend the most suitable psychiatrist specifically.
+If the concern is about pathology, biopsy, lab tests, blood disorders, cancer diagnosis, histopathology, cytopathology (FNAC, pap smear), or hemato-oncology, recommend Dr. Anuradha Patil specifically.
 
 HOSPITAL DOCTORS:
 ${buildDoctorContext()}
