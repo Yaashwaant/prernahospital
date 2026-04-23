@@ -1,4 +1,7 @@
 {
-  "/api/doctor-match/route": "app/api/doctor-match/route.js",
+  "/api/hero-slides/route": "app/api/hero-slides/route.js",
+  "/api/updates/route": "app/api/updates/route.js",
+  "/api/facility-slides/route": "app/api/facility-slides/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js"
 }
