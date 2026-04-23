@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Clock, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SOCIAL } from "@/data/social";
@@ -19,15 +18,16 @@ const MORE_VIDEOS = [
 
 export default function SocialHandlesSection() {
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-10 md:py-16">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="space-y-8"
+          className="space-y-6 md:space-y-8"
         >
+          {/* ── Section heading ── */}
           <div className="text-center space-y-2">
             <span className="inline-flex rounded-full bg-[#E6F2FF] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1F4FD8]">
               Our Social Handles
@@ -41,7 +41,10 @@ export default function SocialHandlesSection() {
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+          {/* ── Two-column layout (stacks on mobile) ── */}
+          <div className="grid gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+
+            {/* ── LEFT: YouTube card ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -49,16 +52,17 @@ export default function SocialHandlesSection() {
               transition={{ duration: 0.5 }}
               className="rounded-3xl bg-white shadow-refined border border-gray-100 p-4 md:p-6 flex flex-col gap-4"
             >
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full overflow-hidden">
+              {/* Card header */}
+              <div className="flex items-center justify-between gap-3 flex-wrap">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full overflow-hidden">
                     <Image src="/Youtube_logo.avif" alt="YouTube" width={36} height={36} className="object-contain" unoptimized />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#1F4FD8]">
                       Featured YouTube Video
                     </span>
-                    <span className="text-sm md:text-base font-semibold text-[#1A1A1A]">
+                    <span className="text-sm md:text-base font-semibold text-[#1A1A1A] truncate">
                       Latest from our YouTube channel
                     </span>
                   </div>
@@ -67,23 +71,24 @@ export default function SocialHandlesSection() {
                   href={SOCIAL.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden md:inline-flex items-center rounded-full bg-[#FF0000] px-4 py-1.5 text-[11px] font-semibold text-white shadow-sm hover:bg-[#e00000] transition-colors"
+                  className="shrink-0 inline-flex items-center rounded-full bg-[#FF0000] px-4 py-1.5 text-[11px] font-semibold text-white shadow-sm hover:bg-[#e00000] transition-colors"
                 >
-                  Visit YouTube Channel
+                  Visit YouTube ↗
                 </Link>
               </div>
 
-              <p className="text-xs md:text-sm text-gray-600 max-w-xl">
+              <p className="text-xs md:text-sm text-gray-600">
                 Talks, patient education videos and expert sessions to help you
                 understand mental health and treatment better.
               </p>
 
-              <div className="relative mt-2 w-full overflow-hidden rounded-2xl bg-black aspect-video">
+              {/* Featured video — fluid aspect-ratio box */}
+              <div className="relative w-full overflow-hidden rounded-2xl bg-black aspect-video">
                 {SOCIAL.youtubeFeaturedVideoId ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${SOCIAL.youtubeFeaturedVideoId}`}
                     title="Prerna Hospital featured video"
-                    className="h-full w-full"
+                    className="absolute inset-0 h-full w-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
@@ -91,7 +96,7 @@ export default function SocialHandlesSection() {
                   <iframe
                     src={`https://www.youtube.com/embed/videoseries?list=${SOCIAL.youtubeUploadsPlaylistId}`}
                     title="Prerna Hospital YouTube uploads"
-                    className="h-full w-full"
+                    className="absolute inset-0 h-full w-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
@@ -115,20 +120,20 @@ export default function SocialHandlesSection() {
                 )}
               </div>
 
-              {/* ── More Videos strip ── */}
-              <div className="mt-2 space-y-2">
+              {/* ── More Videos horizontal scroll strip ── */}
+              <div className="space-y-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1F4FD8]">More Videos</p>
-                <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
+                <div className="flex gap-2.5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-thin">
                   {MORE_VIDEOS.map((v) => (
                     <a
                       key={v.id}
                       href={`https://www.youtube.com/watch?v=${v.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative flex-shrink-0 w-[160px] rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                      /* Responsive card width: smaller on mobile, bigger on md+ */
+                      className="group relative flex-none w-[140px] sm:w-[155px] md:w-[165px] snap-start rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
                       aria-label={v.title}
                     >
-                      {/* Thumbnail */}
                       <div className="relative w-full aspect-video bg-gray-100">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
@@ -137,57 +142,40 @@ export default function SocialHandlesSection() {
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
-                        {/* Play overlay */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FF0000] shadow-lg">
-                            <svg viewBox="0 0 24 24" fill="white" className="h-4 w-4 ml-0.5">
+                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FF0000] shadow-lg">
+                            <svg viewBox="0 0 24 24" fill="white" className="h-3.5 w-3.5 ml-0.5">
                               <path d="M8 5v14l11-7z" />
                             </svg>
                           </div>
                         </div>
                       </div>
-                      {/* Title */}
-                      <div className="bg-white px-2 py-2">
+                      <div className="bg-white px-2 py-1.5">
                         <p className="text-[10px] font-medium text-[#1A1A1A] leading-tight line-clamp-2">{v.title}</p>
                       </div>
                     </a>
                   ))}
                 </div>
               </div>
-
-              <div className="mt-2 md:hidden">
-                <Link
-                  href={SOCIAL.youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full bg-[#FF0000] px-4 py-1.5 text-[11px] font-semibold text-white shadow-sm hover:bg-[#e00000] transition-colors"
-                >
-                  Visit YouTube Channel
-                </Link>
-              </div>
             </motion.div>
 
+            {/* ── RIGHT: Facebook + Instagram (stacks on mobile too) ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-col gap-4"
+              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1"
             >
-              <div className="flex-1 rounded-3xl bg-white shadow-refined border border-gray-100 p-4 md:p-5 flex flex-col gap-3">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full overflow-hidden">
-                      <Image src="/Facebook_logo.avif" alt="Facebook" width={32} height={32} className="object-contain" unoptimized />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-semibold text-[#1A1A1A]">
-                        Facebook
-                      </span>
-                      <span className="text-[11px] text-[#1F4FD8]">
-                        Community stories and photos
-                      </span>
-                    </div>
+              {/* Facebook card */}
+              <div className="rounded-3xl bg-white shadow-refined border border-gray-100 p-4 md:p-5 flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full overflow-hidden">
+                    <Image src="/Facebook_logo.avif" alt="Facebook" width={32} height={32} className="object-contain" unoptimized />
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-xs font-semibold text-[#1A1A1A]">Facebook</span>
+                    <span className="text-[11px] text-[#1F4FD8] truncate">Community stories and photos</span>
                   </div>
                 </div>
 
@@ -196,11 +184,11 @@ export default function SocialHandlesSection() {
                     href={SOCIAL.facebookPage}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group mt-2 block rounded-2xl border border-gray-200 bg-gradient-to-br from-[#1877F2]/10 to-white p-5 hover:shadow-md transition-shadow"
+                    className="group block rounded-2xl border border-gray-200 bg-gradient-to-br from-[#1877F2]/10 to-white p-5 hover:shadow-md transition-shadow"
                     aria-label="Open Facebook Page"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full overflow-hidden">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full overflow-hidden">
                         <Image src="/Facebook_logo.avif" alt="Facebook" width={40} height={40} className="object-contain" unoptimized />
                       </div>
                       <div>
@@ -210,86 +198,72 @@ export default function SocialHandlesSection() {
                     </div>
                   </Link>
                 ) : (
-                  <div className="mt-2 rounded-2xl border border-gray-200 bg-white p-0 overflow-hidden">
-                    <div className="relative h-56 w-full">
+                  /* Fluid iframe wrapper with proper min-height */
+                  <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden">
+                    <div className="relative w-full" style={{ paddingBottom: "56.25%", minHeight: "200px" }}>
                       <iframe
                         title="Facebook Page Plugin"
                         src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(
                           SOCIAL.facebookPage
                         )}&tabs=timeline&width=380&height=220&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&lazy=1`}
-                        width="100%"
-                        height="100%"
-                        style={{ border: "none", overflow: "hidden" } as any}
+                        className="absolute inset-0 w-full h-full"
+                        style={{ border: "none", overflow: "hidden" } as React.CSSProperties}
                         scrolling="no"
-                        frameBorder="0"
+                        frameBorder={0}
                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                       />
                     </div>
                   </div>
                 )}
 
-                <div>
-                  <Link
-                    href={SOCIAL.facebookPage}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-[11px] font-semibold text-[#1F4FD8] hover:text-[#FFB703] transition-colors"
-                  >
-                    Visit Facebook
-                    <span className="ml-1 text-xs">↗</span>
-                  </Link>
-                </div>
+                <Link
+                  href={SOCIAL.facebookPage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-[11px] font-semibold text-[#1F4FD8] hover:text-[#FFB703] transition-colors"
+                >
+                  Visit Facebook <span className="ml-1 text-xs">↗</span>
+                </Link>
               </div>
 
-              <div className="flex-1 rounded-3xl bg-white shadow-refined border border-gray-100 p-4 md:p-5 flex flex-col gap-3">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full overflow-hidden">
-                      <Image src="/Instagram_logo.avif" alt="Instagram" width={32} height={32} className="object-contain" unoptimized />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-semibold text-[#1A1A1A]">
-                        Instagram
-                      </span>
-                      <span className="text-[11px] text-[#1F4FD8]">
-                        Photo highlights from our campus
-                      </span>
-                    </div>
+              {/* Instagram card */}
+              <div className="rounded-3xl bg-white shadow-refined border border-gray-100 p-4 md:p-5 flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full overflow-hidden">
+                    <Image src="/Instagram_logo.avif" alt="Instagram" width={32} height={32} className="object-contain" unoptimized />
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-xs font-semibold text-[#1A1A1A]">Instagram</span>
+                    <span className="text-[11px] text-[#1F4FD8] truncate">Photo highlights from our campus</span>
                   </div>
                 </div>
 
-                <div className="mt-2 rounded-2xl border border-gray-200 bg-white p-0 overflow-hidden">
-                  <div className="relative h-56 w-full">
+                {/* Fluid Instagram embed */}
+                <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden">
+                  <div className="relative w-full" style={{ paddingBottom: "56.25%", minHeight: "200px" }}>
                     <iframe
                       title="Instagram Profile"
                       src={`${SOCIAL.instagram.split("?")[0]}/embed`}
-                      width="100%"
-                      height="100%"
-                      className="block"
+                      className="absolute inset-0 w-full h-full block"
                       scrolling="no"
-                      frameBorder="0"
+                      frameBorder={0}
                     />
                   </div>
                 </div>
 
-                <p className="mt-2 text-[11px] text-gray-600">
+                <p className="text-[11px] text-gray-600">
                   Snapshots from our campus and awareness campaigns.
                 </p>
 
-                <div>
-                  <Link
-                    href={SOCIAL.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-[11px] font-semibold text-[#1F4FD8] hover:text-[#FFB703] transition-colors"
-                  >
-                    Visit Instagram
-                    <span className="ml-1 text-xs">↗</span>
-                  </Link>
-                </div>
+                <Link
+                  href={SOCIAL.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-[11px] font-semibold text-[#1F4FD8] hover:text-[#FFB703] transition-colors"
+                >
+                  Visit Instagram <span className="ml-1 text-xs">↗</span>
+                </Link>
               </div>
-
-              
             </motion.div>
           </div>
         </motion.div>

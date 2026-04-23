@@ -31,10 +31,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/updates/route.js"
     ],
-    "/doctors/[slug]/page": [
+    "/api/doctor-match/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/doctors/[slug]/page.js"
+      "static/chunks/app/api/doctor-match/route.js"
     ]
   }
 }

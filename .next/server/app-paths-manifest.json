@@ -1,4 +1,4 @@
 {
-  "/doctors/[slug]/page": "app/doctors/[slug]/page.js",
+  "/api/doctor-match/route": "app/api/doctor-match/route.js",
   "/page": "app/page.js"
 }

@@ -31,7 +31,6 @@
     --container-sm: 24rem;
     --container-md: 28rem;
     --container-lg: 32rem;
-    --container-xl: 36rem;
     --container-2xl: 42rem;
     --container-5xl: 64rem;
     --text-xs: 0.75rem;
@@ -697,9 +696,6 @@
   .h-48 {
     height: calc(var(--spacing) * 48);
   }
-  .h-56 {
-    height: calc(var(--spacing) * 56);
-  }
   .h-64 {
     height: calc(var(--spacing) * 64);
   }
@@ -859,8 +855,8 @@
   .w-\[100px\] {
     width: 100px;
   }
-  .w-\[160px\] {
-    width: 160px;
+  .w-\[140px\] {
+    width: 140px;
   }
   .w-\[260px\] {
     width: 260px;
@@ -906,9 +902,6 @@
   }
   .max-w-sm {
     max-width: var(--container-sm);
-  }
-  .max-w-xl {
-    max-width: var(--container-xl);
   }
   .min-w-\(--cell-size\) {
     min-width: var(--cell-size);
@@ -1085,6 +1078,15 @@
   }
   .resize-none {
     resize: none;
+  }
+  .snap-x {
+    scroll-snap-type: x var(--tw-scroll-snap-strictness);
+  }
+  .snap-mandatory {
+    --tw-scroll-snap-strictness: mandatory;
+  }
+  .snap-start {
+    scroll-snap-align: start;
   }
   .scroll-my-1 {
     scroll-margin-block: calc(var(--spacing) * 1);
@@ -1498,12 +1500,6 @@
   .bg-\[\#38bdf8\] {
     background-color: #38bdf8;
   }
-  .bg-\[\#1877F2\] {
-    background-color: #1877F2;
-  }
-  .bg-\[\#1877F2\]\/10 {
-    background-color: color-mix(in oklab, #1877F2 10%, transparent);
-  }
   .bg-\[\#E6F2FF\] {
     background-color: #E6F2FF;
   }
@@ -1512,9 +1508,6 @@
   }
   .bg-\[\#E9F4FF\] {
     background-color: #E9F4FF;
-  }
-  .bg-\[\#E1306C\]\/10 {
-    background-color: color-mix(in oklab, #E1306C 10%, transparent);
   }
   .bg-\[\#F3F7FA\] {
     background-color: #F3F7FA;
@@ -1533,9 +1526,6 @@
   }
   .bg-\[\#FF0000\] {
     background-color: #FF0000;
-  }
-  .bg-\[\#FF0000\]\/10 {
-    background-color: color-mix(in oklab, #FF0000 10%, transparent);
   }
   .bg-\[\#FFB703\] {
     background-color: #FFB703;
@@ -2130,9 +2120,6 @@
   .text-\[\#003D52\]\/70 {
     color: color-mix(in oklab, #003D52 70%, transparent);
   }
-  .text-\[\#1877F2\] {
-    color: #1877F2;
-  }
   .text-\[\#25324B\] {
     color: #25324B;
   }
@@ -2141,12 +2128,6 @@
   }
   .text-\[\#E0F7F8\] {
     color: #E0F7F8;
-  }
-  .text-\[\#E1306C\] {
-    color: #E1306C;
-  }
-  .text-\[\#FF0000\] {
-    color: #FF0000;
   }
   .text-\[\#FFB703\] {
     color: #FFB703;
@@ -4696,6 +4677,11 @@
       height: 280px;
     }
   }
+  .sm\:w-\[155px\] {
+    @media (width >= 40rem) {
+      width: 155px;
+    }
+  }
   .sm\:w-\[280px\] {
     @media (width >= 40rem) {
       width: 280px;
@@ -4831,11 +4817,6 @@
       display: none;
     }
   }
-  .md\:inline-flex {
-    @media (width >= 48rem) {
-      display: inline-flex;
-    }
-  }
   .md\:aspect-auto {
     @media (width >= 48rem) {
       aspect-ratio: auto;
@@ -4884,6 +4865,11 @@
   .md\:w-16 {
     @media (width >= 48rem) {
       width: calc(var(--spacing) * 16);
+    }
+  }
+  .md\:w-\[165px\] {
+    @media (width >= 48rem) {
+      width: 165px;
     }
   }
   .md\:w-\[var\(--radix-navigation-menu-viewport-width\)\] {
@@ -4959,6 +4945,15 @@
   .md\:gap-8 {
     @media (width >= 48rem) {
       gap: calc(var(--spacing) * 8);
+    }
+  }
+  .md\:space-y-8 {
+    @media (width >= 48rem) {
+      :where(& > :not(:last-child)) {
+        --tw-space-y-reverse: 0;
+        margin-block-start: calc(calc(var(--spacing) * 8) * var(--tw-space-y-reverse));
+        margin-block-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse)));
+      }
     }
   }
   .md\:rounded-\[22px\] {
@@ -5172,6 +5167,11 @@
   .lg\:flex-1 {
     @media (width >= 64rem) {
       flex: 1;
+    }
+  }
+  .lg\:grid-cols-1 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
     }
   }
   .lg\:grid-cols-3 {
@@ -6418,6 +6418,11 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-scroll-snap-strictness {
+  syntax: "*";
+  inherits: false;
+  initial-value: proximity;
+}
 @property --tw-space-y-reverse {
   syntax: "*";
   inherits: false;
@@ -6748,6 +6753,7 @@
       --tw-rotate-z: initial;
       --tw-skew-x: initial;
       --tw-skew-y: initial;
+      --tw-scroll-snap-strictness: proximity;
       --tw-space-y-reverse: 0;
       --tw-border-style: solid;
       --tw-gradient-position: initial;
