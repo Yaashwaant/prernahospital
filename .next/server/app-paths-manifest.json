@@ -1,7 +1,10 @@
 {
-  "/api/hero-slides/route": "app/api/hero-slides/route.js",
-  "/api/updates/route": "app/api/updates/route.js",
-  "/api/facility-slides/route": "app/api/facility-slides/route.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/doctors/[slug]/page": "app/doctors/[slug]/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/about/page": "app/about/page.js",
+  "/privacy/page": "app/privacy/page.js"
 }

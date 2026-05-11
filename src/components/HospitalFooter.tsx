@@ -47,16 +47,19 @@ export default function HospitalFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}>
-            <h5 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Quick Links</h5>
+            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Quick Links</h3>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="#about" className="hover:text-[#5D2CB3] transition-colors">About Us</Link>
+                <Link href="/about" className="hover:text-[#1F4FD8] transition-colors">About Us</Link>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="#team" className="hover:text-[#5D2CB3] transition-colors">Our Doctors</Link>
+                <Link href="/#team" className="hover:text-[#1F4FD8] transition-colors">Our Doctors</Link>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="#contact" className="hover:text-[#5D2CB3] transition-colors">Contact</Link>
+                <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">Contact</Link>
+              </motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">Privacy Policy</Link>
               </motion.li>
             </ul>
           </motion.div>
@@ -66,20 +69,23 @@ export default function HospitalFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}>
-            <h5 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Support</h5>
+            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Support</h3>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="#contact" className="hover:text-[#5D2CB3] transition-colors">Contact Us</Link>
+                <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">Contact Us</Link>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <a href={`tel:${SOCIAL.emergencyHelpline}`} className="hover:text-[#5D2CB3] transition-colors">
+                <a href={`tel:${SOCIAL.emergencyHelpline}`} className="hover:text-[#1F4FD8] transition-colors">
                   Emergency Helpline ({SOCIAL.opdTimings ? "24/7" : "Call Now"})
                 </a>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <a href={SOCIAL.googleMaps} target="_blank" rel="noopener noreferrer" className="hover:text-[#5D2CB3] transition-colors">
+                <a href={SOCIAL.googleMaps} target="_blank" rel="noopener noreferrer" className="hover:text-[#1F4FD8] transition-colors">
                   Directions (Google Maps)
                 </a>
+              </motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
+                <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">Privacy Policy</Link>
               </motion.li>
             </ul>
           </motion.div>
@@ -89,7 +95,7 @@ export default function HospitalFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}>
-            <h5 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Contact Info</h5>
+            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Contact Info</h3>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
               <motion.li 
                 className="flex items-center gap-2"
@@ -151,9 +157,16 @@ export default function HospitalFooter() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}>
-          <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">
             © 2026 Prerna Hospital. All rights reserved.
           </p>
+          <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-500">
+            <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">Privacy Policy</Link>
+            <span>·</span>
+            <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">Contact</Link>
+            <span>·</span>
+            <Link href="/about" className="hover:text-[#1F4FD8] transition-colors">About</Link>
+          </div>
         </motion.div>
       </div>
     </footer>

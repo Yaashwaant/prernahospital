@@ -91,39 +91,47 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
             role="img"
             aria-hidden="false"
           >
-            <Image src={service.image} alt={service.title} fill className="object-contain" />
+            <Image src={service.image} alt={service.title} fill className="object-contain" priority={index === 0} />
           </motion.div>
-          <h4 className="text-[15px] md:text-[16px] font-semibold leading-snug text-[#1F4FD8]">
+          <h3 className="text-[15px] md:text-[16px] font-semibold leading-snug text-[#1F4FD8]">
             {service.title}
-          </h4>
+          </h3>
         </div>
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls={`svc-desc-${index}`}
+          aria-label={open ? `Collapse ${service.title} details` : `Expand ${service.title} details`}
           className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#1F4FD8]/40 text-[#1F4FD8] hover:bg-[#F4F7FB] transition"
         >
           <motion.span animate={{ rotate: open ? 180 : 0 }}>
-            <ChevronDown className="h-5 w-5" />
+            <ChevronDown className="h-5 w-5" aria-hidden="true" />
           </motion.span>
         </button>
       </div>
 
-      <AnimatePresence initial={false}>
-        {open && service.description && (
-          <motion.div
-            id={`svc-desc-${index}`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="mt-3 text-xs text-gray-600"
-          >
-            {service.description}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Description is always in DOM so aria-describedby is never broken */}
+      <div
+        id={`svc-desc-${index}`}
+        role="region"
+        aria-live="polite"
+        className={open ? undefined : "sr-only"}
+      >
+        <AnimatePresence initial={false}>
+          {open && service.description && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="mt-3 text-xs text-gray-700"
+            >
+              {service.description}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </motion.div>
   );
 });
@@ -141,6 +149,9 @@ export default function ServiceCards() {
   return (
     <section className="relative w-full pt-2 pb-8 px-4 md:px-8">
       <div className="container mx-auto">
+        <div className="mb-6 text-center">
+          <h2 className="text-xl font-bold text-[#1A1A1A] md:text-2xl">Our Medical Specialties</h2>
+        </div>
         <motion.div
           className="mx-auto grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-2"
           initial={{ opacity: 0 }}

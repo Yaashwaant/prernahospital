@@ -128,6 +128,19 @@
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     letter-spacing: -0.1px;
     font-size: 15px;
+    color: #1A1A1A;
+  }
+
+  /* Accessible focus styles — replaces outline:none anti-pattern */
+  :focus-visible {
+    outline: 2.5px solid #1F4FD8;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Ensure interactive elements never hide focus entirely */
+  *:focus:not(:focus-visible) {
+    outline: none;
   }
   
   h1, h2, h3, h4, h5, h6 {

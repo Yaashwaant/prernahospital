@@ -6,10 +6,41 @@ import HospitalUpdatesSection from "@/components/HospitalUpdatesSection";
 import HospitalFooter from "@/components/HospitalFooter";
 import SocialHandlesSection from "@/components/SocialHandlesSection";
 import FloatingChatPrompt from "@/components/FloatingChatPrompt";
+import type { Metadata } from "next";
+
+const BASE_URL = "https://prernahospital.in";
+
+// VideoObject schema for the featured YouTube video — placed in metadata
+// so it renders in <head> not <body>
+const videoJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "जाणून घेऊयात मानवी मेंदू च मनोविकारात महत्व आणि कार्य | Prerna Hospital",
+  description:
+    "Dr. Manik Bhise explains the role of the human brain in mental disorders. Expert psychiatric education from Prerna Hospital, Chhatrapati Sambhajinagar.",
+  thumbnailUrl: `https://img.youtube.com/vi/EP3HsV871Ks/hqdefault.jpg`,
+  uploadDate: "2024-01-01",
+  contentUrl: `https://www.youtube.com/watch?v=EP3HsV871Ks`,
+  embedUrl: `https://www.youtube.com/embed/EP3HsV871Ks`,
+  publisher: {
+    "@type": "Organization",
+    name: "Prerna Hospital LLP",
+    logo: {
+      "@type": "ImageObject",
+      url: `${BASE_URL}/logo.svg`,
+    },
+  },
+};
+
+export const metadata: Metadata = {
+  other: {
+    "application/ld+json-video": JSON.stringify(videoJsonLd),
+  },
+};
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F3F7FA]">
+    <main id="main-content" className="min-h-screen bg-[#F3F7FA]">
       <HospitalHeader />
       <HeroSection />
       <ServiceCards />

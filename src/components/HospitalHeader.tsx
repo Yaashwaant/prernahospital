@@ -15,8 +15,9 @@ const NAV_ITEMS = [
 ] as const;
 
 const MORE_ITEMS = [
-  { id: "contact",   label: "Contact Us",   href: "#contact" },
-  { id: "updates",   label: "Updates",      href: "#updates" },
+  { id: "contact-page", label: "Contact Us",    href: "/contact" },
+  { id: "updates",      label: "Updates",       href: "#updates" },
+  { id: "privacy",      label: "Privacy Policy", href: "/privacy" },
 ] as const;
 
 // ─── Mobile quick-action bar ───────────────────────────────────────────────────

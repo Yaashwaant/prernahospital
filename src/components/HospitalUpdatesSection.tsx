@@ -42,7 +42,7 @@ export default function HospitalUpdatesSection() {
   const hasUpdates = updates.length > 0;
 
   return (
-    <section className="bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16">
+    <section id="updates" className="bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16">
       <div className="container mx-auto px-4 md:px-8">
         <div className="space-y-8">
           <motion.div
@@ -52,9 +52,9 @@ export default function HospitalUpdatesSection() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <h3 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">
+            <h2 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">
               Latest Updates
-            </h3>
+            </h2>
             <p className="text-sm md:text-base text-gray-600 mt-2">
               Stay informed about our latest developments and initiatives
             </p>
@@ -126,7 +126,7 @@ export default function HospitalUpdatesSection() {
           ) : (
             <div className="text-center py-12">
               <p className="text-gray-500 mb-4">No updates available yet.</p>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-500">
                 Visit <a href="/admin/dashboard" className="text-[#1F4FD8] hover:underline">admin dashboard</a> to add updates.
               </p>
               

@@ -4,22 +4,86 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, MapPin, Phone } from "lucide-react";
+import type { Metadata } from "next";
+
+const BASE_URL = "https://prernahospital.in";
 
 interface DoctorPageProps {
-  params: {
+  params: Promise<{
     slug: string;
+  }>;
+}
+
+export async function generateStaticParams() {
+  return DOCTORS.map((doctor) => ({ slug: doctor.slug }));
+}
+
+export async function generateMetadata(
+  { params }: DoctorPageProps
+): Promise<Metadata> {
+  const { slug } = await params;
+  const doctor = getDoctorBySlug(slug);
+  if (!doctor) return {};
+
+  const title = `${doctor.name} – ${doctor.role} | Prerna Hospital`;
+  const description = `${doctor.name} is a ${doctor.role} at Prerna Hospital, Chhatrapati Sambhajinagar. Specialties: ${doctor.specialties.slice(0,2).join(", ")}. Book an appointment today.`.slice(0, 155);
+  const url = `${BASE_URL}/doctors/${doctor.slug}`;
+
+  const physicianJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    name: doctor.name,
+    jobTitle: doctor.role,
+    description: doctor.overview[0] ?? description,
+    image: `${BASE_URL}${doctor.image}`,
+    url,
+    worksFor: {
+      "@type": "Hospital",
+      name: "Prerna Hospital LLP",
+      url: BASE_URL,
+    },
+    medicalSpecialty: doctor.specialties,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Chhatrapati Sambhajinagar",
+      addressRegion: "Maharashtra",
+      addressCountry: "IN",
+    },
+    telephone: "+91-7887888865",
+  };
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "profile",
+      url,
+      title,
+      description,
+      images: [{ url: `${BASE_URL}${doctor.image}`, alt: doctor.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    other: {
+      "application-ld+json": JSON.stringify(physicianJsonLd),
+    },
   };
 }
 
-export default function DoctorPage({ params }: DoctorPageProps) {
-  const doctor = getDoctorBySlug(params.slug);
+export default async function DoctorPage({ params }: DoctorPageProps) {
+  const { slug } = await params;
+  const doctor = getDoctorBySlug(slug);
 
   if (!doctor) {
     notFound();
   }
 
   return (
-    <main className="min-h-screen bg-[#F3F7FA] pb-16">
+    <main id="main-content" className="min-h-screen bg-[#F3F7FA] pb-16">
       <div className="bg-gradient-to-b from-[#003D52] via-[#005A73] to-[#007C88] pb-10 pt-8">
         <div className="container mx-auto px-4 md:px-8">
           <div className="mb-4 flex items-center justify-between">
