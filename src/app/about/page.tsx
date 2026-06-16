@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: "About Prerna Hospital – Our Mission & Doctors",
   description:
     "Prerna Hospital LLP in Chhatrapati Sambhajinagar offers expert neuropsychiatry, de-addiction & mental health care. Meet our specialist doctors.",
-  alternates: { canonical: "https://prernahospital.com/about" },
+  alternates: { canonical: "https://www.prernahospital.com/about" },
   openGraph: {
-    url: "https://prernahospital.com/about",
+    url: "https://www.prernahospital.com/about",
     title: "About Prerna Hospital – Our Mission & Doctors",
     description:
       "Expert neuropsychiatry & mental health care in Chhatrapati Sambhajinagar. Meet our specialist doctors.",
@@ -20,18 +20,18 @@ const aboutJsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "About Prerna Hospital LLP",
-  url: "https://prernahospital.com/about",
+  url: "https://www.prernahospital.com/about",
   datePublished: "2024-01-01",
   dateModified: "2026-05-01",
   author: {
     "@type": "Organization",
     name: "Prerna Hospital LLP",
-    url: "https://prernahospital.com",
+    url: "https://www.prernahospital.com",
   },
   publisher: {
     "@type": "Organization",
     name: "Prerna Hospital LLP",
-    logo: { "@type": "ImageObject", url: "https://prernahospital.com/logo.svg" },
+    logo: { "@type": "ImageObject", url: "https://www.prernahospital.com/logo.svg" },
   },
   description:
     "Prerna Hospital LLP is a premier centre for neuropsychiatry, de-addiction, and mental health care in Chhatrapati Sambhajinagar, Maharashtra.",

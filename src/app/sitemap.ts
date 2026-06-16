@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { DOCTORS } from "@/data/doctors";
 import { createAdminClient } from "@/lib/supabase";
 
-const BASE_URL = process.env.SITE_URL ?? "https://prernahospital.com";
+const BASE_URL = process.env.SITE_URL ?? "https://www.prernahospital.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const doctorPages = DOCTORS.map((doctor) => ({

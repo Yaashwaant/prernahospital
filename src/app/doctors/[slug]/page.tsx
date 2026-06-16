@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, MapPin, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
-const BASE_URL = "https://prernahospital.com";
+const BASE_URL = "https://www.prernahospital.com";
 
 interface DoctorPageProps {
   params: Promise<{

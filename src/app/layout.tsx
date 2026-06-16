@@ -3,7 +3,7 @@ import "./globals.css";
 import DoctorChatbot from "@/components/DoctorChatbot";
 import Providers from "@/components/Providers";
 
-const BASE_URL = "https://prernahospital.com";
+const BASE_URL = "https://www.prernahospital.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

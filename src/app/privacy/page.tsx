@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Privacy Policy – Prerna Hospital LLP",
   description:
     "Read the Privacy Policy of Prerna Hospital LLP. We protect your personal health information per applicable Indian law.",
-  alternates: { canonical: "https://prernahospital.com/privacy" },
+  alternates: { canonical: "https://www.prernahospital.com/privacy" },
   openGraph: {
-    url: "https://prernahospital.com/privacy",
+    url: "https://www.prernahospital.com/privacy",
     title: "Privacy Policy – Prerna Hospital LLP",
     description: "Prerna Hospital LLP privacy policy – how we collect, use, and protect your personal information.",
   },
@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
                 Prerna Hospital LLP (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) is committed to protecting the
                 privacy and confidentiality of your personal and health information. This
                 Privacy Policy describes how we collect, use, store, and disclose information
-                when you interact with our website (prernahospital.com) or avail our services.
+                when you interact with our website (www.prernahospital.com) or avail our services.
               </p>
             </div>
 

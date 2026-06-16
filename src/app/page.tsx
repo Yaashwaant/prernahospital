@@ -8,7 +8,7 @@ import SocialHandlesSection from "@/components/SocialHandlesSection";
 import FloatingChatPrompt from "@/components/FloatingChatPrompt";
 import { createAdminClient } from "@/lib/supabase";
 
-const BASE_URL = "https://prernahospital.com";
+const BASE_URL = "https://www.prernahospital.com";
 
 // VideoObject schema for the featured YouTube video — placed in metadata
 // so it renders in <head> not <body>
