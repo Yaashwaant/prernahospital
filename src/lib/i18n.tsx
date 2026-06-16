@@ -50,6 +50,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   // Hydrate from localStorage on mount
   useEffect(() => {
+    // Disabled to ensure the website always opens in English by default on fresh load.
+    // If you wish to remember language choices across page refreshes, uncomment the logic below:
+    /*
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as Locale | null;
       if (stored && stored in TRANSLATIONS) {
@@ -58,6 +61,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     } catch {
       // SSR or localStorage not available
     }
+    */
   }, []);
 
   // Persist to localStorage + update <html lang="">
