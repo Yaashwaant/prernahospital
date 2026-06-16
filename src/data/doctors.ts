@@ -3,7 +3,7 @@ export interface Doctor {
   name: string;
   role: string;
   title: string;
-  specialties: string[];
+  Specialities: string[];
 
   // ── Chatbot routing fields ─────────────────────────────────────────────────
   /** Symptom / condition keywords that should route to this doctor */
@@ -37,7 +37,7 @@ export const DOCTORS: Doctor[] = [
     name: "Dr. Ashish Mohide",
     role: "Consultant Neuropsychiatrist",
     title: "De-addiction Specialist",
-    specialties: ["Neuropsychiatry", "De-addiction"],
+    Specialities: ["Neuropsychiatry", "De-addiction"],
 
     // ── Chatbot routing ──────────────────────────────────────────────────────
     keywords: [
@@ -109,7 +109,7 @@ export const DOCTORS: Doctor[] = [
     name: "Dr. Manik C. Bhise",
     role: "Consultant Neuropsychiatrist",
     title: "Director – Prerna Hospital LLP",
-    specialties: ["De-addiction", "Sexology", "Neuropsychiatry"],
+    Specialities: ["De-addiction", "Sexology", "Neuropsychiatry"],
 
     // ── Chatbot routing ──────────────────────────────────────────────────────
     keywords: [
@@ -183,7 +183,7 @@ export const DOCTORS: Doctor[] = [
     name: "Dr. Sadeq Qureshi",
     role: "Consultant Neuropsychiatrist",
     title: "Child and Adolescent Psychiatrist",
-    specialties: ["De-addiction", "Child and Adolescent Psychiatry"],
+    Specialities: ["De-addiction", "Child and Adolescent Psychiatry"],
 
     // ── Chatbot routing ──────────────────────────────────────────────────────
     keywords: [
@@ -257,7 +257,7 @@ export const DOCTORS: Doctor[] = [
     name: "Dr. Anuradha Patil",
     role: "Consultant Pathologist",
     title: "Specialist in Histopathology & Cytopathology",
-    specialties: ["Histopathology", "Cytopathology", "Hemato-oncology"],
+    Specialities: ["Histopathology", "Cytopathology", "Hemato-oncology"],
 
     // ── Chatbot routing ──────────────────────────────────────────────────────
     keywords: [

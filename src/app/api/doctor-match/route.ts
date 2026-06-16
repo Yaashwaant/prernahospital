@@ -5,7 +5,7 @@ import { DOCTORS } from "@/data/doctors";
 function buildDoctorContext() {
   return DOCTORS.map((d) =>
     `DOCTOR: ${d.name} (${d.qualifications})
-Role: ${d.role} | Specialties: ${d.specialties.join(", ")}
+Role: ${d.role} | Specialities: ${d.Specialities.join(", ")}
 Treats: ${d.treatsConditions.join("; ")}
 Age groups seen: ${d.ageGroups.join(", ")}
 Profile: ${d.chatbotProfile}`
@@ -112,7 +112,7 @@ export async function POST(req: Request) {
 
   // Fallback if Groq key not configured
   if (!process.env.GROQ_API_KEY) {
-    const names = DOCTORS.map((d) => `${d.name} (${d.specialties[0]})`).join(", ");
+    const names = DOCTORS.map((d) => `${d.name} (${d.Specialities[0]})`).join(", ");
     return NextResponse.json({
       suggestion: `Our team of psychiatrists — ${names} — are here to help. Please call us to book an appointment.`,
     });
@@ -145,7 +145,7 @@ export async function POST(req: Request) {
     throw new Error("Empty AI response");
 
   } catch {
-    const names = DOCTORS.map((d) => `${d.name} (${d.specialties[0]})`).join(", ");
+    const names = DOCTORS.map((d) => `${d.name} (${d.Specialities[0]})`).join(", ");
     return NextResponse.json({
       suggestion: `Our team — ${names} — are ready to help with your concern. Please call us to book an appointment.`,
     });

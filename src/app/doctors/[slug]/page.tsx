@@ -26,7 +26,7 @@ export async function generateMetadata(
   if (!doctor) return {};
 
   const title = `${doctor.name} – ${doctor.role} | Prerna Hospital`;
-  const description = `${doctor.name} is a ${doctor.role} at Prerna Hospital, Chhatrapati Sambhajinagar. Specialties: ${doctor.specialties.slice(0,2).join(", ")}. Book an appointment today.`.slice(0, 155);
+  const description = `${doctor.name} is a ${doctor.role} at Prerna Hospital, Chhatrapati Sambhajinagar. Specialities: ${doctor.Specialities.slice(0, 2).join(", ")}. Book an appointment today.`.slice(0, 155);
   const url = `${BASE_URL}/doctors/${doctor.slug}`;
 
   const physicianJsonLd = {
@@ -42,7 +42,7 @@ export async function generateMetadata(
       name: "Prerna Hospital LLP",
       url: BASE_URL,
     },
-    medicalSpecialty: doctor.specialties,
+    medicalSpecialty: doctor.Specialities,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Chhatrapati Sambhajinagar",
@@ -84,7 +84,7 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
     "@type": "Physician",
     name: doctor.name,
     jobTitle: doctor.role,
-    description: doctor.overview[0] ?? `${doctor.name} is a ${doctor.role} at Prerna Hospital, Chhatrapati Sambhajinagar. Specialties: ${doctor.specialties.slice(0, 2).join(", ")}.`,
+    description: doctor.overview[0] ?? `${doctor.name} is a ${doctor.role} at Prerna Hospital, Chhatrapati Sambhajinagar. Specialities: ${doctor.Specialities.slice(0, 2).join(", ")}.`,
     image: `${BASE_URL}${doctor.image}`,
     url: `${BASE_URL}/doctors/${doctor.slug}`,
     worksFor: {
@@ -92,7 +92,7 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
       name: "Prerna Hospital LLP",
       url: BASE_URL,
     },
-    medicalSpecialty: doctor.specialties,
+    medicalSpecialty: doctor.Specialities,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Chhatrapati Sambhajinagar",
@@ -138,7 +138,9 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
 
                 <div className="flex flex-col gap-3 px-5 py-6 md:px-7 md:py-7">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#00C4CF]">
-                    Consultant Psychiatrist
+                    {doctor.slug === "anuradha-patil"
+                      ? "Consultant Pathologist"
+                      : "Consultant Psychiatrist"}
                   </p>
                   <h1 className="text-xl md:text-2xl font-bold tracking-tight text-[#003D52]">
                     {doctor.name.toUpperCase()}
@@ -173,10 +175,10 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
 
             <div className="flex flex-col gap-4 rounded-3xl bg-white/10 p-4 text-sm text-white md:p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#E0F7F8]">
-                Key Specialties
+                Key Specialities
               </p>
               <ul className="space-y-2 text-sm">
-                {doctor.specialties.map((item) => (
+                {doctor.Specialities.map((item) => (
                   <li
                     key={item}
                     className="rounded-xl bg-white/10 px-3 py-2 text-sm backdrop-blur"

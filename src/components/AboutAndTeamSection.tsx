@@ -139,7 +139,7 @@ const teamMembers: TeamMember[] = DOCTORS.map((doctor) => ({
   name: doctor.name,
   role: doctor.role,
   title: doctor.title,
-  specialty: doctor.specialties.join(" • "),
+  specialty: doctor.Specialities.join(" • "),
   image: doctor.image
 }));
 
@@ -395,9 +395,9 @@ export default function AboutAndTeamSection() {
                       <p className="mt-1 text-sm text-[#25324B]">
                         {doctor.role}
                       </p>
-                      {doctor.specialties.length > 0 && (
+                      {doctor.Specialities.length > 0 && (
                         <p className="mt-1 text-[11px] font-semibold tracking-[0.14em] text-[#1F4FD8] uppercase">
-                          {doctor.specialties.join(" • ")}
+                          {doctor.Specialities.join(" • ")}
                         </p>
                       )}
                       <div className="mt-3">

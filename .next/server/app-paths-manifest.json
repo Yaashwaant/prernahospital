@@ -1,25 +1,8 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/doctor-match/route": "app/api/doctor-match/route.js",
-  "/api/facility-slides/[id]/route": "app/api/facility-slides/[id]/route.js",
-  "/api/facility-slides/route": "app/api/facility-slides/route.js",
-  "/api/hero-slides/[id]/route": "app/api/hero-slides/[id]/route.js",
-  "/api/updates/route": "app/api/updates/route.js",
-  "/api/updates/[id]/route": "app/api/updates/[id]/route.js",
   "/api/hero-slides/route": "app/api/hero-slides/route.js",
-  "/api/updates/upload/route": "app/api/updates/upload/route.js",
-  "/robots.txt/route": "app/robots.txt/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/api/facility-slides/route": "app/api/facility-slides/route.js",
+  "/api/updates/route": "app/api/updates/route.js",
   "/page": "app/page.js",
-  "/updates/[id]/page": "app/updates/[id]/page.js",
-  "/about/page": "app/about/page.js",
   "/contact/page": "app/contact/page.js",
-  "/privacy/page": "app/privacy/page.js",
-  "/doctors/[slug]/page": "app/doctors/[slug]/page.js",
-  "/admin/facilities-slider/page": "app/admin/facilities-slider/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/login/page": "app/admin/login/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/hero-slider/page": "app/admin/hero-slider/page.js"
+  "/doctors/[slug]/page": "app/doctors/[slug]/page.js"
 }

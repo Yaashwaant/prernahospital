@@ -26,7 +26,7 @@ const en = {
 
   // ── Service Cards ──────────────────────────────────────────────────────────
   services: {
-    heading: "Our Medical Specialties",
+    heading: "Our Medical Specialities",
     neuropsychiatry: {
       title: "Neuropsychiatry",
       description:

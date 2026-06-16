@@ -123,7 +123,7 @@ The chatbot must:
 - Always show a “Call to book” button
 
 ### Doctors for Chatbot (exactly 4)
-Provide the exact 4 doctors and their matching specialties.
+Provide the exact 4 doctors and their matching Specialities.
 
 | Doctor Name | Specialty Focus (psychiatry) | Typical Symptoms/Keywords to route to this doctor (10–30 words) |
 |---|---|---|
