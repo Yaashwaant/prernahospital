@@ -937,6 +937,15 @@
   .min-w-\[12rem\] {
     min-width: 12rem;
   }
+  .min-w-\[18px\] {
+    min-width: 18px;
+  }
+  .min-w-\[20px\] {
+    min-width: 20px;
+  }
+  .min-w-\[130px\] {
+    min-width: 130px;
+  }
   .min-w-\[160px\] {
     min-width: 160px;
   }
@@ -1115,6 +1124,9 @@
   }
   .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
   .grid-cols-\[0_1fr\] {
     grid-template-columns: 0 1fr;
@@ -1429,6 +1441,9 @@
   .border-\[\#1F4FD8\]\/20 {
     border-color: color-mix(in oklab, #1F4FD8 20%, transparent);
   }
+  .border-\[\#1F4FD8\]\/30 {
+    border-color: color-mix(in oklab, #1F4FD8 30%, transparent);
+  }
   .border-\[\#1F4FD8\]\/40 {
     border-color: color-mix(in oklab, #1F4FD8 40%, transparent);
   }
@@ -1512,6 +1527,9 @@
   }
   .bg-\[\#E9F4FF\] {
     background-color: #E9F4FF;
+  }
+  .bg-\[\#EAF1FF\] {
+    background-color: #EAF1FF;
   }
   .bg-\[\#F3F7FA\] {
     background-color: #F3F7FA;
@@ -3039,6 +3057,14 @@
       border-bottom-width: 0px;
     }
   }
+  .hover\:-translate-y-1\.5 {
+    &:hover {
+      @media (hover: hover) {
+        --tw-translate-y: calc(var(--spacing) * -1.5);
+        translate: var(--tw-translate-x) var(--tw-translate-y);
+      }
+    }
+  }
   .hover\:scale-110 {
     &:hover {
       @media (hover: hover) {
@@ -3053,6 +3079,13 @@
     &:hover {
       @media (hover: hover) {
         border-color: #1F4FD8;
+      }
+    }
+  }
+  .hover\:border-\[\#1F4FD8\]\/20 {
+    &:hover {
+      @media (hover: hover) {
+        border-color: color-mix(in oklab, #1F4FD8 20%, transparent);
       }
     }
   }
