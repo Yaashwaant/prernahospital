@@ -85,9 +85,10 @@ const hospitalJsonLd = {
     "Prerna Hospital LLP provides advanced neuropsychiatry, de-addiction, child psychiatry, psychological therapy and pathology services in Chhatrapati Sambhajinagar, Maharashtra, India.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Prerna Hospital LLP",
+    streetAddress: "G47, Town Center N-6, Connaught Place, Near Ganesh Temple & Varsha Palace Hotel, CIDCO",
     addressLocality: "Chhatrapati Sambhajinagar",
     addressRegion: "Maharashtra",
+    postalCode: "431003",
     addressCountry: "IN",
   },
   telephone: "+91-7887888865",

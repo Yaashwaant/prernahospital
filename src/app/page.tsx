@@ -6,7 +6,6 @@ import HospitalUpdatesSection from "@/components/HospitalUpdatesSection";
 import HospitalFooter from "@/components/HospitalFooter";
 import SocialHandlesSection from "@/components/SocialHandlesSection";
 import FloatingChatPrompt from "@/components/FloatingChatPrompt";
-import type { Metadata } from "next";
 
 const BASE_URL = "https://prernahospital.in";
 
@@ -32,15 +31,13 @@ const videoJsonLd = {
   },
 };
 
-export const metadata: Metadata = {
-  other: {
-    "application/ld+json-video": JSON.stringify(videoJsonLd),
-  },
-};
-
 export default function Home() {
   return (
     <main id="main-content" className="min-h-screen bg-[#F3F7FA]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
+      />
       <HospitalHeader />
       <HeroSection />
       <ServiceCards />

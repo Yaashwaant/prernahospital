@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase";
+import type { Metadata } from "next";
 
 async function getUpdate(id: string) {
   const admin = createAdminClient();
@@ -9,8 +10,47 @@ async function getUpdate(id: string) {
   return data ?? null;
 }
 
-export default async function UpdateDetailPage({ params }: { params: { id: string } }) {
-  const update = await getUpdate(params.id);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const update = await getUpdate(id);
+  if (!update) return {};
+
+  const title = `${update.title} | Updates | Prerna Hospital`;
+  const description = (update.description || "Hospital updates, news, and mental health announcements from Prerna Hospital in Chhatrapati Sambhajinagar.").slice(0, 155);
+  const url = `https://prernahospital.in/updates/${id}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title,
+      description,
+      images: update.image ? [{ url: update.image, alt: update.title }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: update.image ? [update.image] : [],
+    },
+  };
+}
+
+export default async function UpdateDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const update = await getUpdate(id);
+
   if (!update) {
     return (
       <main className="min-h-screen bg-[#F3F7FA] flex items-center justify-center p-8">
@@ -25,8 +65,33 @@ export default async function UpdateDetailPage({ params }: { params: { id: strin
 
   const dateStr = update.date ? new Date(update.date).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) : "";
 
+  const newsArticleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: update.title,
+    image: update.image ? [update.image] : [],
+    datePublished: update.date || new Date().toISOString(),
+    author: {
+      "@type": "Organization",
+      name: "Prerna Hospital LLP",
+      url: "https://prernahospital.in",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Prerna Hospital LLP",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://prernahospital.in/logo.svg",
+      },
+    },
+  };
+
   return (
     <main className="min-h-screen bg-[#F3F7FA]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleJsonLd) }}
+      />
       <div className="bg-gradient-to-b from-[#003D52] via-[#005A73] to-[#007C88] pb-10 pt-8">
         <div className="container mx-auto px-4 md:px-8">
           <div className="mb-6 flex items-center justify-between">

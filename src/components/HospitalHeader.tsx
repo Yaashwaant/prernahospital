@@ -12,13 +12,13 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 // ─── Nav config (translation keys mapped per item) ────────────────────────────
 const NAV_ITEMS = [
   { id: "home",       tKey: "header.home",           href: "/" },
-  { id: "facilities", tKey: "header.ourFacilities",   href: "#about" },
-  { id: "our-team",   tKey: "header.ourTeam",         href: "#team" },
+  { id: "facilities", tKey: "header.ourFacilities",   href: "/#about" },
+  { id: "our-team",   tKey: "header.ourTeam",         href: "/#team" },
 ] as const;
 
 const MORE_ITEMS = [
   { id: "contact-page", tKey: "header.contactUs",     href: "/contact" },
-  { id: "updates",      tKey: "header.updates",       href: "#updates" },
+  { id: "updates",      tKey: "header.updates",       href: "/#updates" },
   { id: "privacy",      tKey: "header.privacyPolicy", href: "/privacy" },
 ] as const;
 

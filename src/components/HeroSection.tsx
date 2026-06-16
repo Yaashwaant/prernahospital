@@ -104,7 +104,6 @@ export default function HeroSection() {
                         fill
                         className="object-cover"
                         priority
-                        unoptimized
                       />
                     </motion.div>
                   </AnimatePresence>

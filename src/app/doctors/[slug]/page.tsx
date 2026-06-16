@@ -68,9 +68,6 @@ export async function generateMetadata(
       title,
       description,
     },
-    other: {
-      "application-ld+json": JSON.stringify(physicianJsonLd),
-    },
   };
 }
 
@@ -82,8 +79,35 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
     notFound();
   }
 
+  const physicianJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    name: doctor.name,
+    jobTitle: doctor.role,
+    description: doctor.overview[0] ?? `${doctor.name} is a ${doctor.role} at Prerna Hospital, Chhatrapati Sambhajinagar. Specialties: ${doctor.specialties.slice(0, 2).join(", ")}.`,
+    image: `${BASE_URL}${doctor.image}`,
+    url: `${BASE_URL}/doctors/${doctor.slug}`,
+    worksFor: {
+      "@type": "Hospital",
+      name: "Prerna Hospital LLP",
+      url: BASE_URL,
+    },
+    medicalSpecialty: doctor.specialties,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Chhatrapati Sambhajinagar",
+      addressRegion: "Maharashtra",
+      addressCountry: "IN",
+    },
+    telephone: "+91-7887888865",
+  };
+
   return (
     <main id="main-content" className="min-h-screen bg-[#F3F7FA] pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(physicianJsonLd) }}
+      />
       <div className="bg-gradient-to-b from-[#003D52] via-[#005A73] to-[#007C88] pb-10 pt-8">
         <div className="container mx-auto px-4 md:px-8">
           <div className="mb-4 flex items-center justify-between">
