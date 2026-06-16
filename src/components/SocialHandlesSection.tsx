@@ -6,6 +6,7 @@ import { Phone, Clock, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SOCIAL } from "@/data/social";
+import { useLanguage } from "@/lib/i18n";
 
 const MORE_VIDEOS = [
   { id: "wdgzvHS_kVA", title: "स्किझोफ्रेनिया विषयी माहिती | Schizophrenia" },
@@ -19,6 +20,7 @@ const MORE_VIDEOS = [
 ];
 
 export default function SocialHandlesSection() {
+  const { t } = useLanguage();
   return (
     <section className="py-12 md:py-16 overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 max-w-full">
@@ -31,14 +33,13 @@ export default function SocialHandlesSection() {
         >
           <div className="text-center space-y-2">
             <span className="inline-flex rounded-full bg-[#E6F2FF] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1F4FD8]">
-              Our Social Handles
+              {t("social.badge")}
             </span>
             <h2 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">
-              Stay connected with Prerna Hospital
+              {t("social.heading")}
             </h2>
             <p className="text-xs md:text-sm text-gray-600 max-w-2xl mx-auto">
-              Watch expert talks, follow our updates and explore life at Prerna
-              Hospital across platforms.
+              {t("social.subtitle")}
             </p>
           </div>
 
@@ -57,10 +58,10 @@ export default function SocialHandlesSection() {
                   </div>
                   <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#1F4FD8] truncate">
-                      Featured YouTube Video
+                      {t("social.youtube.featured")}
                     </span>
                     <span className="text-sm font-semibold text-[#1A1A1A] truncate">
-                      Latest from our YouTube channel
+                      {t("social.youtube.latest")}
                     </span>
                   </div>
                 </div>
@@ -70,12 +71,12 @@ export default function SocialHandlesSection() {
                   rel="noopener noreferrer"
                   className="hidden md:inline-flex flex-shrink-0 items-center rounded-full bg-[#FF0000] px-4 py-1.5 text-[11px] font-semibold text-white shadow-sm hover:bg-[#e00000] transition-colors"
                 >
-                  Visit YouTube Channel
+                  {t("social.youtube.visitChannel")}
                 </Link>
               </div>
 
               <p className="text-xs text-gray-600 w-full break-words">
-                Talks, patient education videos and expert sessions to help you understand mental health and treatment better.
+                {t("social.youtube.talks")}
               </p>
 
               <div className="relative mt-2 w-full max-w-full overflow-hidden rounded-2xl bg-black aspect-video">
@@ -110,8 +111,8 @@ export default function SocialHandlesSection() {
                       <div className="flex h-16 w-16 items-center justify-center rounded-full overflow-hidden shadow-lg transition-transform group-hover:scale-105">
                         <Image src="/Youtube_logo.avif" alt="YouTube" width={64} height={64} className="object-contain" unoptimized />
                       </div>
-                      <p className="text-sm md:text-base font-semibold">Open our YouTube channel</p>
-                      <span className="text-[11px] text-white/80">Click to view latest uploads</span>
+                      <p className="text-sm md:text-base font-semibold">{t("social.youtube.openChannel")}</p>
+                      <span className="text-[11px] text-white/80">{t("social.youtube.clickToView")}</span>
                     </div>
                   </Link>
                 )}
@@ -119,7 +120,7 @@ export default function SocialHandlesSection() {
 
               {/* ── More Videos strip ── */}
               <div className="mt-2 space-y-2 min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1F4FD8]">More Videos</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1F4FD8]">{t("social.youtube.moreVideos")}</p>
                 <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin -mx-1 px-1">
                   {MORE_VIDEOS.map((v) => (
                     <a
@@ -166,7 +167,7 @@ export default function SocialHandlesSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center rounded-full bg-[#FF0000] px-4 py-1.5 text-[11px] font-semibold text-white shadow-sm hover:bg-[#e00000] transition-colors"
                 >
-                  Visit YouTube Channel
+                  {t("social.youtube.visitChannel")}
                 </Link>
               </div>
             </motion.div>
@@ -185,8 +186,8 @@ export default function SocialHandlesSection() {
                     <Image src="/Facebook_logo.avif" alt="Facebook" width={32} height={32} className="object-contain" unoptimized />
                   </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-semibold text-[#1A1A1A]">Facebook</span>
-                    <span className="text-[11px] text-[#1F4FD8]">Community stories and photos</span>
+                    <span className="text-xs font-semibold text-[#1A1A1A]">{t("social.facebook.title")}</span>
+                    <span className="text-[11px] text-[#1F4FD8]">{t("social.facebook.subtitle")}</span>
                   </div>
                 </div>
 
@@ -203,8 +204,8 @@ export default function SocialHandlesSection() {
                         <Image src="/Facebook_logo.avif" alt="Facebook" width={40} height={40} className="object-contain" unoptimized />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-[#1A1A1A]">Open our Facebook page</p>
-                        <p className="text-[11px] text-gray-600">Tap to view recent posts</p>
+                        <p className="text-sm font-semibold text-[#1A1A1A]">{t("social.facebook.openPage")}</p>
+                        <p className="text-[11px] text-gray-600">{t("social.facebook.tapToView")}</p>
                       </div>
                     </div>
                   </Link>
@@ -231,7 +232,7 @@ export default function SocialHandlesSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-[11px] font-semibold text-[#1877F2] hover:text-[#1F4FD8] transition-colors"
                 >
-                  Visit Facebook <span className="ml-1">↗</span>
+                  {t("social.facebook.visitFacebook")} <span className="ml-1">↗</span>
                 </Link>
               </div>
 
@@ -242,8 +243,8 @@ export default function SocialHandlesSection() {
                     <Image src="/Instagram_logo.avif" alt="Instagram" width={32} height={32} className="object-contain" unoptimized />
                   </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-semibold text-[#1A1A1A]">Instagram</span>
-                    <span className="text-[11px] text-[#1F4FD8]">Photo highlights from our campus</span>
+                    <span className="text-xs font-semibold text-[#1A1A1A]">{t("social.instagram.title")}</span>
+                    <span className="text-[11px] text-[#1F4FD8]">{t("social.instagram.subtitle")}</span>
                   </div>
                 </div>
 
@@ -263,14 +264,14 @@ export default function SocialHandlesSection() {
                 </div>
 
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-[11px] text-gray-500">Scroll inside to explore</p>
+                  <p className="text-[11px] text-gray-500">{t("social.instagram.scrollExplore")}</p>
                   <Link
                     href={SOCIAL.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF] px-3.5 py-1.5 text-[11px] font-semibold text-white shadow-sm hover:opacity-90 transition-opacity"
                   >
-                    View Profile ↗
+                    {t("social.instagram.viewProfile")}
                   </Link>
                 </div>
               </div>

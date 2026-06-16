@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "@/lib/i18n";
 
 interface Update {
   id: string;
@@ -15,6 +16,7 @@ interface Update {
 
 export default function HospitalUpdatesSection() {
   const [updates, setUpdates] = useState<Update[]>([]);
+  const { t } = useLanguage();
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString(undefined, {
       year: "numeric",
@@ -53,10 +55,10 @@ export default function HospitalUpdatesSection() {
             className="text-center"
           >
             <h2 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">
-              Latest Updates
+              {t("updates.heading")}
             </h2>
             <p className="text-sm md:text-base text-gray-600 mt-2">
-              Stay informed about our latest developments and initiatives
+              {t("updates.subtitle")}
             </p>
           </motion.div>
 
@@ -95,14 +97,14 @@ export default function HospitalUpdatesSection() {
                           <div className="flex items-center gap-3 text-[#003D52]/70">
                             <ImageIcon className="h-6 w-6" />
                             <span className="text-sm font-medium">
-                              No image provided
+                              {t("updates.noImage")}
                             </span>
                           </div>
                         </div>
                       )}
                       <div className="absolute top-2 right-2 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm ring-1 ring-gray-200">
                         <span className="text-[11px] font-semibold text-[#003D52]">
-                          {update.date?.trim() ? formatDate(update.date) : "Date TBA"}
+                          {update.date?.trim() ? formatDate(update.date) : t("updates.dateTBA")}
                         </span>
                       </div>
                     </div>
@@ -117,7 +119,7 @@ export default function HospitalUpdatesSection() {
                         overflow: "hidden"
                       }}
                     >
-                      {update.title?.trim() ? update.title : "Hospital Update"}
+                      {update.title?.trim() ? update.title : t("updates.defaultTitle")}
                     </h4>
                   </div>
                 </motion.a>
@@ -125,9 +127,9 @@ export default function HospitalUpdatesSection() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500 mb-4">No updates available yet.</p>
+              <p className="text-gray-500 mb-4">{t("updates.emptyState")}</p>
               <p className="text-sm text-gray-500">
-                Visit <a href="/admin/dashboard" className="text-[#1F4FD8] hover:underline">admin dashboard</a> to add updates.
+                {t("updates.emptyStateAdmin")}
               </p>
               
             </div>

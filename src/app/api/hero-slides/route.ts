@@ -15,14 +15,27 @@ export async function GET() {
   return NextResponse.json({ slides: data || [] });
 }
 
+import { heroSlidePostSchema, reorderSchema } from "@/lib/validation";
+
 // POST /api/hero-slides — add a new slide
 export async function POST(req: Request) {
   const admin = createAdminClient();
   if (!admin) return NextResponse.json({ ok: false, error: "Supabase not configured" }, { status: 500 });
 
-  const body = await req.json();
-  const { src, alt } = body;
-  if (!src) return NextResponse.json({ ok: false, error: "src is required" }, { status: 400 });
+  let src: string;
+  let alt: string;
+
+  try {
+    const body = await req.json();
+    const result = heroSlidePostSchema.safeParse(body);
+    if (!result.success) {
+      return NextResponse.json({ ok: false, error: result.error.errors[0]?.message || "Invalid input data" }, { status: 400 });
+    }
+    src = result.data.src;
+    alt = result.data.alt || "Hospital photo";
+  } catch {
+    return NextResponse.json({ ok: false, error: "Invalid JSON body" }, { status: 400 });
+  }
 
   // Determine next order_index
   const { data: existing } = await admin.from("hero_slides").select("order_index").order("order_index", { ascending: false }).limit(1);
@@ -30,7 +43,7 @@ export async function POST(req: Request) {
 
   const { data, error } = await admin
     .from("hero_slides")
-    .insert({ src, alt: alt || "Hospital photo", order_index: nextOrder })
+    .insert({ src, alt, order_index: nextOrder })
     .select()
     .single();
 
@@ -43,8 +56,17 @@ export async function PATCH(req: Request) {
   const admin = createAdminClient();
   if (!admin) return NextResponse.json({ ok: false, error: "Supabase not configured" }, { status: 500 });
 
-  const { ids } = await req.json() as { ids: string[] };
-  if (!Array.isArray(ids)) return NextResponse.json({ ok: false, error: "ids array required" }, { status: 400 });
+  let ids: string[];
+  try {
+    const body = await req.json();
+    const result = reorderSchema.safeParse(body);
+    if (!result.success) {
+      return NextResponse.json({ ok: false, error: result.error.errors[0]?.message || "Invalid ids array" }, { status: 400 });
+    }
+    ids = result.data.ids;
+  } catch {
+    return NextResponse.json({ ok: false, error: "Invalid JSON body" }, { status: 400 });
+  }
 
   // Update each slide's order_index to its position in the array
   const updates = ids.map((id, index) =>
@@ -54,3 +76,4 @@ export async function PATCH(req: Request) {
   await Promise.all(updates);
   return NextResponse.json({ ok: true });
 }
+

@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 interface HeroSlide {
   id: string;
@@ -22,6 +23,7 @@ export default function HeroSection() {
   const [slides, setSlides] = useState<HeroSlide[]>(DEFAULT_SLIDES);
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetch("/api/hero-slides", { cache: "no-store" })
@@ -68,8 +70,8 @@ export default function HeroSection() {
                 transition={{ duration: 0.7, delay: 0.1 }}
                 className="text-[1.35rem] font-semibold leading-snug tracking-[-0.3px] text-white sm:text-2xl md:text-[2.25rem] lg:text-[2.75rem] md:leading-[1.15] md:tracking-[-0.5px]"
               >
-                Transforming Mental Illness to{" "}
-                <span className="italic text-[#FFD166] font-semibold">Mental Wellness.</span>
+                {t("hero.titlePart1")}{" "}
+                <span className="italic text-[#FFD166] font-semibold">{t("hero.titleHighlight")}</span>
               </motion.h1>
             </motion.div>
 

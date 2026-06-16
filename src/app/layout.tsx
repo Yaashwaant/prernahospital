@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import DoctorChatbot from "@/components/DoctorChatbot";
+import Providers from "@/components/Providers";
 
 const BASE_URL = "https://prernahospital.in";
 
@@ -115,14 +116,16 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-[#1F4FD8] focus:px-4 focus:py-2 focus:text-white focus:no-underline"
-        >
-          Skip to main content
-        </a>
-        {children}
-        <DoctorChatbot />
+        <Providers>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-[#1F4FD8] focus:px-4 focus:py-2 focus:text-white focus:no-underline"
+          >
+            Skip to main content
+          </a>
+          {children}
+          <DoctorChatbot />
+        </Providers>
       </body>
     </html>
   );

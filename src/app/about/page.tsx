@@ -142,6 +142,7 @@ export default function AboutPage() {
               "Sexual Medicine",
               "Psychological Therapy & Assessment",
               "Pathology & Lab Services",
+              "Geriatric Mental Health",
             ].map((service) => (
               <li
                 key={service}

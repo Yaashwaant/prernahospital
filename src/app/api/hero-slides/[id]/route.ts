@@ -1,20 +1,27 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase";
 import { extractStoragePath } from "@/lib/storage";
+import { uuidSchema } from "@/lib/validation";
 
 // DELETE /api/hero-slides/[id]
 export async function DELETE(
   _req: Request,
   { params }: { params: { id: string } }
 ): Promise<Response> {
+  const paramVal = uuidSchema.safeParse(params.id);
+  if (!paramVal.success) {
+    return NextResponse.json({ ok: false, error: "Invalid ID parameter format" }, { status: 400 });
+  }
+  const id = paramVal.data;
+
   const admin = createAdminClient();
   if (!admin) return NextResponse.json({ ok: false, error: "Supabase not configured" }, { status: 500 });
 
   // Get the slide's image URL before deleting
-  const { data: row } = await admin.from("hero_slides").select("src").eq("id", params.id).single();
+  const { data: row } = await admin.from("hero_slides").select("src").eq("id", id).single();
 
   // Delete from DB
-  const { error } = await admin.from("hero_slides").delete().eq("id", params.id);
+  const { error } = await admin.from("hero_slides").delete().eq("id", id);
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
 
   // Clean up image from Supabase Storage

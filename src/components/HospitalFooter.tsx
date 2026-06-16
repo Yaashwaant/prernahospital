@@ -4,8 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { SOCIAL } from "@/data/social";
+import { useLanguage } from "@/lib/i18n";
 
 export default function HospitalFooter() {
+  const { t } = useLanguage();
   return (
     <footer className="w-full border-t border-gray-100 bg-gradient-to-b from-[#F4F7FB] to-[#E8F2F7] py-16" id="contact">
       <div className="container mx-auto px-4 md:px-8">
@@ -30,15 +32,15 @@ export default function HospitalFooter() {
               </div>
               <div className="flex flex-col">
                 <span className="text-base font-bold leading-none tracking-tight text-[#1F4FD8]">
-                  Prerna Hospital
+                  {t("header.hospitalName")}
                 </span>
                 <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-gray-500">
-                  Inspiring Minds
+                  {t("header.tagline")}
                 </span>
               </div>
             </motion.div>
             <p className="text-sm text-gray-600 leading-relaxed font-light">
-              Dedicated to providing world-class healthcare with compassion and innovation. Your wellness is our priority.
+              {t("footer.tagline")}
             </p>
           </motion.div>
           
@@ -47,19 +49,19 @@ export default function HospitalFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}>
-            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Quick Links</h3>
+            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">{t("footer.quickLinks")}</h3>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="/about" className="hover:text-[#1F4FD8] transition-colors">About Us</Link>
+                <Link href="/about" className="hover:text-[#1F4FD8] transition-colors">{t("footer.aboutUs")}</Link>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="/#team" className="hover:text-[#1F4FD8] transition-colors">Our Doctors</Link>
+                <Link href="/#team" className="hover:text-[#1F4FD8] transition-colors">{t("footer.ourDoctors")}</Link>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">Contact</Link>
+                <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">{t("footer.contact")}</Link>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">Privacy Policy</Link>
+                <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">{t("header.privacyPolicy")}</Link>
               </motion.li>
             </ul>
           </motion.div>
@@ -69,23 +71,23 @@ export default function HospitalFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}>
-            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Support</h3>
+            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">{t("footer.support")}</h3>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">Contact Us</Link>
+                <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">{t("header.contactUs")}</Link>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
                 <a href={`tel:${SOCIAL.emergencyHelpline}`} className="hover:text-[#1F4FD8] transition-colors">
-                  Emergency Helpline ({SOCIAL.opdTimings ? "24/7" : "Call Now"})
+                  {t("footer.emergencyHelpline")} ({SOCIAL.opdTimings ? "24/7" : "Call Now"})
                 </a>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
                 <a href={SOCIAL.googleMaps} target="_blank" rel="noopener noreferrer" className="hover:text-[#1F4FD8] transition-colors">
-                  Directions (Google Maps)
+                  {t("footer.directionsGoogleMaps")}
                 </a>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">Privacy Policy</Link>
+                <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">{t("header.privacyPolicy")}</Link>
               </motion.li>
             </ul>
           </motion.div>
@@ -95,37 +97,37 @@ export default function HospitalFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}>
-            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">Contact Info</h3>
+            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-[#1F4FD8]">{t("footer.contactInfo")}</h3>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
               <motion.li 
                 className="flex items-center gap-2"
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300 }}>
-                <span className="font-semibold text-[#1F4FD8]">Emergency:</span> <a href={`tel:${SOCIAL.emergencyHelpline}`} className="hover:text-[#5D2CB3]">{SOCIAL.emergencyHelpline} (24/7)</a>
+                <span className="font-semibold text-[#1F4FD8]">{t("footer.emergencyLabel")}</span> <a href={`tel:${SOCIAL.emergencyHelpline}`} className="hover:text-[#5D2CB3]">{SOCIAL.emergencyHelpline} (24/7)</a>
               </motion.li>
               <motion.li 
                 className="flex items-center gap-2"
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300 }}>
-                <span className="font-semibold text-[#1F4FD8]">OPD:</span> {SOCIAL.opdTimings}
+                <span className="font-semibold text-[#1F4FD8]">{t("footer.opdLabel")}</span> {SOCIAL.opdTimings}
               </motion.li>
               <motion.li 
                 className="flex items-start gap-2"
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300 }}>
-                <span className="font-semibold text-[#1F4FD8]">Phone:</span> {SOCIAL.phones.join(", ")}
+                <span className="font-semibold text-[#1F4FD8]">{t("footer.phoneLabel")}</span> {SOCIAL.phones.join(", ")}
               </motion.li>
               <motion.li 
                 className="flex items-center gap-2"
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300 }}>
-                <span className="font-semibold text-[#1F4FD8]">Email:</span> <a href={`mailto:${SOCIAL.email}`} className="hover:text-[#5D2CB3]">{SOCIAL.email}</a>
+                <span className="font-semibold text-[#1F4FD8]">{t("footer.emailLabel")}</span> <a href={`mailto:${SOCIAL.email}`} className="hover:text-[#5D2CB3]">{SOCIAL.email}</a>
               </motion.li>
               <motion.li 
                 className="flex items-start gap-2"
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300 }}>
-                <span className="font-semibold text-[#1F4FD8]">Address:</span> {SOCIAL.address}
+                <span className="font-semibold text-[#1F4FD8]">{t("footer.addressLabel")}</span> {SOCIAL.address}
               </motion.li>
             </ul>
           </motion.div>
@@ -158,14 +160,14 @@ export default function HospitalFooter() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}>
           <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">
-            © 2026 Prerna Hospital. All rights reserved.
+            {t("footer.copyright")}
           </p>
           <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-500">
-            <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">Privacy Policy</Link>
+            <Link href="/privacy" className="hover:text-[#1F4FD8] transition-colors">{t("header.privacyPolicy")}</Link>
             <span>·</span>
-            <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">Contact</Link>
+            <Link href="/contact" className="hover:text-[#1F4FD8] transition-colors">{t("footer.contact")}</Link>
             <span>·</span>
-            <Link href="/about" className="hover:text-[#1F4FD8] transition-colors">About</Link>
+            <Link href="/about" className="hover:text-[#1F4FD8] transition-colors">{t("footer.about")}</Link>
           </div>
         </motion.div>
       </div>

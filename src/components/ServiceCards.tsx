@@ -7,48 +7,54 @@ import {
 import Image from "next/image";
 import { useMemo, memo, useState } from "react";
 import { fadeInUp } from "@/lib/animations";
+import { useLanguage } from "@/lib/i18n";
 
 interface ServiceItem {
-  title: string;
   image: string;
-  description?: string;
+  titleKey: string;
+  descriptionKey: string;
 }
 
 const SERVICES: ServiceItem[] = [
   {
-    title: "Neuropsychiatry",
     image: "/Neuro%20psychaitry.png",
-    description: `At our hospital, we believe that true healing begins with a healthy mind. As a premier destination for psychiatric care in India, we bridge the gap between clinical excellence and compassionate support. Our dedicated team of specialists offers a sanctuary for recovery, providing evidence-based therapies and personalized care plans. Whether navigating complex disorders or seeking emotional resilience, we are here to guide you toward a brighter, more balanced future.`
+    titleKey: "services.neuropsychiatry.title",
+    descriptionKey: "services.neuropsychiatry.description",
   },
   {
-    title: "De-Addiction Services",
     image: "/De-addiction%20services%20.png",
-    description: `Addiction is a complex challenge that affects both the body and the mind. At our specialized De-Addiction unit, we offer a multidisciplinary approach to recovery, focusing on detoxification, rehabilitation, and long-term relapse prevention. Our expert team provides medically supervised withdrawal management alongside intensive counselling to address the root causes of substance use. We don’t just treat the addiction; we treat the person, ensuring a holistic transition back to a healthy, productive life.`
+    titleKey: "services.deaddiction.title",
+    descriptionKey: "services.deaddiction.description",
   },
   {
-    title: "Child & Adolescent Psychiatry",
     image: "/Childern%20and%20adoldece%20psychaitry.png",
-    description: `Childhood and adolescence are critical stages of development that shape an individual's future. At our Child and Adolescent Psychiatry Department, we provide a nurturing and supportive environment where young minds can find the specialized care they need to navigate emotional, behavioral, and developmental challenges.`
+    titleKey: "services.childPsychiatry.title",
+    descriptionKey: "services.childPsychiatry.description",
   },
   {
-    title: "Sexual Medicine",
     image: "/sexual%20medicine.png",
-    description: `Sexual medicine provides a clinical approach to addressing physical, emotional, and psychological issues related to sexual health and function. It aims to improve quality of life by treating dysfunctions and fostering healthy interpersonal relationships through medical and therapeutic means.`
+    titleKey: "services.sexualMedicine.title",
+    descriptionKey: "services.sexualMedicine.description",
   },
   {
-    title: "Psychological Therapy",
     image: "/therepy%20sesstions.png",
-    description: `Also known as psychotherapy or counselling, this specialty involves evidence-based talk therapy to help individuals navigate emotional distress, trauma, and mental health disorders. It focuses on developing coping mechanisms, changing thought patterns, and improving overall emotional resilience.`
+    titleKey: "services.psychologicalTherapy.title",
+    descriptionKey: "services.psychologicalTherapy.description",
   },
   {
-    title: "Psychological Testing & Assessment",
     image: "/Psychological%20Testing%20%26%20Assessment.png",
-    description: `Psychological testing is a specialized diagnostic process used to gain a deep understanding of a person’s personality, intelligence, and cognitive functioning. At Prerna Hospital, we conduct standardized assessments—including IQ tests, personality profiles, and diagnostic screenings for ADHD, Autism, and Learning Disabilities. These tests act as a "blueprint" for your mental health, allowing our psychiatrists and therapists to create a highly accurate and personalized treatment plan.`
+    titleKey: "services.psychologicalTesting.title",
+    descriptionKey: "services.psychologicalTesting.description",
   },
   {
-    title: "Pathology & Lab Services",
     image: "/Pathology.png",
-    description: `Our Department of Pathology offers a comprehensive range of diagnostic services that empower our clinical teams to provide superior patient care. Utilizing automated platforms and advanced molecular diagnostics, we provide deep insights into disease patterns and progression. Whether it’s Histopathology, Cytology, or Clinical Biochemistry, our lab operates with a "zero-error" philosophy, ensuring that your healthcare journey is guided by facts, data, and medical excellence.`
+    titleKey: "services.pathology.title",
+    descriptionKey: "services.pathology.description",
+  },
+  {
+    image: "/GeriaticMentalHealth.png",
+    titleKey: "services.geriatric.title",
+    descriptionKey: "services.geriatric.description",
   }
 ];
 
@@ -64,6 +70,10 @@ interface ServiceCardProps {
 const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const title = t(service.titleKey);
+  const description = t(service.descriptionKey);
 
   return (
     <motion.div
@@ -76,7 +86,7 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
       transition={{ delay: index * 0.08, duration: 0.4 }}
       className="group mx-auto w-full rounded-[28px] border-2 border-[#1F4FD8]/45 bg-[#FFFFFF] px-5 py-4 shadow-refined transition-all hover:border-[#1F4FD8] hover:shadow-deep"
       role="article"
-      aria-label={`${service.title} service`}
+      aria-label={`${title} service`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -91,10 +101,10 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
             role="img"
             aria-hidden="false"
           >
-            <Image src={service.image} alt={service.title} fill className="object-contain" priority={index === 0} />
+            <Image src={service.image} alt={title} fill className="object-contain" priority={index === 0} />
           </motion.div>
           <h3 className="text-[15px] md:text-[16px] font-semibold leading-snug text-[#1F4FD8]">
-            {service.title}
+            {title}
           </h3>
         </div>
         <button
@@ -102,7 +112,7 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls={`svc-desc-${index}`}
-          aria-label={open ? `Collapse ${service.title} details` : `Expand ${service.title} details`}
+          aria-label={open ? `Collapse ${title} details` : `Expand ${title} details`}
           className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#1F4FD8]/40 text-[#1F4FD8] hover:bg-[#F4F7FB] transition"
         >
           <motion.span animate={{ rotate: open ? 180 : 0 }}>
@@ -119,7 +129,7 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
         className={open ? undefined : "sr-only"}
       >
         <AnimatePresence initial={false}>
-          {open && service.description && (
+          {open && description && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
@@ -127,7 +137,7 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
               transition={{ duration: 0.25 }}
               className="mt-3 text-xs text-gray-700"
             >
-              {service.description}
+              {description}
             </motion.div>
           )}
         </AnimatePresence>
@@ -144,13 +154,14 @@ ServiceCard.displayName = "ServiceCard";
 export default function ServiceCards() {
   const memoizedServices = useMemo(() => SERVICES, []);
   const left = memoizedServices.slice(0, 4);
-  const right = memoizedServices.slice(4, 7);
+  const right = memoizedServices.slice(4);
+  const { t } = useLanguage();
 
   return (
     <section className="relative w-full pt-2 pb-8 px-4 md:px-8">
       <div className="container mx-auto">
         <div className="mb-6 text-center">
-          <h2 className="text-xl font-bold text-[#1A1A1A] md:text-2xl">Our Medical Specialties</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] md:text-2xl">{t("services.heading")}</h2>
         </div>
         <motion.div
           className="mx-auto grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-2"
@@ -161,12 +172,12 @@ export default function ServiceCards() {
         >
           <div className="flex flex-col items-stretch gap-4">
             {left.map((service, index) => (
-              <ServiceCard key={`${service.title}-${index}`} service={service} index={index} />
+              <ServiceCard key={`${service.titleKey}-${index}`} service={service} index={index} />
             ))}
           </div>
           <div className="flex flex-col items-stretch gap-4">
             {right.map((service, i) => (
-              <ServiceCard key={`${service.title}-${i + 4}`} service={service} index={i + 4} />
+              <ServiceCard key={`${service.titleKey}-${i + 4}`} service={service} index={i + 4} />
             ))}
           </div>
         </motion.div>

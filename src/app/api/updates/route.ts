@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase";
 
+import { updatePostSchema } from "@/lib/validation";
+
 export async function GET() {
   const admin = createAdminClient();
   if (!admin) {
@@ -38,24 +40,30 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const body = await req.json();
   const admin = createAdminClient();
   if (!admin) {
     return NextResponse.json({ ok: false, error: "Supabase not configured" }, { status: 500 });
   }
   try {
-    const id = body.id || crypto.randomUUID();
+    const body = await req.json();
+    const result = updatePostSchema.safeParse(body);
+    if (!result.success) {
+      return NextResponse.json({ ok: false, error: { message: result.error.errors[0]?.message || "Invalid input data" } }, { status: 400 });
+    }
+    const validated = result.data;
+    const id = validated.id || crypto.randomUUID();
     const row = {
       id,
-      title: body.title || "",
-      description: body.description || "",
-      image: body.image || "",
-      date: new Date(body.date || new Date().toISOString()).toISOString(),
+      title: validated.title,
+      description: validated.description,
+      image: validated.image,
+      date: new Date(validated.date).toISOString(),
     };
     const { error } = await admin.from("updates").upsert(row, { onConflict: "id" });
     if (error) throw error;
     return NextResponse.json({ ok: true, id });
   } catch (e: any) {
+
     const detail = {
       message: e?.message ?? "unknown error",
       code: e?.code ?? null,

@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { DOCTORS } from "@/data/doctors";
+import { useLanguage } from "@/lib/i18n";
 
 interface FacilitySlide {
   id?: string;
@@ -27,6 +28,7 @@ function FacilitiesSlider() {
   const [slides, setSlides] = useState<FacilitySlide[]>(DEFAULT_FACILITY_SLIDES);
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const { t } = useLanguage();
 
   // Fetch slides from Supabase via API; fall back to defaults if empty/error
   useEffect(() => {
@@ -57,7 +59,7 @@ function FacilitiesSlider() {
     >
       <div className="flex items-center justify-between mb-3">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#1F4FD8]">
-          Facility Gallery
+          {t("facilities.galleryTitle")}
         </p>
         <div className="flex gap-1.5">
           <button
@@ -113,11 +115,10 @@ function FacilitiesSlider() {
             key={i}
             onClick={() => setCurrent(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === current
-                ? "w-5 bg-[#1F4FD8]"
-                : "w-1.5 bg-gray-300 hover:bg-gray-400"
-            }`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${i === current
+              ? "w-5 bg-[#1F4FD8]"
+              : "w-1.5 bg-gray-300 hover:bg-gray-400"
+              }`}
           />
         ))}
       </div>
@@ -144,6 +145,7 @@ const teamMembers: TeamMember[] = DOCTORS.map((doctor) => ({
 
 export default function AboutAndTeamSection() {
   const sliderRef = useRef<HTMLDivElement | null>(null);
+  const { t } = useLanguage();
 
   const scroll = (direction: "left" | "right") => {
     if (!sliderRef.current) return;
@@ -164,15 +166,13 @@ export default function AboutAndTeamSection() {
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <div>
               <span className="inline-flex rounded-full bg-[#E6F2FF] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1F4FD8]">
-                Our Facilities
+                {t("facilities.badge")}
               </span>
               <h3 className="mt-2 text-lg md:text-xl font-bold text-[#1A1A1A]">
-                Comfortable, safe and comprehensive care environment
+                {t("facilities.heading")}
               </h3>
               <p className="mt-1 text-xs md:text-sm text-gray-600 max-w-2xl">
-                From 24x7 emergency admission to specialised therapy and diagnostic services,
-                Prerna Hospital is designed to support patients and families through every
-                step of their mental health journey.
+                {t("facilities.subtitle")}
               </p>
             </div>
           </div>
@@ -189,10 +189,10 @@ export default function AboutAndTeamSection() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-[#1A1A1A]">
-                  24x7 Emergency Admission
+                  {t("facilities.emergency.title")}
                 </p>
                 <p className="mt-1 text-xs text-gray-600">
-                  Round-the-clock psychiatric support.
+                  {t("facilities.emergency.description")}
                 </p>
               </div>
             </div>
@@ -208,10 +208,10 @@ export default function AboutAndTeamSection() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-[#1A1A1A]">
-                  Greener City Campus
+                  {t("facilities.campus.title")}
                 </p>
                 <p className="mt-1 text-xs text-gray-600">
-                  Pleasant green open space within the heart of the city.
+                  {t("facilities.campus.description")}
                 </p>
               </div>
             </div>
@@ -227,10 +227,10 @@ export default function AboutAndTeamSection() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-[#1A1A1A]">
-                  Deluxe In-Patient Care
+                  {t("facilities.deluxe.title")}
                 </p>
                 <p className="mt-1 text-xs text-gray-600">
-                  Spacious AC rooms with TV and Wi‑Fi.
+                  {t("facilities.deluxe.description")}
                 </p>
               </div>
             </div>
@@ -246,10 +246,10 @@ export default function AboutAndTeamSection() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-[#1A1A1A]">
-                  Expert OPD Access
+                  {t("facilities.opd.title")}
                 </p>
                 <p className="mt-1 text-xs text-gray-600">
-                  9:00 AM to 9:00 PM OPD by consultant psychiatrists.
+                  {t("facilities.opd.description")}
                 </p>
               </div>
             </div>
@@ -265,10 +265,10 @@ export default function AboutAndTeamSection() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-[#1A1A1A]">
-                  Trained Support Staff
+                  {t("facilities.staff.title")}
                 </p>
                 <p className="mt-1 text-xs text-gray-600">
-                  Dedicated nursing for continuous supervision.
+                  {t("facilities.staff.description")}
                 </p>
               </div>
             </div>
@@ -284,10 +284,10 @@ export default function AboutAndTeamSection() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-[#1A1A1A]">
-                  Advanced Diagnostics
+                  {t("facilities.diagnostics.title")}
                 </p>
                 <p className="mt-1 text-xs text-gray-600">
-                  EEG, Pulse ECT, ECG and complete pathology and lab services.
+                  {t("facilities.diagnostics.description")}
                 </p>
               </div>
             </div>
@@ -304,9 +304,9 @@ export default function AboutAndTeamSection() {
           className="space-y-4"
         >
           <div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">Our Team</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">{t("team.heading")}</h3>
             <p className="mt-1 text-xs md:text-sm text-gray-600">
-              The passionate people behind compassionate care at Prerna Hospital.
+              {t("team.subtitle")}
             </p>
           </div>
 
@@ -327,10 +327,10 @@ export default function AboutAndTeamSection() {
           <div className="flex items-center justify-between gap-4">
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">
-                Our Specialist Team
+                {t("team.specialistHeading")}
               </h3>
               <p className="text-xs md:text-sm text-gray-600">
-                Meet the experts dedicated to your neurological and mental health.
+                {t("team.specialistSubtitle")}
               </p>
             </div>
             <div className="hidden md:flex items-center gap-2">
@@ -402,7 +402,7 @@ export default function AboutAndTeamSection() {
                       )}
                       <div className="mt-3">
                         <span className="inline-flex items-center rounded-full bg-[#003D52] px-3 py-1 text-[11px] font-semibold text-white shadow-sm hover:bg-[#1F4FD8] transition-colors">
-                          More Details
+                          {t("team.moreDetails")}
                         </span>
                       </div>
                     </div>

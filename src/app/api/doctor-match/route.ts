@@ -66,6 +66,8 @@ Patient: "My blood reports show low hemoglobin and my platelet count is very low
 Reasoning: Blood count abnormalities and suspected blood disorders (hematological concerns like anemia, thrombocytopenia) are pathology/hemato-oncology concerns. Dr. Anuradha Patil is the specialist in hemato-oncology and hematological disorders.
 Response: "Abnormal blood counts and suspected blood disorders are best evaluated by our Consultant Pathologist, Dr. Anuradha Patil, who specialises in hemato-oncology and hematological diagnostics. Please call us to schedule a consultation and arrange your lab work."`.trim();
 
+import { symptomsSchema } from "@/lib/validation";
+
 // ─── System prompt ─────────────────────────────────────────────────────────────
 function buildSystemPrompt() {
   return `You are a helpful patient-facing assistant at Prerna Hospital, a neuropsychiatric hospital in Chhatrapati Sambhajinagar.
@@ -91,13 +93,22 @@ ${FEW_SHOT_EXAMPLES}`;
 
 // ─── API handler ──────────────────────────────────────────────────────────────
 export async function POST(req: Request) {
-  const { symptoms } = await req.json();
-
-  if (!symptoms?.trim()) {
+  let symptoms: string;
+  try {
+    const body = await req.json();
+    const result = symptomsSchema.safeParse(body.symptoms);
+    if (!result.success) {
+      return NextResponse.json({
+        suggestion: result.error.errors[0]?.message || "Please describe your symptoms or concern so I can help you find the right doctor.",
+      }, { status: 400 });
+    }
+    symptoms = result.data;
+  } catch {
     return NextResponse.json({
       suggestion: "Please describe your symptoms or concern so I can help you find the right doctor.",
-    });
+    }, { status: 400 });
   }
+
 
   // Fallback if Groq key not configured
   if (!process.env.GROQ_API_KEY) {

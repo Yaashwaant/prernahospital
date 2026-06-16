@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/lib/i18n";
 
 export default function FloatingChatPrompt() {
   const [hovered, setHovered] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <div
@@ -22,7 +24,7 @@ export default function FloatingChatPrompt() {
             className="pointer-events-none select-none"
           >
             <div className="rounded-2xl bg-white px-3.5 py-2 text-[12px] font-semibold text-[#003D52] shadow-refined whitespace-nowrap">
-              Feeling unwell? <span className="text-[#1F4FD8]">Share with me!</span>
+              {t("chat.feelingUnwell")} <span className="text-[#1F4FD8]">{t("chat.shareWithMe")}</span>
             </div>
           </motion.div>
         </div>

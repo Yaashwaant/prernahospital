@@ -6,57 +6,63 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
+import { useLanguage } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-// ─── Nav config ───────────────────────────────────────────────────────────────
+// ─── Nav config (translation keys mapped per item) ────────────────────────────
 const NAV_ITEMS = [
-  { id: "home",       label: "Home",           href: "/" },
-  { id: "facilities", label: "Our Facilities",  href: "#about" },
-  { id: "our-team",   label: "Our Team",        href: "#team" },
+  { id: "home",       tKey: "header.home",           href: "/" },
+  { id: "facilities", tKey: "header.ourFacilities",   href: "#about" },
+  { id: "our-team",   tKey: "header.ourTeam",         href: "#team" },
 ] as const;
 
 const MORE_ITEMS = [
-  { id: "contact-page", label: "Contact Us",    href: "/contact" },
-  { id: "updates",      label: "Updates",       href: "#updates" },
-  { id: "privacy",      label: "Privacy Policy", href: "/privacy" },
+  { id: "contact-page", tKey: "header.contactUs",     href: "/contact" },
+  { id: "updates",      tKey: "header.updates",       href: "#updates" },
+  { id: "privacy",      tKey: "header.privacyPolicy", href: "/privacy" },
 ] as const;
 
 // ─── Mobile quick-action bar ───────────────────────────────────────────────────
-const MobileQuickActions = () => (
-  <div className="border-b border-gray-100 bg-[#F4F7FB] md:hidden">
-    <div className="container mx-auto px-3 py-1.5">
-      <div className="grid grid-cols-3 gap-1.5">
-        <motion.a
-          href="https://www.google.com/maps/dir/?api=1&destination=PRERNA%20HOSPITAL%20Inspiring%20Minds...."
-          target="_blank" rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#1ECAD3] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(30,202,211,0.35)]"
-          whileTap={{ scale: 0.95 }} aria-label="Directions"
-        >
-          <MapPin className="h-3 w-3" /> Directions
-        </motion.a>
+const MobileQuickActions = () => {
+  const { t } = useLanguage();
+  return (
+    <div className="border-b border-gray-100 bg-[#F4F7FB] md:hidden">
+      <div className="container mx-auto px-3 py-1.5">
+        <div className="grid grid-cols-3 gap-1.5">
+          <motion.a
+            href="https://www.google.com/maps/dir/?api=1&destination=PRERNA%20HOSPITAL%20Inspiring%20Minds...."
+            target="_blank" rel="noopener noreferrer"
+            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#1ECAD3] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(30,202,211,0.35)]"
+            whileTap={{ scale: 0.95 }} aria-label="Directions"
+          >
+            <MapPin className="h-3 w-3" /> {t("header.directions")}
+          </motion.a>
 
-        <motion.a
-          href="tel:07887888865"
-          className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(31,79,216,0.35)]"
-          whileTap={{ scale: 0.95 }} aria-label="Call"
-        >
-          <Phone className="h-3 w-3" /> Call
-        </motion.a>
+          <motion.a
+            href="tel:07887888865"
+            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#1F4FD8] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(31,79,216,0.35)]"
+            whileTap={{ scale: 0.95 }} aria-label="Call"
+          >
+            <Phone className="h-3 w-3" /> {t("header.call")}
+          </motion.a>
 
-        <motion.a
-          href="https://wa.me/917887888865?text=Hello%20Prerna%20Hospital"
-          target="_blank" rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#20CAD3] to-[#008489] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(0,132,137,0.35)]"
-          whileTap={{ scale: 0.95 }} aria-label="WhatsApp"
-        >
-          <FaWhatsapp className="h-3.5 w-3.5" /> WhatsApp
-        </motion.a>
+          <motion.a
+            href="https://wa.me/917887888865?text=Hello%20Prerna%20Hospital"
+            target="_blank" rel="noopener noreferrer"
+            className="flex items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[#20CAD3] to-[#008489] px-2 py-1.5 text-[10px] font-bold text-white shadow-[0_2px_8px_0_rgba(0,132,137,0.35)]"
+            whileTap={{ scale: 0.95 }} aria-label="WhatsApp"
+          >
+            <FaWhatsapp className="h-3.5 w-3.5" /> {t("header.whatsapp")}
+          </motion.a>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // ─── Logo ──────────────────────────────────────────────────────────────────────
 const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
+  const { t } = useLanguage();
   const component = (
     <div className="flex items-center gap-2">
       <div className="relative h-10 w-10 md:h-16 md:w-16">
@@ -64,10 +70,10 @@ const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
       </div>
       <div className="flex flex-col">
         <span className="text-base font-bold leading-none tracking-tight text-[#1F4FD8] md:text-2xl">
-          Prerna Hospital
+          {t("header.hospitalName")}
         </span>
         <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-gray-500 md:text-sm">
-          Inspiring Minds
+          {t("header.tagline")}
         </span>
       </div>
     </div>
@@ -79,6 +85,7 @@ const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
 const MoreDropdown = () => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   // Close on outside click
   useEffect(() => {
@@ -96,7 +103,7 @@ const MoreDropdown = () => {
         className="flex items-center gap-1 py-1 text-[11px] font-bold uppercase tracking-wider text-[#1F4FD8] hover:text-[#FFB703] transition-colors"
         aria-expanded={open}
       >
-        More
+        {t("header.more")}
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
           <ChevronDown className="h-3.5 w-3.5" />
         </motion.span>
@@ -118,7 +125,7 @@ const MoreDropdown = () => {
                 onClick={() => setOpen(false)}
                 className="block px-4 py-2.5 text-[12px] font-semibold uppercase tracking-wider text-[#1F4FD8] hover:bg-[#F4F7FB] hover:text-[#FFB703] transition-colors"
               >
-                {item.label}
+                {t(item.tKey)}
               </Link>
             ))}
           </motion.div>
@@ -130,6 +137,7 @@ const MoreDropdown = () => {
 
 // ─── Desktop header row ────────────────────────────────────────────────────────
 const MainHeaderContent = () => {
+  const { t } = useLanguage();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
@@ -162,7 +170,7 @@ const MainHeaderContent = () => {
             variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}
           >
             <Link href={item.href} className="relative block py-1">
-              {item.label}
+              {t(item.tKey)}
               {item.id === "home" && (
                 <motion.div
                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#FFB703]"
@@ -183,7 +191,7 @@ const MainHeaderContent = () => {
         </motion.li>
       </motion.ul>
 
-      {/* Desktop CTA buttons */}
+      {/* Desktop CTA buttons + Language Switcher */}
       <motion.div
         className="hidden items-center gap-4 xl:flex lg:flex"
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
@@ -191,6 +199,8 @@ const MainHeaderContent = () => {
         animate="visible"
         transition={{ staggerChildren: 0.1 }}
       >
+        <LanguageSwitcher />
+
         <motion.a
           href="https://www.google.com/maps/dir/?api=1&destination=PRERNA%20HOSPITAL%20Inspiring%20Minds...."
           target="_blank" rel="noopener noreferrer"
@@ -199,7 +209,7 @@ const MainHeaderContent = () => {
           whileTap={{ scale: 0.95 }} aria-label="Directions to Prerna Hospital"
         >
           <MapPin className="h-4 w-4" />
-          <span className="hidden xl:inline">Directions</span>
+          <span className="hidden xl:inline">{t("header.directions")}</span>
         </motion.a>
 
         <motion.a
@@ -209,7 +219,7 @@ const MainHeaderContent = () => {
           whileTap={{ scale: 0.95 }} aria-label="Call Prerna Hospital"
         >
           <Phone className="h-4 w-4" />
-          <span className="hidden xl:inline">Call</span>
+          <span className="hidden xl:inline">{t("header.call")}</span>
         </motion.a>
 
         <motion.a
@@ -220,7 +230,7 @@ const MainHeaderContent = () => {
           whileTap={{ scale: 0.95 }} aria-label="Chat on WhatsApp"
         >
           <FaWhatsapp className="h-[18px] w-[18px]" />
-          <span className="hidden xl:inline">WhatsApp</span>
+          <span className="hidden xl:inline">{t("header.whatsapp")}</span>
         </motion.a>
       </motion.div>
     </motion.div>
@@ -230,17 +240,18 @@ const MainHeaderContent = () => {
 // ─── Mobile nav bar ────────────────────────────────────────────────────────────
 const MobileNavContent = () => {
   const [moreOpen, setMoreOpen] = useState(false);
+  const { t } = useLanguage();
   const allItems = [...NAV_ITEMS];
 
   return (
     <nav className="w-full bg-[#F4F7FB] border-t border-gray-100 lg:hidden px-4">
       <div className="container mx-auto">
-        {/* Main nav row — 4 items */}
-        <ul className="grid w-full grid-cols-4 justify-items-center gap-x-1 py-2 text-[10px] font-bold uppercase tracking-wider">
+        {/* Main nav row — 5 items (nav + lang switcher) */}
+        <ul className="grid w-full grid-cols-5 justify-items-center gap-x-1 py-2 text-[10px] font-bold uppercase tracking-wider">
           {allItems.map((item) => (
             <li key={item.id} className={`w-full text-center ${item.id === "home" ? "text-[#FFB703]" : "text-[#1F4FD8]"}`}>
               <Link href={item.href} className="block py-1.5">
-                {item.label}
+                {t(item.tKey)}
               </Link>
             </li>
           ))}
@@ -251,11 +262,16 @@ const MobileNavContent = () => {
               onClick={() => setMoreOpen((v) => !v)}
               className="flex w-full items-center justify-center gap-0.5 py-1.5"
             >
-              More
+              {t("header.more")}
               <motion.span animate={{ rotate: moreOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
                 <ChevronDown className="h-3 w-3" />
               </motion.span>
             </button>
+          </li>
+
+          {/* Language Switcher in mobile nav */}
+          <li className="w-full flex items-center justify-center">
+            <LanguageSwitcher />
           </li>
         </ul>
 
@@ -272,7 +288,7 @@ const MobileNavContent = () => {
               {MORE_ITEMS.map((item) => (
                 <li key={item.id} className="text-center text-[#1F4FD8]">
                   <Link href={item.href} onClick={() => setMoreOpen(false)} className="block py-1.5">
-                    {item.label}
+                    {t(item.tKey)}
                   </Link>
                 </li>
               ))}
