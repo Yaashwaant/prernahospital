@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { useLanguage, type Locale } from "@/lib/i18n";
 
 const LANGUAGE_OPTIONS: { code: Locale; short: string; label: string }[] = [
@@ -33,10 +34,18 @@ export default function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1 rounded-full border border-[#1F4FD8]/30 bg-white px-3 py-1.5 text-[12px] font-bold text-[#1F4FD8] shadow-sm transition-all hover:border-[#1F4FD8] hover:shadow-md"
+        className="flex items-center gap-1.5 rounded-full border border-[#1F4FD8]/30 bg-white px-3 py-1.5 text-[12px] font-bold text-[#1F4FD8] shadow-sm transition-all hover:border-[#1F4FD8] hover:shadow-md"
         aria-expanded={open}
         aria-label="Select language"
       >
+        <div className="relative h-6 w-6 overflow-hidden rounded-full border border-gray-100 flex-shrink-0">
+          <Image
+            src="/langauge-svg.svg"
+            alt="Language selector"
+            fill
+            className="object-cover"
+          />
+        </div>
         <span className="min-w-[18px] text-center">{current.short}</span>
         <motion.span
           animate={{ rotate: open ? 180 : 0 }}

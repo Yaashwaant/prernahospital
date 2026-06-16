@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Background squircle matching language.png -->
+  <rect x="0" y="0" width="512" height="512" rx="160" fill="#3ca3f3"/>
+  
+  <g fill="#ffffff" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Devanagari 'अ' (Left/Top layer) -->
+    <text x="110" y="270" font-family="sans-serif, 'Noto Sans Devanagari', 'Mangal'" font-size="190" font-weight="900">अ</text>
+    
+    <!-- English 'A' (Right/Bottom layer) -->
+    <text x="240" y="410" font-family="sans-serif, 'Arial', 'Helvetica'" font-size="230" font-weight="bold">A</text>
+  </g>
+</svg>
