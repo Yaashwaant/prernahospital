@@ -66,7 +66,7 @@ const HospitalLogo = ({ animated = false }: { animated?: boolean }) => {
   const component = (
     <div className="flex items-center gap-2">
       <div className="relative h-10 w-10 md:h-16 md:w-16">
-        <Image src="/logo.svg" alt="Prerna Hospital logo" fill className="object-contain" priority />
+        <Image src="/logo.svg" alt="Prerna Hospital logo - Chhatrapati Sambhajinagar" fill className="object-contain" priority />
       </div>
       <div className="flex flex-col">
         <span className="text-base font-bold leading-none tracking-tight text-[#1F4FD8] md:text-2xl">

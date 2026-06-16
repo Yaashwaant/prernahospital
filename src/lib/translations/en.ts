@@ -91,7 +91,7 @@ const en = {
     },
     opd: {
       title: "Expert OPD Access",
-      description: "9:00 AM to 9:00 PM OPD by consultant psychiatrists.",
+      description: "9:00 AM to 8:00 PM OPD by consultant psychiatrists.",
     },
     staff: {
       title: "Trained Support Staff",

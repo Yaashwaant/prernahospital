@@ -93,7 +93,7 @@ function FacilitiesSlider() {
           >
             <Image
               src={slides[current]?.src ?? DEFAULT_FACILITY_SLIDES[0].src}
-              alt={slides[current]?.label ?? "Hospital facility"}
+              alt={`${slides[current]?.label ?? "Hospital facility"} - Prerna Hospital, Chhatrapati Sambhajinagar`}
               fill
               className="object-cover"
               unoptimized
@@ -181,8 +181,8 @@ export default function AboutAndTeamSection() {
             <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
               <div className="relative h-10 w-10 flex-shrink-0">
                 <Image
-                  src="/24X7%20emergency%20admission.png"
-                  alt="24x7 Emergency Admission icon"
+                  src="/24x7-emergency-admission.png"
+                  alt="24x7 Emergency Admission icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
                   className="object-contain"
                 />
@@ -200,8 +200,8 @@ export default function AboutAndTeamSection() {
             <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
               <div className="relative h-10 w-10 flex-shrink-0">
                 <Image
-                  src="/Greener%20city%20campus.png"
-                  alt="Greener City Campus icon"
+                  src="/greener-city-campus.png"
+                  alt="Greener City Campus icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
                   className="object-contain"
                 />
@@ -219,8 +219,8 @@ export default function AboutAndTeamSection() {
             <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
               <div className="relative h-10 w-10 flex-shrink-0">
                 <Image
-                  src="/Delux%20In-patient%20care.png"
-                  alt="Deluxe In-Patient Care icon"
+                  src="/deluxe-inpatient-care.png"
+                  alt="Deluxe In-Patient Care icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
                   className="object-contain"
                 />
@@ -238,8 +238,8 @@ export default function AboutAndTeamSection() {
             <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
               <div className="relative h-10 w-10 flex-shrink-0">
                 <Image
-                  src="/expert%20opd%20acess.png"
-                  alt="Expert OPD Access icon"
+                  src="/expert-opd-access.png"
+                  alt="Expert OPD Access icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
                   className="object-contain"
                 />
@@ -257,8 +257,8 @@ export default function AboutAndTeamSection() {
             <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
               <div className="relative h-10 w-10 flex-shrink-0">
                 <Image
-                  src="/Trained%20support%20staff.png"
-                  alt="Trained Support Staff icon"
+                  src="/trained-support-staff.png"
+                  alt="Trained Support Staff icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
                   className="object-contain"
                 />
@@ -276,8 +276,8 @@ export default function AboutAndTeamSection() {
             <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-[#F9FBFF] px-4 py-4">
               <div className="relative h-10 w-10 flex-shrink-0">
                 <Image
-                  src="/Advanced%20diagnostics.png"
-                  alt="Advanced Diagnostics icon"
+                  src="/advanced-diagnostics.png"
+                  alt="Advanced Diagnostics icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
                   className="object-contain"
                 />
@@ -313,8 +313,8 @@ export default function AboutAndTeamSection() {
           {/* Team photo */}
           <div className="w-full overflow-hidden rounded-2xl shadow-sm border border-gray-100">
             <Image
-              src="/Team Prerna Hospital.JPG"
-              alt="Prerna Hospital Team"
+              src="/team-prerna-hospital.jpg"
+              alt="Prerna Hospital Specialist Team - Chhatrapati Sambhajinagar"
               width={1920}
               height={1080}
               className="w-full h-auto"

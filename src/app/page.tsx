@@ -6,8 +6,9 @@ import HospitalUpdatesSection from "@/components/HospitalUpdatesSection";
 import HospitalFooter from "@/components/HospitalFooter";
 import SocialHandlesSection from "@/components/SocialHandlesSection";
 import FloatingChatPrompt from "@/components/FloatingChatPrompt";
+import { createAdminClient } from "@/lib/supabase";
 
-const BASE_URL = "https://prernahospital.in";
+const BASE_URL = "https://prernahospital.com";
 
 // VideoObject schema for the featured YouTube video — placed in metadata
 // so it renders in <head> not <body>
@@ -31,7 +32,27 @@ const videoJsonLd = {
   },
 };
 
-export default function Home() {
+async function getUpdates() {
+  try {
+    const admin = createAdminClient();
+    if (!admin) return [];
+    const { data } = await admin
+      .from("updates")
+      .select("*")
+      .order("date", { ascending: false });
+    
+    // Filter out demo placeholders, take latest 8 items
+    const real = (data || []).filter((u: any) => !u.id.startsWith("demo-")).slice(0, 8);
+    return real;
+  } catch (error) {
+    console.error("Error fetching updates for SSR:", error);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const updates = await getUpdates();
+
   return (
     <main id="main-content" className="min-h-screen bg-[#F3F7FA]">
       <script
@@ -42,7 +63,7 @@ export default function Home() {
       <HeroSection />
       <ServiceCards />
       <AboutAndTeamSection />
-      <HospitalUpdatesSection />
+      <HospitalUpdatesSection initialUpdates={updates} />
       <SocialHandlesSection />
       <HospitalFooter />
       <FloatingChatPrompt />

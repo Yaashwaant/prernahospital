@@ -75,7 +75,7 @@ export const DOCTORS: Doctor[] = [
       "such as anxiety, stress and depression, he is fully qualified and available.",
 
     // ── Display ──────────────────────────────────────────────────────────────
-    image: "/DR%20ASHISH%20PHOTO.jpeg",
+    image: "/dr-ashish-mohide.jpeg",
     location: "Prerna Hospital LLP, Chhatrapati Sambhajinagar",
     qualifications: "MBBS, DPM, DNB",
     overview: [
@@ -148,7 +148,7 @@ export const DOCTORS: Doctor[] = [
       "psychiatry. Preferred for the most complex or unclear cases.",
 
     // ── Display ──────────────────────────────────────────────────────────────
-    image: "/Dr%20Manik%20Bhise%20Pic.jpeg",
+    image: "/dr-manik-bhise.jpeg",
     location: "Prerna Hospital LLP, Chhatrapati Sambhajinagar",
     qualifications: "MBBS, MD (Psychiatry, Gold Medal)",
     overview: [
@@ -222,7 +222,7 @@ export const DOCTORS: Doctor[] = [
       "and handles adult anxiety, mood and stress disorders as a general psychiatrist.",
 
     // ── Display ──────────────────────────────────────────────────────────────
-    image: "/DR%20SADEQ%20SIR%20PHOTO.JPG",
+    image: "/dr-sadeq-qureshi.jpg",
     location: "Prerna Hospital LLP, Chhatrapati Sambhajinagar",
     qualifications: "MBBS, DPM, DNB",
     overview: [
@@ -299,7 +299,7 @@ export const DOCTORS: Doctor[] = [
       "for MAPCON and MACYCON conferences.",
 
     // ── Display ──────────────────────────────────────────────────────────────
-    image: "/Dr.%20Anuradha%20Patil.JPG",
+    image: "/dr-anuradha-patil.jpg",
     location: "Prerna Hospital LLP, Chhatrapati Sambhajinagar",
     qualifications: "MBBS, MD (Pathology)",
     overview: [

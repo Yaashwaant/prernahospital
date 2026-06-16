@@ -21,7 +21,7 @@ export async function generateMetadata({
 
   const title = `${update.title} | Updates | Prerna Hospital`;
   const description = (update.description || "Hospital updates, news, and mental health announcements from Prerna Hospital in Chhatrapati Sambhajinagar.").slice(0, 155);
-  const url = `https://prernahospital.in/updates/${id}`;
+  const url = `https://prernahospital.com/updates/${id}`;
 
   return {
     title,
@@ -74,14 +74,14 @@ export default async function UpdateDetailPage({
     author: {
       "@type": "Organization",
       name: "Prerna Hospital LLP",
-      url: "https://prernahospital.in",
+      url: "https://prernahospital.com",
     },
     publisher: {
       "@type": "Organization",
       name: "Prerna Hospital LLP",
       logo: {
         "@type": "ImageObject",
-        url: "https://prernahospital.in/logo.svg",
+        url: "https://prernahospital.com/logo.svg",
       },
     },
   };

@@ -100,7 +100,7 @@ export default function HeroSection() {
                     >
                       <Image
                         src={slides[index]?.src ?? DEFAULT_SLIDES[0].src}
-                        alt={slides[index]?.alt ?? "Hospital photo"}
+                        alt={`${slides[index]?.alt ?? "Hospital photo"} - Prerna Hospital, Chhatrapati Sambhajinagar`}
                         fill
                         className="object-cover"
                         priority

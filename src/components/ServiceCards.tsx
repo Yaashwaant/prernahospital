@@ -17,42 +17,42 @@ interface ServiceItem {
 
 const SERVICES: ServiceItem[] = [
   {
-    image: "/Neuro%20psychaitry.png",
+    image: "/neuro-psychiatry.png",
     titleKey: "services.neuropsychiatry.title",
     descriptionKey: "services.neuropsychiatry.description",
   },
   {
-    image: "/De-addiction%20services%20.png",
+    image: "/de-addiction-services.png",
     titleKey: "services.deaddiction.title",
     descriptionKey: "services.deaddiction.description",
   },
   {
-    image: "/Childern%20and%20adoldece%20psychaitry.png",
+    image: "/children-adolescent-psychiatry.png",
     titleKey: "services.childPsychiatry.title",
     descriptionKey: "services.childPsychiatry.description",
   },
   {
-    image: "/sexual%20medicine.png",
+    image: "/sexual-medicine.png",
     titleKey: "services.sexualMedicine.title",
     descriptionKey: "services.sexualMedicine.description",
   },
   {
-    image: "/therepy%20sesstions.png",
+    image: "/therapy-sessions.png",
     titleKey: "services.psychologicalTherapy.title",
     descriptionKey: "services.psychologicalTherapy.description",
   },
   {
-    image: "/Psychological%20Testing%20%26%20Assessment.png",
+    image: "/psychological-testing-assessment.png",
     titleKey: "services.psychologicalTesting.title",
     descriptionKey: "services.psychologicalTesting.description",
   },
   {
-    image: "/Pathology.png",
+    image: "/pathology.png",
     titleKey: "services.pathology.title",
     descriptionKey: "services.pathology.description",
   },
   {
-    image: "/GeriaticMentalHealth.png",
+    image: "/geriatric-mental-health.png",
     titleKey: "services.geriatric.title",
     descriptionKey: "services.geriatric.description",
   }
@@ -101,7 +101,13 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
             role="img"
             aria-hidden="false"
           >
-            <Image src={service.image} alt={title} fill className="object-contain" priority={index === 0} />
+            <Image
+              src={service.image}
+              alt={`${title} - Prerna Hospital, Chhatrapati Sambhajinagar`}
+              fill
+              className="object-contain"
+              priority={index === 0}
+            />
           </motion.div>
           <h3 className="text-[15px] md:text-[16px] font-semibold leading-snug text-[#1F4FD8]">
             {title}

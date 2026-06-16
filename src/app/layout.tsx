@@ -3,7 +3,7 @@ import "./globals.css";
 import DoctorChatbot from "@/components/DoctorChatbot";
 import Providers from "@/components/Providers";
 
-const BASE_URL = "https://prernahospital.in";
+const BASE_URL = "https://prernahospital.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -92,6 +92,7 @@ const hospitalJsonLd = {
     addressCountry: "IN",
   },
   telephone: "+91-7887888865",
+  openingHours: "Mo-Sa 09:00-20:00",
   medicalSpecialty: [
     "Neuropsychiatry",
     "De-addiction Medicine",

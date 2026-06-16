@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Contact Prerna Hospital – Book Appointment",
   description:
     "Contact Prerna Hospital in Chhatrapati Sambhajinagar. Call +91-7887888865 to book an appointment with our specialist psychiatrists.",
-  alternates: { canonical: "https://prernahospital.in/contact" },
+  alternates: { canonical: "https://prernahospital.com/contact" },
   openGraph: {
-    url: "https://prernahospital.in/contact",
+    url: "https://prernahospital.com/contact",
     title: "Contact Prerna Hospital – Book Appointment",
     description:
       "Call +91-7887888865 to book with our specialist psychiatrists in Chhatrapati Sambhajinagar.",
@@ -18,18 +18,18 @@ const contactJsonLd = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   name: "Contact Prerna Hospital LLP",
-  url: "https://prernahospital.in/contact",
+  url: "https://prernahospital.com/contact",
   datePublished: "2024-01-01",
   dateModified: "2026-05-01",
   author: {
     "@type": "Organization",
     name: "Prerna Hospital LLP",
-    url: "https://prernahospital.in",
+    url: "https://prernahospital.com",
   },
   publisher: {
     "@type": "Organization",
     name: "Prerna Hospital LLP",
-    logo: { "@type": "ImageObject", url: "https://prernahospital.in/logo.svg" },
+    logo: { "@type": "ImageObject", url: "https://prernahospital.com/logo.svg" },
   },
 };
 
