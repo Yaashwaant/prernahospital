@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Contact Prerna Hospital – Book Appointment",
   description:
     "Contact Prerna Hospital in Chhatrapati Sambhajinagar. Call +91-7887888865 to book an appointment with our specialist psychiatrists.",
-  alternates: { canonical: "https://www.prernahospital.com/contact" },
+  alternates: { canonical: "/contact" },
   openGraph: {
     url: "https://www.prernahospital.com/contact",
     title: "Contact Prerna Hospital – Book Appointment",

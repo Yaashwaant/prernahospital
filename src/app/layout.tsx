@@ -28,9 +28,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Prerna Hospital LLP" }],
   creator: "Prerna Hospital LLP",
   publisher: "Prerna Hospital LLP",
-  alternates: {
-    canonical: BASE_URL,
-  },
+
   openGraph: {
     type: "website",
     locale: "en_IN",

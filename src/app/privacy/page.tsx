@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy – Prerna Hospital LLP",
   description:
     "Read the Privacy Policy of Prerna Hospital LLP. We protect your personal health information per applicable Indian law.",
-  alternates: { canonical: "https://www.prernahospital.com/privacy" },
+  alternates: { canonical: "/privacy" },
   openGraph: {
     url: "https://www.prernahospital.com/privacy",
     title: "Privacy Policy – Prerna Hospital LLP",

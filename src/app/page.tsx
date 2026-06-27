@@ -10,6 +10,12 @@ import { createAdminClient } from "@/lib/supabase";
 
 const BASE_URL = "https://www.prernahospital.com";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 // VideoObject schema for the featured YouTube video — placed in metadata
 // so it renders in <head> not <body>
 const videoJsonLd = {

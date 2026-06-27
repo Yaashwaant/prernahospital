@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "About Prerna Hospital – Our Mission & Doctors",
   description:
     "Prerna Hospital LLP in Chhatrapati Sambhajinagar offers expert neuropsychiatry, de-addiction & mental health care. Meet our specialist doctors.",
-  alternates: { canonical: "https://www.prernahospital.com/about" },
+  alternates: { canonical: "/about" },
   openGraph: {
     url: "https://www.prernahospital.com/about",
     title: "About Prerna Hospital – Our Mission & Doctors",
