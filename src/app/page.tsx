@@ -2,9 +2,11 @@ import HospitalHeader from "@/components/HospitalHeader";
 import HeroSection from "@/components/HeroSection";
 import ServiceCards from "@/components/ServiceCards";
 import AboutAndTeamSection from "@/components/AboutAndTeamSection";
+import FaqSection from "@/components/FaqSection";
 import HospitalUpdatesSection from "@/components/HospitalUpdatesSection";
-import HospitalFooter from "@/components/HospitalFooter";
 import SocialHandlesSection from "@/components/SocialHandlesSection";
+import BlogSliderSection from "@/components/BlogSliderSection";
+import HospitalFooter from "@/components/HospitalFooter";
 import FloatingChatPrompt from "@/components/FloatingChatPrompt";
 import { createAdminClient } from "@/lib/supabase";
 
@@ -69,8 +71,10 @@ export default async function Home() {
       <HeroSection />
       <ServiceCards />
       <AboutAndTeamSection />
+      <FaqSection />
       <HospitalUpdatesSection initialUpdates={updates} />
       <SocialHandlesSection />
+      <BlogSliderSection />
       <HospitalFooter />
       <FloatingChatPrompt />
     </main>
