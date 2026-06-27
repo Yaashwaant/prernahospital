@@ -134,13 +134,23 @@ const faqs: FAQItem[] = [
       </div>
     ),
   },
+  {
+    question: "Are laboratory services (blood and urine tests) and ECG/EEG facilities available 24 hours a day?",
+    answer: (
+      <div className="space-y-4">
+        <p>
+          Yes, our hospital's pathology lab and ECG/EEG facilities operate 24 hours a day for in-patients and emergency cases. For out-patients, this service is available from 7:00 AM to 9:00 PM.
+        </p>
+      </div>
+    ),
+  }
 ];
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="w-full bg-[#F3F7FA] px-4 py-20 md:px-8 md:py-24">
+    <div id="faq" className="w-full bg-[#F3F7FA] px-4 py-20 md:px-8 md:py-24">
       <div className="mx-auto max-w-4xl">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#003D52] md:text-4xl">
@@ -201,6 +211,6 @@ export default function FaqSection() {
           })}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

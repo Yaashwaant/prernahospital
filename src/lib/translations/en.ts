@@ -191,7 +191,7 @@ const en = {
     hi: "हिन्दी",
     mr: "मराठी",
   },
-} as const;
+};
 
 export type TranslationKeys = typeof en;
 export default en;
