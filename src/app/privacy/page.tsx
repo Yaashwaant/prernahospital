@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy – Prerna Hospital LLP",
+  title: "Privacy Policy | Prerna Hospital Sambhaji Nagar",
   description:
-    "Read the Privacy Policy of Prerna Hospital LLP. We protect your personal health information per applicable Indian law.",
+    "Read the Privacy Policy of Prerna Hospital LLP in Chhatrapati Sambhajinagar. We protect your personal health data securely.",
   alternates: { canonical: "/privacy" },
   openGraph: {
     url: "https://www.prernahospital.com/privacy",
-    title: "Privacy Policy – Prerna Hospital LLP",
-    description: "Prerna Hospital LLP privacy policy – how we collect, use, and protect your personal information.",
+    title: "Privacy Policy | Prerna Hospital Sambhaji Nagar",
+    description: "Read the Privacy Policy of Prerna Hospital LLP in Chhatrapati Sambhajinagar. We protect your personal health data securely.",
   },
 };
 
@@ -65,12 +65,8 @@ export default function PrivacyPolicyPage() {
 
             <div>
               <h2 className="mb-3 text-lg font-bold text-[#003D52]">4. Health Information Confidentiality</h2>
-              <p>
-                All health and medical information shared with Prerna Hospital is treated as
-                strictly confidential. We adhere to professional medical ethics and applicable
-                Indian laws, including the Information Technology (Amendment) Act, 2008. Patient
-                health records are not disclosed to any third party without explicit consent,
-                except as required by law or medical emergency.
+              <p className="leading-relaxed text-gray-700">
+                All health and medical information shared with Prerna Hospital is treated as strictly confidential. We understand that mental health issues can be sensitive, and we are committed to providing a safe, judgement-free environment. We adhere to professional medical ethics and applicable Indian laws, including the Information Technology (Amendment) Act, 2008. Patient health records are not disclosed to any third party without explicit written consent from the patient or their legal guardian, except as required by law or a life-threatening medical emergency. Our staff undergoes regular training to ensure your privacy is respected at all times.
               </p>
             </div>
 

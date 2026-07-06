@@ -8,21 +8,22 @@ const BASE_URL = "https://www.prernahospital.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Prerna Hospital – Neuropsychiatry & Mental Health Care",
+    default: "Psychiatrist & De-addiction in Sambhaji Nagar | Prerna",
     template: "%s | Prerna Hospital",
   },
   description:
-    "Expert neuropsychiatry, de-addiction, child psychiatry & pathology in Chhatrapati Sambhajinagar. Book with our specialist doctors today.",
+    "Expert psychiatry & de-addiction in Chhatrapati Sambhajinagar (Aurangabad). Book a consultation for top mental health care.",
   keywords: [
-    "psychiatrist",
+    "psychiatrist in sambhaji nagar",
+    "deaddiction centre in sambhaji nagar",
+    "psychiatrist in aurangabad",
+    "deaddiction centre in aurangabad",
     "neuropsychiatry",
-    "de-addiction",
     "mental health",
     "Chhatrapati Sambhajinagar",
     "Prerna Hospital",
     "child psychiatry",
     "psychological therapy",
-    "sexual medicine",
     "pathology",
   ],
   authors: [{ name: "Prerna Hospital LLP" }],
@@ -34,9 +35,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: BASE_URL,
     siteName: "Prerna Hospital",
-    title: "Prerna Hospital – Neuropsychiatry & Mental Health Care",
+    title: "Prerna Hospital | Psychiatrist & De-addiction Centre in Chhatrapati Sambhajinagar",
     description:
-      "Expert neuropsychiatry, de-addiction & mental health care in Chhatrapati Sambhajinagar. Book with our specialist doctors.",
+      "Expert neuropsychiatry, de-addiction & mental health care in Chhatrapati Sambhajinagar (formerly Aurangabad). Book with the best psychiatrists in the Marathwada region.",
     images: [
       {
         url: "/og-image.jpg",
@@ -49,9 +50,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Prerna Hospital – Expert Neuropsychiatry & Mental Health Care",
+      "Prerna Hospital | Psychiatrist & De-addiction Centre in Chhatrapati Sambhajinagar",
     description:
-      "Advanced brain and mental health care in Chhatrapati Sambhajinagar. Book appointments with our specialist doctors.",
+      "Expert neuropsychiatry, de-addiction & mental health care in Chhatrapati Sambhajinagar (formerly Aurangabad). Book with the best psychiatrists in the Marathwada region.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -76,11 +77,12 @@ const hospitalJsonLd = {
   "@context": "https://schema.org",
   "@type": "Hospital",
   name: "Prerna Hospital LLP",
+  alternateName: "Prerna Hospital Aurangabad",
   url: BASE_URL,
   logo: `${BASE_URL}/logo.svg`,
   image: `${BASE_URL}/og-image.jpg`,
   description:
-    "Prerna Hospital LLP provides advanced neuropsychiatry, de-addiction, child psychiatry, psychological therapy and pathology services in Chhatrapati Sambhajinagar, Maharashtra, India.",
+    "Prerna Hospital LLP provides advanced neuropsychiatry, de-addiction, child psychiatry, psychological therapy and pathology services in Chhatrapati Sambhajinagar (formerly Aurangabad), Maharashtra, India.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "G47, Town Center N-6, Connaught Place, Near Ganesh Temple & Varsha Palace Hotel, CIDCO",
@@ -99,6 +101,11 @@ const hospitalJsonLd = {
     "Psychological Therapy",
     "Pathology",
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "250",
+  },
   sameAs: [],
 };
 

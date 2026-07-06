@@ -2,12 +2,14 @@ import HospitalHeader from "@/components/HospitalHeader";
 import HeroSection from "@/components/HeroSection";
 import ServiceCards from "@/components/ServiceCards";
 import AboutAndTeamSection from "@/components/AboutAndTeamSection";
-import FaqSection from "@/components/FaqSection";
-import HospitalUpdatesSection from "@/components/HospitalUpdatesSection";
-import SocialHandlesSection from "@/components/SocialHandlesSection";
-import BlogSliderSection from "@/components/BlogSliderSection";
-import HospitalFooter from "@/components/HospitalFooter";
-import FloatingChatPrompt from "@/components/FloatingChatPrompt";
+import dynamic from "next/dynamic";
+
+const FaqSection = dynamic(() => import("@/components/FaqSection"));
+const HospitalUpdatesSection = dynamic(() => import("@/components/HospitalUpdatesSection"));
+const SocialHandlesSection = dynamic(() => import("@/components/SocialHandlesSection"));
+const BlogSliderSection = dynamic(() => import("@/components/BlogSliderSection"));
+const HospitalFooter = dynamic(() => import("@/components/HospitalFooter"));
+const FloatingChatPrompt = dynamic(() => import("@/components/FloatingChatPrompt"));
 import { createAdminClient } from "@/lib/supabase";
 
 const BASE_URL = "https://www.prernahospital.com";

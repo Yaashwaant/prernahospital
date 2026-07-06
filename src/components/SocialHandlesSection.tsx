@@ -54,7 +54,7 @@ export default function SocialHandlesSection() {
               <div className="flex items-center justify-between gap-3 min-w-0">
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-full overflow-hidden">
-                    <Image src="/Youtube_logo.avif" alt="YouTube" width={36} height={36} className="object-contain" unoptimized />
+                    <Image src="/Youtube_logo.avif" alt="YouTube" width={36} height={36} className="object-contain" />
                   </div>
                   <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#1F4FD8] truncate">
@@ -109,7 +109,7 @@ export default function SocialHandlesSection() {
                     <div className="absolute inset-0 bg-gradient-to-br from-[#1F4FD8]/30 via-[#1ECAD3]/20 to-black/70" />
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white">
                       <div className="flex h-16 w-16 items-center justify-center rounded-full overflow-hidden shadow-lg transition-transform group-hover:scale-105">
-                        <Image src="/Youtube_logo.avif" alt="YouTube" width={64} height={64} className="object-contain" unoptimized />
+                        <Image src="/Youtube_logo.avif" alt="YouTube" width={64} height={64} className="object-contain" />
                       </div>
                       <p className="text-sm md:text-base font-semibold">{t("social.youtube.openChannel")}</p>
                       <span className="text-[11px] text-white/80">{t("social.youtube.clickToView")}</span>
@@ -183,7 +183,7 @@ export default function SocialHandlesSection() {
               <div className="rounded-3xl bg-white shadow-refined border border-gray-100 p-4 md:p-5 flex flex-col gap-3 min-w-0 overflow-hidden">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full overflow-hidden flex-shrink-0">
-                    <Image src="/Facebook_logo.avif" alt="Facebook" width={32} height={32} className="object-contain" unoptimized />
+                    <Image src="/Facebook_logo.avif" alt="Facebook" width={32} height={32} className="object-contain" />
                   </div>
                   <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold text-[#1A1A1A]">{t("social.facebook.title")}</span>
@@ -201,7 +201,7 @@ export default function SocialHandlesSection() {
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full overflow-hidden">
-                        <Image src="/Facebook_logo.avif" alt="Facebook" width={40} height={40} className="object-contain" unoptimized />
+                        <Image src="/Facebook_logo.avif" alt="Facebook" width={40} height={40} className="object-contain" />
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-[#1A1A1A]">{t("social.facebook.openPage")}</p>
@@ -240,7 +240,7 @@ export default function SocialHandlesSection() {
               <div className="rounded-3xl bg-white shadow-refined border border-gray-100 p-4 md:p-5 flex flex-col gap-3 min-w-0 overflow-hidden">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full overflow-hidden flex-shrink-0">
-                    <Image src="/Instagram_logo.avif" alt="Instagram" width={32} height={32} className="object-contain" unoptimized />
+                    <Image src="/Instagram_logo.avif" alt="Instagram" width={32} height={32} className="object-contain" />
                   </div>
                   <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold text-[#1A1A1A]">{t("social.instagram.title")}</span>

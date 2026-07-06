@@ -85,7 +85,7 @@ export default function BlogSliderSection() {
                             href={`/blog/${blog.slug}`}
                             className="relative z-10 inline-flex items-center justify-center rounded-full bg-[#1A202C] px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#1F4FD8] group-hover:bg-[#1F4FD8]"
                           >
-                            Read More
+                            Read More<span className="sr-only"> about {blog.title}</span>
                           </Link>
                         </div>
                       </div>

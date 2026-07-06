@@ -5,6 +5,7 @@ import {
   ChevronDown
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, memo, useState } from "react";
 import { fadeInUp } from "@/lib/animations";
 import { useLanguage } from "@/lib/i18n";
@@ -13,6 +14,7 @@ interface ServiceItem {
   image: string;
   titleKey: string;
   descriptionKey: string;
+  slug: string;
 }
 
 const SERVICES: ServiceItem[] = [
@@ -20,41 +22,49 @@ const SERVICES: ServiceItem[] = [
     image: "/neuro-psychiatry.png",
     titleKey: "services.neuropsychiatry.title",
     descriptionKey: "services.neuropsychiatry.description",
+    slug: "neuropsychiatry",
   },
   {
     image: "/de-addiction-services.png",
     titleKey: "services.deaddiction.title",
     descriptionKey: "services.deaddiction.description",
+    slug: "de-addiction-medicine",
   },
   {
     image: "/children-adolescent-psychiatry.png",
     titleKey: "services.childPsychiatry.title",
     descriptionKey: "services.childPsychiatry.description",
+    slug: "child-and-adolescent-psychiatry",
   },
   {
     image: "/sexual-medicine.png",
     titleKey: "services.sexualMedicine.title",
     descriptionKey: "services.sexualMedicine.description",
+    slug: "sexual-medicine",
   },
   {
     image: "/therapy-sessions.png",
     titleKey: "services.psychologicalTherapy.title",
     descriptionKey: "services.psychologicalTherapy.description",
+    slug: "psychological-therapy",
   },
   {
     image: "/psychological-testing-assessment.png",
     titleKey: "services.psychologicalTesting.title",
     descriptionKey: "services.psychologicalTesting.description",
+    slug: "psychological-testing",
   },
   {
     image: "/pathology.png",
     titleKey: "services.pathology.title",
     descriptionKey: "services.pathology.description",
+    slug: "pathology",
   },
   {
     image: "/geriatric-mental-health.png",
     titleKey: "services.geriatric.title",
     descriptionKey: "services.geriatric.description",
+    slug: "geriatric-mental-health",
   }
 ];
 
@@ -105,6 +115,7 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
               src={service.image}
               alt={`${title} - Prerna Hospital, Chhatrapati Sambhajinagar`}
               fill
+              sizes="(max-width: 768px) 100vw, 33vw"
               className="object-contain"
               priority={index === 0}
             />
@@ -143,7 +154,10 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
               transition={{ duration: 0.25 }}
               className="mt-3 text-xs text-gray-700"
             >
-              {description}
+              <p className="mb-2">{description}</p>
+              <Link href={`/services/${service.slug}`} className="inline-flex items-center text-[#1F4FD8] font-semibold hover:underline">
+                Learn more<span className="sr-only"> about {service.title}</span> <span className="ml-1">&rarr;</span>
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>

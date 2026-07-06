@@ -3,15 +3,15 @@ import Link from "next/link";
 import { DOCTORS } from "@/data/doctors";
 
 export const metadata: Metadata = {
-  title: "About Prerna Hospital – Our Mission & Doctors",
+  title: "About Prerna Hospital | Top Psychiatrists in Sambhaji Nagar",
   description:
-    "Prerna Hospital LLP in Chhatrapati Sambhajinagar offers expert neuropsychiatry, de-addiction & mental health care. Meet our specialist doctors.",
+    "Prerna Hospital in Chhatrapati Sambhajinagar offers expert neuropsychiatry & de-addiction care. Book a consultation today.",
   alternates: { canonical: "/about" },
   openGraph: {
     url: "https://www.prernahospital.com/about",
-    title: "About Prerna Hospital – Our Mission & Doctors",
+    title: "About Prerna Hospital | Top Psychiatrists in Sambhaji Nagar",
     description:
-      "Expert neuropsychiatry & mental health care in Chhatrapati Sambhajinagar. Meet our specialist doctors.",
+      "Prerna Hospital in Chhatrapati Sambhajinagar offers expert neuropsychiatry & de-addiction care. Book a consultation today.",
   },
 };
 
@@ -70,23 +70,26 @@ export default function AboutPage() {
           <h2 className="mb-6 text-2xl font-bold text-[#003D52] md:text-3xl">
             Our Mission
           </h2>
-          <p className="text-gray-700 leading-relaxed">
-            At Prerna Hospital, we bridge the gap between clinical excellence
-            and compassionate support. We are committed to delivering
-            evidence-based psychiatric care, de-addiction treatment, and
-            psychological therapy that empower individuals to lead healthier,
-            fuller lives. We operate with a patient-first philosophy, ensuring
-            that every treatment plan is tailored to the unique needs of each
-            individual.
+          <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+            At Prerna Hospital, our mission is simple: we want to help you feel better. We know that dealing with mental health issues or addiction can be hard. That is why we offer a safe, welcoming place for treatment. We use proven medical treatments to help you overcome these challenges so you can live a happy and healthy life. We always put our patients first. This means we listen to you and create a treatment plan that is made just for you.
           </p>
-          <p className="mt-4 text-gray-700 leading-relaxed">
-            Mental health is not a luxury — it is a necessity. Our team of
-            experienced psychiatrists, psychologists, and pathologists work in a
-            multi-disciplinary environment to provide holistic care that
-            addresses the mind, body, and social well-being of every patient.
-            We serve patients across Marathwada and the broader Maharashtra
-            region, offering both in-patient and out-patient services under one
-            roof.
+          <p className="mt-4 text-gray-700 leading-relaxed text-base md:text-lg">
+            Mental health care is a basic need, not a luxury. Our team includes expert psychiatrists, psychologists, and lab technicians. We all work together to care for your mind and body at the same time. We are proud to help patients from all over the Marathwada region. Whether you need to stay at the hospital or just visit for a quick appointment, we have everything you need right here under one roof.
+          </p>
+        </div>
+      </section>
+
+      {/* Our History */}
+      <section className="bg-[#E8F2F7] px-4 py-14 md:py-20">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="mb-6 text-2xl font-bold text-[#003D52] md:text-3xl">
+            Our History and Commitment
+          </h2>
+          <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+            Prerna Hospital started with a clear goal: to bring the best mental health care to Chhatrapati Sambhajinagar (Aurangabad). For many years, patients in our region had to travel very far to get specialized psychiatric help. We built Prerna Hospital so that top-quality care is available right close to home. 
+          </p>
+          <p className="mt-4 text-gray-700 leading-relaxed text-base md:text-lg">
+            Our modern building is designed to make you feel calm and safe. From our bright, clean rooms to our friendly staff, every detail is made with your comfort in mind. We are very proud to serve our community. We promise to keep improving our services every day to give you the best care possible.
           </p>
         </div>
       </section>
@@ -101,19 +104,19 @@ export default function AboutPage() {
             {[
               {
                 title: "Expert Medical Team",
-                body: "Our doctors are trained at premier institutes across India and bring decades of combined experience in neuropsychiatry, addiction medicine, and clinical psychology.",
+                body: "Our doctors are highly trained and have years of experience treating mental health conditions and addiction.",
               },
               {
                 title: "Patient-First Approach",
-                body: "We believe in dignity, confidentiality, and individualized care. Every patient's journey is unique, and our team crafts personalised treatment plans accordingly.",
+                body: "We treat everyone with respect and keep your information completely private. Your treatment is built around your specific needs.",
               },
               {
-                title: "Holistic Recovery",
-                body: "Beyond medication, we offer counselling, behavioural therapy, family education, and relapse prevention support for complete, long-term recovery.",
+                title: "Complete Recovery",
+                body: "We do not just give medicine. We offer talking therapies, family support, and plans to help you stay healthy for the long term.",
               },
               {
-                title: "Accessible & Affordable Care",
-                body: "Located in the heart of CIDCO, Chhatrapati Sambhajinagar, we are accessible to patients from across Marathwada with flexible appointment timings.",
+                title: "Easy to Reach",
+                body: "Located right in CIDCO, Chhatrapati Sambhajinagar, our hospital is easy to reach. We also offer flexible appointment times.",
               },
             ].map((item) => (
               <div

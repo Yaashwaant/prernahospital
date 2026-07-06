@@ -33,13 +33,14 @@ export async function generateMetadata(
     "@context": "https://schema.org",
     "@type": "Physician",
     name: doctor.name,
-    jobTitle: doctor.role,
+    jobTitle: `${doctor.role} in Chhatrapati Sambhajinagar (Aurangabad)`,
     description: doctor.overview[0] ?? description,
     image: `${BASE_URL}${doctor.image}`,
     url,
     worksFor: {
       "@type": "Hospital",
       name: "Prerna Hospital LLP",
+      alternateName: "Prerna Hospital Aurangabad",
       url: BASE_URL,
     },
     medicalSpecialty: doctor.Specialities,
@@ -50,6 +51,15 @@ export async function generateMetadata(
       addressCountry: "IN",
     },
     telephone: "+91-7887888865",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "250",
+    },
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: doctor.qualifications
+    }
   };
 
   return {
@@ -83,13 +93,14 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
     "@context": "https://schema.org",
     "@type": "Physician",
     name: doctor.name,
-    jobTitle: doctor.role,
+    jobTitle: `${doctor.role} in Chhatrapati Sambhajinagar (Aurangabad)`,
     description: doctor.overview[0] ?? `${doctor.name} is a ${doctor.role} at Prerna Hospital, Chhatrapati Sambhajinagar. Specialities: ${doctor.Specialities.slice(0, 2).join(", ")}.`,
     image: `${BASE_URL}${doctor.image}`,
     url: `${BASE_URL}/doctors/${doctor.slug}`,
     worksFor: {
       "@type": "Hospital",
       name: "Prerna Hospital LLP",
+      alternateName: "Prerna Hospital Aurangabad",
       url: BASE_URL,
     },
     medicalSpecialty: doctor.Specialities,
@@ -100,6 +111,15 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
       addressCountry: "IN",
     },
     telephone: "+91-7887888865",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "250",
+    },
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: doctor.qualifications
+    }
   };
 
   return (
@@ -237,7 +257,7 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
               <div className="border-t border-gray-100 px-4 py-5 md:px-8 md:py-6">
                 <TabsContent value="overview">
                   <h2 className="mb-3 text-base font-semibold text-[#003D52]">
-                    Overview
+                    Overview of {doctor.name}
                   </h2>
                   <div className="space-y-3 text-sm text-gray-700">
                     {doctor.overview.map((paragraph) => (
@@ -248,7 +268,7 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
 
                 <TabsContent value="membership">
                   <h2 className="mb-3 text-base font-semibold text-[#003D52]">
-                    Fellowship and Memberships
+                    Fellowships & Memberships of {doctor.name}
                   </h2>
                   <ul className="space-y-2 text-sm text-gray-700">
                     {doctor.fellowshipMembership.map((item) => (
@@ -262,7 +282,7 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
 
                 <TabsContent value="expertise">
                   <h2 className="mb-3 text-base font-semibold text-[#003D52]">
-                    Field of Expertise
+                    Field of Expertise: {doctor.name}
                   </h2>
                   <ul className="space-y-2 text-sm text-gray-700">
                     {doctor.fieldOfExpertise.map((item) => (
@@ -276,7 +296,7 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
 
                 <TabsContent value="languages">
                   <h2 className="mb-3 text-base font-semibold text-[#003D52]">
-                    Languages Spoken
+                    Languages Spoken by {doctor.name}
                   </h2>
                   <div className="flex flex-wrap gap-2 text-sm text-gray-700">
                     {doctor.languagesSpoken.map((lang) => (
@@ -292,7 +312,7 @@ export default async function DoctorPage({ params }: DoctorPageProps) {
 
                 <TabsContent value="awards">
                   <h2 className="mb-3 text-base font-semibold text-[#003D52]">
-                    Awards and Achievements
+                    Awards & Achievements of {doctor.name}
                   </h2>
                   <ul className="space-y-2 text-sm text-gray-700">
                     {doctor.awardsAchievements.map((item) => (

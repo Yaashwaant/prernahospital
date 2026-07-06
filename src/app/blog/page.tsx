@@ -8,8 +8,8 @@ import HospitalFooter from "@/components/HospitalFooter";
 import FloatingChatPrompt from "@/components/FloatingChatPrompt";
 
 export const metadata: Metadata = {
-  title: "Blog | Prerna Hospital",
-  description: "Read the latest insights and expert guides on mental health, de-addiction, and wellness from the specialists at Prerna Hospital.",
+  title: "Mental Health Blog | Psychiatrist in Sambhaji Nagar",
+  description: "Read the latest insights and expert guides on mental health and de-addiction from the specialists at Prerna Hospital. Read our guides today!",
   alternates: { canonical: "/blog" },
 };
 
@@ -91,7 +91,7 @@ export default function BlogListingPage() {
                       href={`/blog/${blog.slug}`}
                       className="relative z-10 inline-flex items-center justify-center rounded-full bg-[#1A202C] px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#1F4FD8] group-hover:bg-[#1F4FD8]"
                     >
-                      Read More
+                      Read More<span className="sr-only"> about {blog.title}</span>
                     </Link>
                   </div>
                 </div>

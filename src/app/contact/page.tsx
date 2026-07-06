@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Contact Prerna Hospital – Book Appointment",
+  title: "Contact Prerna Hospital | Book a Psychiatrist Consultation",
   description:
-    "Contact Prerna Hospital in Chhatrapati Sambhajinagar. Call +91-7887888865 to book an appointment with our specialist psychiatrists.",
+    "Contact Prerna Hospital in Chhatrapati Sambhajinagar. Call +91-7887888865 to book your psychiatric or de-addiction appointment today.",
   alternates: { canonical: "/contact" },
   openGraph: {
     url: "https://www.prernahospital.com/contact",
-    title: "Contact Prerna Hospital – Book Appointment",
+    title: "Contact Prerna Hospital | Book a Psychiatrist Consultation",
     description:
-      "Call +91-7887888865 to book with our specialist psychiatrists in Chhatrapati Sambhajinagar.",
+      "Contact Prerna Hospital in Chhatrapati Sambhajinagar. Call +91-7887888865 to book your psychiatric or de-addiction appointment today.",
   },
 };
 
@@ -178,6 +178,27 @@ export default function ContactPage() {
                   Open in Maps ↗
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-white px-4 py-14">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="mb-6 text-2xl font-bold text-[#003D52]">Frequently Asked Questions About Appointments</h2>
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-gray-100 bg-[#F4F7FB] p-6">
+              <h3 className="font-bold text-[#1A1A1A]">Do I need to book an appointment before visiting?</h3>
+              <p className="mt-2 text-sm text-gray-700 leading-relaxed">Yes, we highly recommend booking an appointment before you visit Prerna Hospital. This helps us ensure that the right specialist is available to see you without long waiting times. However, in case of a psychiatric emergency, you can walk in immediately for urgent care.</p>
+            </div>
+            <div className="rounded-2xl border border-gray-100 bg-[#F4F7FB] p-6">
+              <h3 className="font-bold text-[#1A1A1A]">What should I bring to my first consultation?</h3>
+              <p className="mt-2 text-sm text-gray-700 leading-relaxed">For your first visit, please bring any previous medical records, past prescriptions, and details of any current medications. If you have been referred by another doctor, please bring the referral letter. This helps our psychiatrists understand your complete medical history and provide the best possible treatment.</p>
+            </div>
+            <div className="rounded-2xl border border-gray-100 bg-[#F4F7FB] p-6">
+              <h3 className="font-bold text-[#1A1A1A]">Is my treatment and consultation confidential?</h3>
+              <p className="mt-2 text-sm text-gray-700 leading-relaxed">Absolutely. We take patient privacy very seriously at Prerna Hospital. All consultations, medical records, and personal details are kept strictly confidential. We follow all medical privacy laws to ensure your information is safe and secure with us.</p>
             </div>
           </div>
         </div>

@@ -100,8 +100,9 @@ export default function HeroSection() {
                     >
                       <Image
                         src={slides[index]?.src ?? DEFAULT_SLIDES[0].src}
-                        alt={`${slides[index]?.alt ?? "Hospital photo"} - Prerna Hospital, Chhatrapati Sambhajinagar`}
+                        alt={`${slides[index]?.alt ?? "Hospital photo"} - Prerna Hospital, Chhatrapati Sambhajinagar (Aurangabad)`}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover"
                         priority
                       />

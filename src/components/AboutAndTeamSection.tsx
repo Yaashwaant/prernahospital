@@ -95,8 +95,8 @@ function FacilitiesSlider() {
               src={slides[current]?.src ?? DEFAULT_FACILITY_SLIDES[0].src}
               alt={`${slides[current]?.label ?? "Hospital facility"} - Prerna Hospital, Chhatrapati Sambhajinagar`}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
-              unoptimized
             />
             {/* Label overlay */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/55 to-transparent px-4 py-3">
@@ -168,9 +168,9 @@ export default function AboutAndTeamSection() {
               <span className="inline-flex rounded-full bg-[#E6F2FF] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1F4FD8]">
                 {t("facilities.badge")}
               </span>
-              <h3 className="mt-2 text-lg md:text-xl font-bold text-[#1A1A1A]">
+              <h2 className="mt-2 text-lg md:text-xl font-bold text-[#1A1A1A]">
                 {t("facilities.heading")}
-              </h3>
+              </h2>
               <p className="mt-1 text-xs md:text-sm text-gray-600 max-w-2xl">
                 {t("facilities.subtitle")}
               </p>
@@ -184,6 +184,7 @@ export default function AboutAndTeamSection() {
                   src="/24x7-emergency-admission.png"
                   alt="24x7 Emergency Admission icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
+                  sizes="40px"
                   className="object-contain"
                 />
               </div>
@@ -203,6 +204,7 @@ export default function AboutAndTeamSection() {
                   src="/greener-city-campus.png"
                   alt="Greener City Campus icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
+                  sizes="40px"
                   className="object-contain"
                 />
               </div>
@@ -222,6 +224,7 @@ export default function AboutAndTeamSection() {
                   src="/deluxe-inpatient-care.png"
                   alt="Deluxe In-Patient Care icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
+                  sizes="40px"
                   className="object-contain"
                 />
               </div>
@@ -241,6 +244,7 @@ export default function AboutAndTeamSection() {
                   src="/expert-opd-access.png"
                   alt="Expert OPD Access icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
+                  sizes="40px"
                   className="object-contain"
                 />
               </div>
@@ -260,6 +264,7 @@ export default function AboutAndTeamSection() {
                   src="/trained-support-staff.png"
                   alt="Trained Support Staff icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
+                  sizes="40px"
                   className="object-contain"
                 />
               </div>
@@ -279,6 +284,7 @@ export default function AboutAndTeamSection() {
                   src="/advanced-diagnostics.png"
                   alt="Advanced Diagnostics icon - Prerna Hospital, Chhatrapati Sambhajinagar"
                   fill
+                  sizes="40px"
                   className="object-contain"
                 />
               </div>
@@ -304,7 +310,7 @@ export default function AboutAndTeamSection() {
           className="space-y-4"
         >
           <div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">{t("team.heading")}</h3>
+            <h2 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">{t("team.heading")}</h2>
             <p className="mt-1 text-xs md:text-sm text-gray-600">
               {t("team.subtitle")}
             </p>
@@ -318,7 +324,6 @@ export default function AboutAndTeamSection() {
               width={1920}
               height={1080}
               className="w-full h-auto"
-              unoptimized
             />
           </div>
         </motion.div>
@@ -326,9 +331,9 @@ export default function AboutAndTeamSection() {
         <div className="space-y-6" id="team">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">
+              <h2 className="text-xl md:text-2xl font-bold text-[#1A1A1A]">
                 {t("team.specialistHeading")}
-              </h3>
+              </h2>
               <p className="text-xs md:text-sm text-gray-600">
                 {t("team.specialistSubtitle")}
               </p>
@@ -377,6 +382,7 @@ export default function AboutAndTeamSection() {
                           src={doctor.image}
                           alt={doctor.name}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover object-top"
                         />
                       ) : (
