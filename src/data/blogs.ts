@@ -15,6 +15,38 @@ export interface Blog {
 
 export const BLOGS: Blog[] = [
   {
+    slug: "finding-the-right-care-for-mental-health-or-addiction",
+    title: "Finding the Right Care for Mental Health or Addiction",
+    excerpt:
+      "At Prerna Hospital, the premier neuropsychiatry and de-addiction center in Chhatrapati Sambhajinagar, we are dedicated to transforming mental illness into mental wellness.",
+    authorSlug: "universal-writer",
+    thumbnail: "/blog/mental-health-healing.png",
+    publishedAt: "2026-07-18T00:00:00Z",
+    readingTime: "3 min read",
+    seo: {
+      title: "Finding the Right Care for Mental Health or Addiction | Prerna Hospital",
+      description:
+        "At Prerna Hospital, the premier neuropsychiatry and de-addiction center in Chhatrapati Sambhajinagar, we are dedicated to transforming mental illness into mental wellness.",
+    },
+    content: `
+Finding the right care for mental health or addiction can feel overwhelming, but you don't have to navigate it alone. 🌿
+
+At Prerna Hospital, the premier neuropsychiatry and de-addiction center in Chhatrapati Sambhajinagar, we are dedicated to transforming mental illness into mental wellness. Led by a distinguished team of specialists—**Dr. Ashish Mohide, Dr. Manik C. Bhise (Gold Medalist), and Dr. Sadeq Qureshi**—we provide compassionate, evidence-based care in a safe, destigmatizing environment.
+
+## Why choose Prerna Hospital? ✨
+- A serene, lush green city campus designed for healing and tranquility.
+- Deluxe in-patient facilities (AC rooms, TV, Wi-Fi) for maximum comfort and privacy.
+- 24/7 emergency psychiatric admissions and structured medical support.
+- Comprehensive de-addiction services and advanced diagnostics.
+
+Your journey to recovery starts in a place where clinical excellence meets holistic rehabilitation.
+
+📞 For support, consultation, or emergency admissions, reach out to our helpline: **[7887888865](tel:7887888865)**. We are here for you, round the clock.
+
+*#PrernaHospital #MentalHealthMatters #ChhatrapatiSambhajinagar #PsychiatricCare #MentalWellness #DeAddiction #EndTheStigma #MentalHealthAwareness #MaharashtraHealthcare #HealingJourney*
+`,
+  },
+  {
     slug: "top-10-symptoms-of-depression-you-should-never-ignore",
     title: "Top 10 Symptoms of Depression You Should Never Ignore",
     excerpt:
