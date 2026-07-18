@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { DOCTORS } from "@/data/doctors";
+import { BLOGS } from "@/data/blogs";
 import { createAdminClient } from "@/lib/supabase";
 
 const BASE_URL = process.env.SITE_URL ?? "https://www.prernahospital.com";
@@ -10,6 +11,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
+  }));
+
+  const blogPages = BLOGS.map((blog) => ({
+    url: `${BASE_URL}/blog/${blog.slug}`,
+    lastModified: new Date(blog.publishedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }));
 
   let updatePages: MetadataRoute.Sitemap = [];
@@ -53,6 +61,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.5,
     },
+    {
+      url: `${BASE_URL}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 
   return [
@@ -64,6 +78,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...staticPages,
     ...doctorPages,
+    ...blogPages,
     ...updatePages,
   ];
 }
