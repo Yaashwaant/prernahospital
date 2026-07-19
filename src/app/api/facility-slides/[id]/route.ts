@@ -6,9 +6,10 @@ import { uuidSchema } from "@/lib/validation";
 // DELETE /api/facility-slides/[id]
 export async function DELETE(
   _req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
-  const paramVal = uuidSchema.safeParse(params.id);
+  const { id: paramId } = await params;
+  const paramVal = uuidSchema.safeParse(paramId);
   if (!paramVal.success) {
     return NextResponse.json({ ok: false, error: "Invalid ID parameter format" }, { status: 400 });
   }

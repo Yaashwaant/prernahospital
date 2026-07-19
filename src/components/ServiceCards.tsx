@@ -156,7 +156,7 @@ const ServiceCard = memo<ServiceCardProps>(({ service, index }) => {
             >
               <p className="mb-2">{description}</p>
               <Link href={`/services/${service.slug}`} className="inline-flex items-center text-[#1F4FD8] font-semibold hover:underline">
-                Learn more<span className="sr-only"> about {service.title}</span> <span className="ml-1">&rarr;</span>
+                Learn more<span className="sr-only"> about {title}</span> <span className="ml-1">&rarr;</span>
               </Link>
             </motion.div>
           )}

@@ -99,7 +99,7 @@ export async function POST(req: Request) {
     const result = symptomsSchema.safeParse(body.symptoms);
     if (!result.success) {
       return NextResponse.json({
-        suggestion: result.error.errors[0]?.message || "Please describe your symptoms or concern so I can help you find the right doctor.",
+        suggestion: result.error.issues[0]?.message || "Please describe your symptoms or concern so I can help you find the right doctor.",
       }, { status: 400 });
     }
     symptoms = result.data;

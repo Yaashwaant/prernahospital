@@ -9,20 +9,8 @@ import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-// ─── Nav config (translation keys mapped per item) ────────────────────────────
-const NAV_ITEMS = [
-  { id: "home",       tKey: "header.home",           href: "/" },
-  { id: "facilities", tKey: "header.ourFacilities",   href: "/#about" },
-  { id: "our-team",   tKey: "header.ourTeam",         href: "/#team" },
-] as const;
-
-const MORE_ITEMS = [
-  { id: "blog",         tKey: "header.blog",          href: "/blog" },
-  { id: "faq",          tKey: "header.faq",           href: "/#faq" },
-  { id: "contact-page", tKey: "header.contactUs",     href: "/contact" },
-  { id: "updates",      tKey: "header.updates",       href: "/#updates" },
-  { id: "privacy",      tKey: "header.privacyPolicy", href: "/privacy" },
-] as const;
+import { NAV_ITEMS, MORE_ITEMS } from "./navConfig";
+import { MobileNavContent } from "./MobileNav";
 
 // ─── Mobile quick-action bar ───────────────────────────────────────────────────
 const MobileQuickActions = () => {
@@ -239,68 +227,7 @@ const MainHeaderContent = () => {
   );
 };
 
-// ─── Mobile nav bar ────────────────────────────────────────────────────────────
-const MobileNavContent = () => {
-  const [moreOpen, setMoreOpen] = useState(false);
-  const { t } = useLanguage();
-  const allItems = [...NAV_ITEMS];
 
-  return (
-    <nav className="w-full bg-[#F4F7FB] border-t border-gray-100 lg:hidden px-4">
-      <div className="container mx-auto">
-        {/* Main nav row — 5 items (nav + lang switcher) */}
-        <ul className="grid w-full grid-cols-5 justify-items-center gap-x-1 py-2 text-[10px] font-bold uppercase tracking-wider">
-          {allItems.map((item) => (
-            <li key={item.id} className={`w-full text-center ${item.id === "home" ? "text-[#FFB703]" : "text-[#1F4FD8]"}`}>
-              <Link href={item.href} className="block py-1.5">
-                {t(item.tKey)}
-              </Link>
-            </li>
-          ))}
-
-          {/* "More" toggle */}
-          <li className="w-full text-center text-[#1F4FD8]">
-            <button
-              onClick={() => setMoreOpen((v) => !v)}
-              className="flex w-full items-center justify-center gap-0.5 py-1.5"
-            >
-              {t("header.more")}
-              <motion.span animate={{ rotate: moreOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                <ChevronDown className="h-3 w-3" />
-              </motion.span>
-            </button>
-          </li>
-
-          {/* Language Switcher in mobile nav */}
-          <li className="w-full flex items-center justify-center">
-            <LanguageSwitcher />
-          </li>
-        </ul>
-
-        {/* Expandable "More" section */}
-        <AnimatePresence>
-          {moreOpen && (
-            <motion.ul
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="overflow-hidden border-t border-gray-100 grid grid-cols-2 gap-x-2 pb-2 pt-1 text-[10px] font-bold uppercase tracking-wider"
-            >
-              {MORE_ITEMS.map((item) => (
-                <li key={item.id} className="text-center text-[#1F4FD8]">
-                  <Link href={item.href} onClick={() => setMoreOpen(false)} className="block py-1.5">
-                    {t(item.tKey)}
-                  </Link>
-                </li>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-      </div>
-    </nav>
-  );
-};
 
 // ─── Root export ──────────────────────────────────────────────────────────────
 export default function HospitalHeader() {

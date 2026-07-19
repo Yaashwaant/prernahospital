@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const result = heroSlidePostSchema.safeParse(body);
     if (!result.success) {
-      return NextResponse.json({ ok: false, error: result.error.errors[0]?.message || "Invalid input data" }, { status: 400 });
+      return NextResponse.json({ ok: false, error: result.error.issues[0]?.message || "Invalid input data" }, { status: 400 });
     }
     src = result.data.src;
     alt = result.data.alt || "Hospital photo";
@@ -61,7 +61,7 @@ export async function PATCH(req: Request) {
     const body = await req.json();
     const result = reorderSchema.safeParse(body);
     if (!result.success) {
-      return NextResponse.json({ ok: false, error: result.error.errors[0]?.message || "Invalid ids array" }, { status: 400 });
+      return NextResponse.json({ ok: false, error: result.error.issues[0]?.message || "Invalid ids array" }, { status: 400 });
     }
     ids = result.data.ids;
   } catch {

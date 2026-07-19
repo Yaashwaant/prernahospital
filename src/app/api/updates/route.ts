@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const result = updatePostSchema.safeParse(body);
     if (!result.success) {
-      return NextResponse.json({ ok: false, error: { message: result.error.errors[0]?.message || "Invalid input data" } }, { status: 400 });
+      return NextResponse.json({ ok: false, error: { message: result.error.issues[0]?.message || "Invalid input data" } }, { status: 400 });
     }
     const validated = result.data;
     const id = validated.id || crypto.randomUUID();

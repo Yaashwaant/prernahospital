@@ -6,9 +6,10 @@ import { uuidSchema, updatePatchSchema } from "@/lib/validation";
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
-  const paramVal = uuidSchema.safeParse(params.id);
+  const { id: paramId } = await params;
+  const paramVal = uuidSchema.safeParse(paramId);
   if (!paramVal.success) {
     return NextResponse.json({ ok: false, error: "Invalid ID parameter format" }, { status: 400 });
   }
@@ -23,9 +24,10 @@ export async function GET(
 
 export async function DELETE(
   _req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
-  const paramVal = uuidSchema.safeParse(params.id);
+  const { id: paramId } = await params;
+  const paramVal = uuidSchema.safeParse(paramId);
   if (!paramVal.success) {
     return NextResponse.json({ ok: false, error: "Invalid ID parameter format" }, { status: 400 });
   }
@@ -55,9 +57,10 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
-  const paramVal = uuidSchema.safeParse(params.id);
+  const { id: paramId } = await params;
+  const paramVal = uuidSchema.safeParse(paramId);
   if (!paramVal.success) {
     return NextResponse.json({ ok: false, error: "Invalid ID parameter format" }, { status: 400 });
   }
@@ -71,7 +74,7 @@ export async function PATCH(
     const body = await req.json();
     const result = updatePatchSchema.safeParse(body);
     if (!result.success) {
-      return NextResponse.json({ ok: false, error: result.error.errors[0]?.message || "Invalid input data" }, { status: 400 });
+      return NextResponse.json({ ok: false, error: result.error.issues[0]?.message || "Invalid input data" }, { status: 400 });
     }
     const validated = result.data;
     if (validated.title !== undefined) update.title = validated.title;
