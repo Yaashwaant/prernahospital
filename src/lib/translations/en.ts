@@ -21,6 +21,7 @@ const en = {
 
   // ── Hero ────────────────────────────────────────────────────────────────────
   hero: {
+    seoSubtitle: "Rated as the Best Psychiatrist in Sambhaji Nagar",
     titlePart1: "Transforming Mental Illness to",
     titleHighlight: "Mental Wellness.",
   },

@@ -64,6 +64,14 @@ export default function HeroSection() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="flex flex-col items-start text-left text-white w-full md:items-center md:text-center"
             >
+              <motion.h2
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.05 }}
+                className="text-[0.7rem] font-medium tracking-widest text-white/80 uppercase mb-1.5 md:text-xs md:mb-2 bg-white/10 px-3 py-1 rounded-full border border-white/20 backdrop-blur-sm shadow-sm"
+              >
+                {t("hero.seoSubtitle")}
+              </motion.h2>
               <motion.h1
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}

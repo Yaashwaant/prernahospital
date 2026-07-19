@@ -8,12 +8,15 @@ const BASE_URL = "https://www.prernahospital.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Psychiatrist & De-addiction in Sambhaji Nagar | Prerna",
+    default: "Best Psychiatrist & De-addiction Centre in Sambhaji Nagar | Prerna Hospital",
     template: "%s | Prerna Hospital",
   },
   description:
-    "Expert psychiatry & de-addiction in Chhatrapati Sambhajinagar (Aurangabad). Book a consultation for top mental health care.",
+    "Consult the best psychiatrist in Chhatrapati Sambhajinagar (Aurangabad) for expert mental health, neuropsychiatry & de-addiction care. Book your appointment today.",
   keywords: [
+    "best psychiatrist in sambhaji nagar",
+    "top psychiatrist in aurangabad",
+    "best mental health clinic in sambhaji nagar",
     "psychiatrist in sambhaji nagar",
     "deaddiction centre in sambhaji nagar",
     "psychiatrist in aurangabad",
@@ -35,9 +38,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: BASE_URL,
     siteName: "Prerna Hospital",
-    title: "Prerna Hospital | Psychiatrist & De-addiction Centre in Chhatrapati Sambhajinagar",
+    title: "Best Psychiatrist & De-addiction Centre in Chhatrapati Sambhajinagar | Prerna Hospital",
     description:
-      "Expert neuropsychiatry, de-addiction & mental health care in Chhatrapati Sambhajinagar (formerly Aurangabad). Book with the best psychiatrists in the Marathwada region.",
+      "Consult the best psychiatrist in Chhatrapati Sambhajinagar (Aurangabad) for expert mental health, neuropsychiatry & de-addiction care. Book your appointment today.",
     images: [
       {
         url: "/og-image.jpg",
@@ -50,9 +53,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Prerna Hospital | Psychiatrist & De-addiction Centre in Chhatrapati Sambhajinagar",
+      "Best Psychiatrist & De-addiction Centre in Chhatrapati Sambhajinagar | Prerna Hospital",
     description:
-      "Expert neuropsychiatry, de-addiction & mental health care in Chhatrapati Sambhajinagar (formerly Aurangabad). Book with the best psychiatrists in the Marathwada region.",
+      "Consult the best psychiatrist in Chhatrapati Sambhajinagar (Aurangabad) for expert mental health, neuropsychiatry & de-addiction care. Book your appointment today.",
     images: ["/og-image.jpg"],
   },
   robots: {
